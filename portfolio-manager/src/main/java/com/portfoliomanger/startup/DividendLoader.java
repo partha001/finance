@@ -19,7 +19,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import com.portfoliomanger.dao.DividendDao;
-import com.portfoliomanger.dto.DividendDto;
+import com.portfoliomanger.entities.Dividend;
 import com.portfoliomanger.util.ExcelUtil;
 
 @Order(0)
@@ -41,7 +41,7 @@ public class DividendLoader implements CommandLineRunner{
 	public void run(String... args) throws Exception  {		
 		Resource resource = new ClassPathResource(INVESTMENT_DATA);
 		File file = resource.getFile();
-		List<DividendDto> dividendList = new ArrayList<>();
+		List<Dividend> dividendList = new ArrayList<>();
 		try (Workbook workbook = new XSSFWorkbook(file);) {
 
 			Sheet sheet = workbook.getSheet("dividend");
@@ -49,15 +49,15 @@ public class DividendLoader implements CommandLineRunner{
 			rowIterator.next(); //to skip the header record
 			while(rowIterator.hasNext()) {
 				Row row = rowIterator.next();
-				DividendDto dto = new DividendDto();
-				dto.setYear(excelUtil.getInt(row.getCell(1)));
+				Dividend dto = new Dividend();
+				dto.setDividendYear(excelUtil.getInt(row.getCell(1)));
 				dto.setQuarter(excelUtil.getInt(row.getCell(2)));
 				dto.setSymbol(excelUtil.getString(row.getCell(3)));
 				dto.setName(excelUtil.getString(row.getCell(4)));
 				dto.setAmount(excelUtil.getDouble(row.getCell(6)));
 				dividendList.add(dto);
 				
-				logger.info("rowIndex:{} year:{}  quarter:{}  symbol:{}  name:{}  amount:{}",row.getRowNum()+1, dto.getYear(),dto.getQuarter(),dto.getSymbol(),dto.getName(),dto.getAmount());
+				logger.info("rowIndex:{} year:{}  quarter:{}  symbol:{}  name:{}  amount:{}",row.getRowNum()+1, dto.getDividendYear(),dto.getQuarter(),dto.getSymbol(),dto.getName(),dto.getAmount());
 				//System.out.print(""+ excelDataUtil.readCell(cell) + "  ");
 			}
 		}

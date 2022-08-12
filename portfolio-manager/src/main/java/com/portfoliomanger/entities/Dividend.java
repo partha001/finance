@@ -1,6 +1,4 @@
-package com.portfoliomanger.dto;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
+package com.portfoliomanger.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,17 +11,12 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class DividendDto {
-
+public class Dividend {
+	
 	private Integer dividendYear;
 	private Integer quarter;
 	private String symbol;
 	private String name;
 	private Double amount;
-	private Double minAmount;
-	private Double maxAmount;
-	private Double avgAmount;
-
 
 }
