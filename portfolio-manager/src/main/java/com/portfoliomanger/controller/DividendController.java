@@ -29,5 +29,11 @@ public class DividendController {
 	public ResponseEntity<DividendSummaryResponse> getDividendSummarByYearAndQuarter(){
 		return service.getDividendSummarByYearAndQuarter();		
 	}
+	
+	
+	@GetMapping("/dividendSummaryByEquity")
+	public ResponseEntity<DividendSummaryResponse> getDividendSummarByEquity(){
+		return service.getDividendSummarByEquity();		
+	}
 
 }

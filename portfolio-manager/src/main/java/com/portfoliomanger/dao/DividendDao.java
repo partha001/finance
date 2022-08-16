@@ -55,4 +55,9 @@ public class DividendDao {
 	}
 
 
+	public List<DividendDto> getDividendSummarByEquity() {
+		return jdbcTemplate.query(SqlConstant.GET_YEARLY_DIVIDEND_SUMMARY_BY_EQUITY, new BeanPropertyRowMapper(DividendDto.class));
+	}
+
+
 }
