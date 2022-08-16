@@ -1,21 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
-import "./components/Navigation"
+import "./components/pages/Navigation"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import Navigation from './components/Navigation';
+import { Routes, Route } from "react-router-dom";
+import Welcome from './components/pages/Welcome';
+import Dashboard from './components/pages/Dashboard';
 
 function App() {
+
+  const activeMenu = "menu1";
+
   return (
+
     <div>
-      <div className="container jumbotron bg-secondary rounded">      
-          <h1>Portfolio Manager</h1>
+      <div className="container jumbotron rounded header-style">
+        <h1>Portfolio Manager</h1>
       </div>
 
-      <Navigation activeMenu="menu1"></Navigation>
+      <div className='container'>
+        <Routes>
+          <Route path='' element={<Welcome/>}> </Route>
+          <Route path='/dashboard' element={<Dashboard  activeMenu={activeMenu}/>}></Route>
+        </Routes>
+      </div>
 
-
-      <div className="container footerStyle bg-secondary rounded">
+      <div className="container footerStyle rounded footer-style">
         <div className="footerStyleContent">
           <p className="text-white credit">Developed by:
             Partha Biswas
