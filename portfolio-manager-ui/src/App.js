@@ -22,6 +22,7 @@ function App() {
         <Routes>
           <Route path='' element={<Welcome/>}> </Route>
           <Route path='/dashboard' element={<Dashboard  activeMenu={activeMenu}/>}></Route>
+          <Route path='*' element={<div><h4>404 no such page found</h4></div>}></Route>
         </Routes>
       </div>
 

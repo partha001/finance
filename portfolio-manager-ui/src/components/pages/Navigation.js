@@ -5,6 +5,7 @@ import YearlySummary from './YearlySummary';
 import QuarterlySummary from './QuarterlySummary';
 import YearlyQuarterlySummary from './YearlyQuarterlySummary';
 import EquityWiseSummary from './EquityWiseSummary';
+import DividendDetails from './DividendDetails';
 import './Navigation.css';
 
 function Navigation(props) {
@@ -39,6 +40,10 @@ function Navigation(props) {
         else if (activeMenu === 'menuEquitySummary') {
             setContent(<EquityWiseSummary />)
         }
+        else if (activeMenu === 'menuDividendDetails') {
+            setContent(<DividendDetails />)
+        }
+
 
         
     }
@@ -64,8 +69,9 @@ function Navigation(props) {
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown" >
                                     <li><a className="dropdown-item" href="#" id="menuYearlySummar" >Yearly Summary</a></li>
                                     <li><a className="dropdown-item" href="#" id="menuQuarterlySummary" >Quarterly Summary </a></li>
-                                    <li><a className="dropdown-item" href="#" id="menuYearlyQuarterlySummary" >Year and Quarterly Summary</a></li>
+                                    <li><a className="dropdown-item" href="#" id="menuYearlyQuarterlySummary" >Yearly and Quarterly Summary</a></li>
                                     <li><a className="dropdown-item" href="#" id="menuEquitySummary" >Equitywise Summary</a></li>
+                                    <li><a className="dropdown-item" href="#" id="menuDividendDetails" >Dividend Details</a></li>
                                 </ul>
                             </li>
                             <li className="nav-item">

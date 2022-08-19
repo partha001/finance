@@ -1,20 +1,37 @@
+import { Space, Table, Tag } from 'antd';
+import "antd/dist/antd.css";
+import { Icon, Switch, Radio, Form, Divider } from "antd";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import axios from "axios";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './YearlySummary.css';
+
 
 function YearlySummary() {
 
 
     const [yearlyData, setYearlyData] = useState();
+    const [loadinng, setLoading] = useState(false);
+
 
     useEffect(() => {
         getYearlyData();
     }, []);
 
-    useEffect(() => {
-    }, [yearlyData]);
+
+    const columns = [
+        {
+            title: "Year",
+            dataIndex: "dividendYear",
+            key: "dividendYear"
+        },
+        {
+            title: "Dividend Amount",
+            dataIndex: "amount",
+            key: "amount"
+        }
+    ]
 
 
     function getYearlyData() {
@@ -34,13 +51,13 @@ function YearlySummary() {
     }
 
 
-  //   function getYearlyData() {
-  //     // Simple GET request using axios
-  //     axios.get('http://localhost:8081/dividendSummaryByYear')
-  //         .then(response => {
-  //             setYearlyData(response.data);
-  //         });
-  // }
+    //   function getYearlyData() {
+    //     // Simple GET request using axios
+    //     axios.get('http://localhost:8081/dividendSummaryByYear')
+    //         .then(response => {
+    //             setYearlyData(response.data);
+    //         });
+    // }
 
     return (
         <div className="container rounded">
@@ -49,13 +66,15 @@ function YearlySummary() {
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
+
+
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">Year</th>
-                                    <th scope="col">Dividend</th>
-                                    <th scope="col">Max</th>
-                                    <th scope="col">avg</th>
+                                    <th scope="col">Total Div.</th>
+                                    <th scope="col">Max Div.</th>
+                                    <th scope="col">Avg Div.</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,13 +88,11 @@ function YearlySummary() {
                               //         <td>{item.avgAmount}</td>
                               //     </tr>
                               // ))
-
-
-
                                   yearlyData
                                 }
                             </tbody>
                         </table>
+
 
                     </div>
                     <div class="col-lg-6">

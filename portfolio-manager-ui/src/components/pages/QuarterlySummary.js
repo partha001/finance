@@ -10,9 +10,6 @@ function QuarterlySummary(){
         getQuarterlyData();
     }, []);
 
-    useEffect(() => {
-    }, [quarterlyData]);
-
 
     function getQuarterlyData() {
         // Simple GET request using axios
@@ -50,9 +47,9 @@ function QuarterlySummary(){
                             <thead>
                                 <tr>
                                     <th scope="col">Quarter</th>
-                                    <th scope="col">Dividend</th>
-                                    <th scope="col">Max</th>
-                                    <th scope="col">avg</th>
+                                    <th scope="col">Total Div.</th>
+                                    <th scope="col">Max Div.</th>
+                                    <th scope="col">Avg Div.</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,9 +63,6 @@ function QuarterlySummary(){
                               //         <td>{item.avgAmount}</td>
                               //     </tr>
                               // ))
-
-
-
                               quarterlyData
                                 }
                             </tbody>

@@ -9,9 +9,6 @@ function YearlyQuarterlySummary(){
         getYearlyQuarterlyData();
     }, []);
 
-    useEffect(() => {
-    }, [data]);
-
 
     function getYearlyQuarterlyData() {
         // Simple GET request using axios
@@ -41,7 +38,7 @@ function YearlyQuarterlySummary(){
 
     return (
         <div className="container rounded">
-            <div ><b>Dividends  &gt; YearlyQuarterlySummary</b></div>
+            <div ><b>Dividends  &gt; Yearly-Quarterly-Summary</b></div>
             <br />
             <div class="container">
                 <div class="row">
@@ -51,9 +48,9 @@ function YearlyQuarterlySummary(){
                                 <tr>
                                     <th scope="col">Year</th>
                                     <th scope="col">Quarter</th>
-                                    <th scope="col">Dividend</th>
-                                    <th scope="col">Max</th>
-                                    <th scope="col">avg</th>
+                                    <th scope="col">Total. Div.</th>
+                                    <th scope="col">Max Div.</th>
+                                    <th scope="col">Avg Div.</th>
                                 </tr>
                             </thead>
                             <tbody>
