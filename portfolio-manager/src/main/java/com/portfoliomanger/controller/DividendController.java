@@ -35,5 +35,13 @@ public class DividendController {
 	public ResponseEntity<DividendSummaryResponse> getDividendSummarByEquity(){
 		return service.getDividendSummarByEquity();		
 	}
+	
+	
+
+	@GetMapping("/dividendDetails")
+	public ResponseEntity<DividendSummaryResponse> getDividendDetails() throws InterruptedException{
+		Thread.currentThread().sleep(1000);
+		return service.getDividendDetails();		
+	}
 
 }

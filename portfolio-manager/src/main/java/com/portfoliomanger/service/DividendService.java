@@ -67,6 +67,18 @@ public class DividendService {
 				.build();
 		return new ResponseEntity<DividendSummaryResponse>(response, HttpStatus.OK);
 	}
+
+
+	public ResponseEntity<DividendSummaryResponse> getDividendDetails() {
+		List<DividendDto> list = dividendDao.getDividendDetails();
+		list.forEach(item -> {
+			item.setAvgAmount(MathUtil.roundDouble(item.getAvgAmount()));
+		});
+		DividendSummaryResponse response = DividendSummaryResponse.builder()
+				.list(list)
+				.build();
+		return new ResponseEntity<DividendSummaryResponse>(response, HttpStatus.OK);
+	}
 	
 	
 	

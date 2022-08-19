@@ -60,4 +60,10 @@ public class DividendDao {
 	}
 
 
+
+	public List<DividendDto> getDividendDetails() {
+		return jdbcTemplate.query(SqlConstant.GET_DIVIDEND_DETAILS, new BeanPropertyRowMapper(DividendDto.class));
+		}
+
+
 }
