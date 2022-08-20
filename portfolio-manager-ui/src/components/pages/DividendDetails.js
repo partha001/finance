@@ -8,16 +8,40 @@ function DividendDetails(){
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [years, setYears] = useState([]);
+    const [quarters, setQuarters] = useState([]);
 
 
 
 
     useEffect(() => {
         console.log("hello");
+        populateQuarters();
         getDividendDetails();
         // populateYears();
         // console.log(years);              
     }, []);
+
+
+    function populateQuarters(){
+        let arr = [{
+            
+                'text':'1',
+                'value':'1'
+            }
+            ,{
+                'text':'2',
+                'value':'2'
+            }
+            ,{
+                'text':'3',
+                'value':'3'
+            }
+            ,{
+                'text':'4',
+                'value':'4'
+            }]
+            setQuarters(arr);
+    }
 
     // useEffect(() => {
     //   if(data.length>0){
@@ -86,7 +110,14 @@ function DividendDetails(){
         {
             title: "Quarter",
             dataIndex: "quarter",
-            key: "quarter"
+            filters: quarters,
+            key: "quarter",
+            onFilter: (value, record) => { 
+                // console.log(value);
+                // console.log(record.dividendYear);
+                //return record.dividendYear.indexOf(value) === 0;
+                return record['quarter'].toString().toLowerCase().includes(value.toLowerCase())
+            }
         },
         // {
         //     title: "Symbol",
