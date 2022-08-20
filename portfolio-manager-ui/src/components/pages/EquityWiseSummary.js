@@ -1,10 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from 'react';
+//import { Space, Table, Tag , Icon, Switch, Radio, Form, Divider} from 'antd';
 
 
 function EquityWiseSummary(){
    
     const [data, setData] = useState();
+    // const [loading, setLoading] = useState(false);
+    // const [years, setYears] = useState([]);
+    // const [quartersFilter, setQuartersFilter] = useState([]);
 
     useEffect(() => {
         getYearlyQuarterlyData();
