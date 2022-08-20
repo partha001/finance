@@ -16,6 +16,7 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DividendDto {
 
+	private Integer id;
 	private Integer dividendYear;
 	private Integer quarter;
 	private String symbol;

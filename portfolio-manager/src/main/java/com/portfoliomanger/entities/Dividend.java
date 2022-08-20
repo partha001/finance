@@ -13,6 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Dividend {
 	
+	private Integer id;
 	private Integer dividendYear;
 	private Integer quarter;
 	private String symbol;

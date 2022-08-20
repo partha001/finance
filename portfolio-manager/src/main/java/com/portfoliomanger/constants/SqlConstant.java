@@ -12,7 +12,7 @@ public interface SqlConstant {
 	
 	public static final String GET_YEARLY_DIVIDEND_SUMMARY_BY_EQUITY = "select  symbol, name , sum(dividendAmount) as amount , MIN(dividendAmount) as minAmount , max(dividendAmount) as maxAmount ,  avg(dividendAmount) as avgAmount  from DIVIDENDMASTER group by  symbol, name";
 	
-	public static final String GET_DIVIDEND_DETAILS = "select  symbol, name ,  dividendYear  , quarter , dividendAmount as amount   from DIVIDENDMASTER order by dividendYear desc , quarter desc ";
+	public static final String GET_DIVIDEND_DETAILS = "select id, symbol, name ,  dividendYear  , quarter , dividendAmount as amount   from DIVIDENDMASTER order by dividendYear desc , quarter desc ";
 }
 
 
