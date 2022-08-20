@@ -16,10 +16,10 @@ function EquityWiseSummary(){
 
     function getYearlyQuarterlyData() {
         // Simple GET request using axios
-        axios.get('http://localhost:8081/dividendSummaryByEquity')
+        axios.get('http://localhost:8081/dividendSummaryByEquity') 
             .then(response => {
                 setData(response.data.list.map((item) => (
-                    <tr>
+                    <tr key={item.symbol+'-'+item.name}>
                         <td>{item.symbol}</td>
                         <td>{item.name}</td>
                         <td>{item.amount}</td>
@@ -44,10 +44,10 @@ function EquityWiseSummary(){
         <div className="container rounded">
             <div ><b>Dividends  &gt; EquitywiseSummary</b></div>
             <br />
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <table class="table">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-6">
+                        <table className="table">
                             <thead>
                                 <tr>
                                     <th scope="col">Symbol</th>
@@ -77,7 +77,7 @@ function EquityWiseSummary(){
                         </table>
 
                     </div>
-                    <div class="col-lg-6">
+                    <div className="col-lg-6">
                         section2
                     </div>
                 </div>

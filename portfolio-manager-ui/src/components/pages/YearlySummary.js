@@ -39,7 +39,7 @@ function YearlySummary() {
         axios.get('http://localhost:8081/dividendSummaryByYear')
             .then(response => {
                 setYearlyData(response.data.list.map((item) => (
-                    <tr>
+                    <tr key={item.dividendYear}>
                         <td>{item.dividendYear}</td>
                         <td>{item.amount}</td>
                         <td>{item.maxAmount}</td>
@@ -63,12 +63,12 @@ function YearlySummary() {
         <div className="container rounded">
             <div ><b>Dividends  &gt; YearlySummary</b></div>
             <br />
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-6">
 
 
-                        <table class="table">
+                        <table className="table">
                             <thead>
                                 <tr>
                                     <th scope="col">Year</th>
@@ -95,7 +95,7 @@ function YearlySummary() {
 
 
                     </div>
-                    <div class="col-lg-6">
+                    <div className="col-lg-6">
                         section2
                     </div>
                 </div>

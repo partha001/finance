@@ -16,7 +16,7 @@ function QuarterlySummary(){
         axios.get('http://localhost:8081/dividendSummaryByQuarter')
             .then(response => {
                 setQuarterlyData(response.data.list.map((item) => (
-                    <tr>
+                    <tr key={item.quarter}>
                         <td>{item.quarter}</td>
                         <td>{item.amount}</td>
                         <td>{item.maxAmount}</td>
@@ -40,10 +40,10 @@ function QuarterlySummary(){
         <div className="container rounded">
             <div ><b>Dividends  &gt; QuarterlySummary</b></div>
             <br />
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <table class="table">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-6">
+                        <table className="table">
                             <thead>
                                 <tr>
                                     <th scope="col">Quarter</th>
@@ -69,7 +69,7 @@ function QuarterlySummary(){
                         </table>
 
                     </div>
-                    <div class="col-lg-6">
+                    <div className="col-lg-6">
                         section2
                     </div>
                 </div>

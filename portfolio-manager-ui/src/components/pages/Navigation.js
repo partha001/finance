@@ -89,7 +89,7 @@ function Navigation(props) {
 
         <div className="container rounded">
             <div className='tab-body'>
-                <p>{content}</p>
+                {content}
             </div>
         </div>
     </div>)

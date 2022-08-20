@@ -8,21 +8,19 @@ function DividendDetails(){
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [years, setYears] = useState([]);
-    const [quarters, setQuarters] = useState([]);
+    const [quartersFilter, setQuartersFilter] = useState([]);
 
 
 
 
     useEffect(() => {
         console.log("hello");
-        populateQuarters();
-        getDividendDetails();
-        // populateYears();
-        // console.log(years);              
+        populateQuartersFilter();
+        getDividendDetails();           
     }, []);
 
 
-    function populateQuarters(){
+    function populateQuartersFilter(){
         let arr = [{
             
                 'text':'1',
@@ -40,29 +38,33 @@ function DividendDetails(){
                 'text':'4',
                 'value':'4'
             }]
-            setQuarters(arr);
+            setQuartersFilter(arr);
     }
-
-    // useEffect(() => {
-    //   if(data.length>0){
-    //     populateYears();
-    //   }           
-    // }, [data]);
-
-     // useEffect(() => {
-    //   if(data.length>0){
-    //     populateYears();
-    //   }           
-    // }, [data,years]);
 
     function getDividendDetails() {
         setLoading(true);
         axios.get('http://localhost:8081/dividendDetails')
             .then(response => {
-                setData(response.data.list);
                 setLoading(false);
+                populateDate(response.data.list);
                 populateYears(response.data.list)
             });
+    }
+
+    function populateDate(list){
+        let arr = [];
+        list.map( item =>{
+            arr.push(
+                {
+                    'key': item.id,
+                    'dividendYear' : item.dividendYear,
+                    'quarter': item.quarter,
+                    'name': item.name,
+                    'amount': item.amount
+                }
+            )
+        });
+       setData(arr);
     }
 
 
@@ -110,7 +112,7 @@ function DividendDetails(){
         {
             title: "Quarter",
             dataIndex: "quarter",
-            filters: quarters,
+            filters: quartersFilter,
             key: "quarter",
             onFilter: (value, record) => { 
                 // console.log(value);
@@ -165,14 +167,14 @@ function DividendDetails(){
              {console.log("inside return block",years)}
             <div ><b>Dividends  &gt; Dividend details</b></div>
             <br />
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-6">
 
                         <Table loading={loading} dataSource={data} columns={columns}></Table>
 
                     </div>
-                    <div class="col-lg-6">
+                    <div className="col-lg-6">
                         section2
                     </div>
                 </div>
