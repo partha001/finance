@@ -25,6 +25,7 @@ public class DividendDto {
 	private Double minAmount;
 	private Double maxAmount;
 	private Double avgAmount;
+	private Integer frequency;
 
 
 }
