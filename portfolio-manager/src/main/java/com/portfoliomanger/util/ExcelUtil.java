@@ -1,5 +1,7 @@
 package com.portfoliomanger.util;
 
+import java.util.Date;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +47,11 @@ public class ExcelUtil {
 	public Integer getInt(Cell cell) {
 		Double value = new Double(cell.getNumericCellValue());
 		return value.intValue();
+	}
+	
+	
+	public Date getDate(Cell cell) {
+		return cell.getDateCellValue();
 	}
 
 

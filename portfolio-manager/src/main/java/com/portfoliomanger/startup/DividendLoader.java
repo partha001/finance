@@ -1,6 +1,6 @@
 package com.portfoliomanger.startup;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -12,10 +12,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import com.portfoliomanger.dao.DividendDao;
@@ -28,21 +28,20 @@ public class DividendLoader implements CommandLineRunner{
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(DividendLoader.class);
-
 	
 	ExcelUtil excelUtil = new ExcelUtil();
-	ClassLoader classLoader = getClass().getClassLoader();
-	private static final String INVESTMENT_DATA = "mydata/invested.xlsx";
+	
+	@Value("${filename}")
+	private String filename;
 	
 	@Autowired
 	private DividendDao dividendDao;
 
 	@Override
 	public void run(String... args) throws Exception  {		
-		Resource resource = new ClassPathResource(INVESTMENT_DATA);
-		File file = resource.getFile();
 		List<Dividend> dividendList = new ArrayList<>();
-		try (Workbook workbook = new XSSFWorkbook(file);) {
+		try (InputStream inputStream = new ClassPathResource(filename, this.getClass().getClassLoader()).getInputStream();
+				Workbook workbook = new XSSFWorkbook(inputStream);) {
 
 			Sheet sheet = workbook.getSheet("dividend");
 			Iterator<Row> rowIterator = sheet.iterator();
@@ -58,7 +57,6 @@ public class DividendLoader implements CommandLineRunner{
 				dividendList.add(dto);
 				
 				logger.info("rowIndex:{} year:{}  quarter:{}  symbol:{}  name:{}  amount:{}",row.getRowNum()+1, dto.getDividendYear(),dto.getQuarter(),dto.getSymbol(),dto.getName(),dto.getAmount());
-				//System.out.print(""+ excelDataUtil.readCell(cell) + "  ");
 			}
 		}
 		

@@ -4,11 +4,22 @@ create table test(
 	symbol varchar(100)
 );
 
-create table DividendMaster (
-	id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	symbol varchar(50),
-	name varchar(100),
-	dividendYear integer,
-	quarter integer,
-	dividendAmount double
-);
+
+CREATE TABLE DividendMaster
+  (
+     id             INT(11) NOT NULL auto_increment PRIMARY KEY,
+     symbol         VARCHAR(50),
+     name           VARCHAR(100),
+     dividendyear   INTEGER,
+     quarter        INTEGER,
+     dividendamount DOUBLE
+  );  
+
+
+CREATE TABLE AssetMaster
+  (
+     id     		INT(11) NOT NULL auto_increment PRIMARY KEY,
+     assetName   	VARCHAR(100),
+     amount 		DOUBLE,
+     recordDate		date
+  );  
