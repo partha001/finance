@@ -1,4 +1,4 @@
-package com.portfoliomanger.startup;
+package com.portfoliomanger.loaders;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -14,8 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
@@ -24,9 +22,9 @@ import com.portfoliomanger.dao.AssetDao;
 import com.portfoliomanger.entities.Asset;
 import com.portfoliomanger.util.ExcelUtil;
 
-@Order(1)
+
 @Component
-public class AssetLoader implements CommandLineRunner{
+public class AssetLoader {
 
 
 	private static final Logger logger = LoggerFactory.getLogger(AssetLoader.class);
@@ -40,8 +38,8 @@ public class AssetLoader implements CommandLineRunner{
 	@Autowired
 	private AssetDao assetDao;
 
-	@Override
-	public void run(String... args) throws Exception  {		
+
+	public void run()  {		
 
 		List<Date> dates = new ArrayList<>();
 		List<Asset> assetList = new ArrayList<>();
@@ -90,6 +88,8 @@ public class AssetLoader implements CommandLineRunner{
 
 				}
 			}
+		} catch (Exception e) {
+			logger.error("exception occured",e);
 		}
 
 		assetDao.insertAsssetDetails(assetList);

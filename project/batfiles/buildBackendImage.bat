@@ -8,3 +8,4 @@ call docker build -f portfolio-manager\Dockerfile   --no-cache=true -t partha011
 ECHO ######################### pushing image to dockerhub #########################
 docker push partha011/portfolio-manager:1.0
 
+cd project/batfiles
