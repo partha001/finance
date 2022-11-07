@@ -16,6 +16,9 @@ public interface SqlConstant {
 	
 	public static final String LOAD_ASSET_DETAILS = "insert into AssetMaster (assetName, amount, recordDate) values (:name, :amount, :recordDate) ";
 	
+	public static final String LOAD_NSE_DATA = "insert into StockMaster(exchange, symbol,name, isinNumber, faceValue, listingDate) values (:exchange, :symbol, :name, :isinNumber, :faceValue, :listingDate) ";
+
+	
 }
 
 

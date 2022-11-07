@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.portfoliomanger.constants.SqlConstant;
 import com.portfoliomanger.entities.Asset;
-import com.portfoliomanger.util.CommonUtil;
+import com.portfoliomanger.util.DateUtil;
 
 @Repository
 public class AssetDao {
@@ -26,7 +26,7 @@ public class AssetDao {
 			MapSqlParameterSource param = new MapSqlParameterSource();
 			param.addValue("name", dto.getName());
 			param.addValue("amount", dto.getAmount());
-			param.addValue("recordDate", CommonUtil.convertUtilDateToSqlDate(dto.getRecordDate()));
+			param.addValue("recordDate", DateUtil.convertUtilDateToSqlDate(dto.getRecordDate()));
 			map[i] = param;
 		}
 		int[] batchUpdate = jdbcTemplate.batchUpdate(SqlConstant.LOAD_ASSET_DETAILS, map);

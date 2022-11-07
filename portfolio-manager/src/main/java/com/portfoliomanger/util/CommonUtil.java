@@ -1,9 +1,17 @@
 package com.portfoliomanger.util;
 
+import com.google.common.base.Strings;
+
 public class CommonUtil {
 	
-	public static java.sql.Date convertUtilDateToSqlDate(java.util.Date utilDate){
-		return new java.sql.Date(utilDate.getTime());
+	public static Double parseDouble(String input) {
+		Double result;
+		if(Strings.isNullOrEmpty(input)) {
+			result = null;
+		}else {
+			result = new Double(input);
+		}
+		return result;
 	}
 
 }

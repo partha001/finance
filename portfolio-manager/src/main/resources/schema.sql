@@ -28,9 +28,11 @@ CREATE TABLE AssetMaster
 CREATE TABLE StockMaster
   (
      id     		INT(11) NOT NULL auto_increment PRIMARY KEY,
+     exchange       VARCHAR(20),
      symbol         VARCHAR(50),
      name           VARCHAR(100),
      isinNumber     VARCHAR(50),
      faceValue      DOUBLE,
-     listingDate	date  
+     listingDate	date,
+     CONSTRAINT UC_ExchangeSymbol UNIQUE (exchange,symbol)
   );
