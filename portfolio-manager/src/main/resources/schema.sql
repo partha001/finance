@@ -22,4 +22,15 @@ CREATE TABLE AssetMaster
      assetName   	VARCHAR(100),
      amount 		DOUBLE,
      recordDate		date
-  );  
+  );
+  
+
+CREATE TABLE StockMaster
+  (
+     id     		INT(11) NOT NULL auto_increment PRIMARY KEY,
+     symbol         VARCHAR(50),
+     name           VARCHAR(100),
+     isinNumber     VARCHAR(50),
+     faceValue      DOUBLE,
+     listingDate	date  
+  );

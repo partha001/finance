@@ -1,5 +1,6 @@
-package com.portfoliomanger.startup;
+package com.portfoliomanger.loaders;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,9 +23,9 @@ import com.portfoliomanger.dao.DividendDao;
 import com.portfoliomanger.entities.Dividend;
 import com.portfoliomanger.util.ExcelUtil;
 
-@Order(0)
+
 @Component
-public class DividendLoader implements CommandLineRunner{
+public class DividendLoader {
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(DividendLoader.class);
@@ -37,8 +38,7 @@ public class DividendLoader implements CommandLineRunner{
 	@Autowired
 	private DividendDao dividendDao;
 
-	@Override
-	public void run(String... args) throws Exception  {		
+	public void run()  {		
 		List<Dividend> dividendList = new ArrayList<>();
 		try (InputStream inputStream = new ClassPathResource(filename, this.getClass().getClassLoader()).getInputStream();
 				Workbook workbook = new XSSFWorkbook(inputStream);) {
@@ -58,6 +58,8 @@ public class DividendLoader implements CommandLineRunner{
 				
 				logger.info("rowIndex:{} year:{}  quarter:{}  symbol:{}  name:{}  amount:{}",row.getRowNum()+1, dto.getDividendYear(),dto.getQuarter(),dto.getSymbol(),dto.getName(),dto.getAmount());
 			}
+		} catch (IOException e) {
+			logger.error("exception occured",e);
 		}
 		
 		logger.info("total number of dividentRecordsRead:{}",dividendList.size());
