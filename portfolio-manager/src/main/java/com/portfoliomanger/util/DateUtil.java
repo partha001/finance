@@ -16,6 +16,10 @@ public class DateUtil {
 		return new java.sql.Date(utilDate.getTime());
 	}
 	
+	public static java.util.Date convertSqlDateToUtilDate(java.sql.Date utilDate){
+			return new java.sql.Date(utilDate.getTime());
+	}
+	
 	
 	public static java.util.Date parseToUtilDate(String input,String dateformat) {
 		SimpleDateFormat formatter = new SimpleDateFormat(dateformat);

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.portfoliomanger.loaders.AssetLoader;
 import com.portfoliomanger.loaders.DividendLoader;
 
-@Order(1)
+@Order(2)
 @Component
 public class PersonalDataLoader implements CommandLineRunner{
 	

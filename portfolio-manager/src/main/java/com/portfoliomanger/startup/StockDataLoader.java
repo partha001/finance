@@ -8,7 +8,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import com.portfoliomanger.dao.StockDao;
 import com.portfoliomanger.loaders.NSEDataLoader;
+import com.portfoliomanger.service.StockService;
+import com.portfoliomanger.util.StockUtil;
 
 @Order(0)
 @Component
@@ -24,13 +27,23 @@ public class StockDataLoader implements CommandLineRunner{
 	@Autowired
 	NSEDataLoader nseDataLoader;
 	
+	
+//	@Autowired
+//	StockService stockService;
+	
+	
+//	@Autowired
+//	StockUtil stockUtil;
+	
 
 	@Override
 	public void run(String... args) throws Exception {
 		if(nseEquityListLoadFlag) {
 			logger.info("loading nse data");
 			nseDataLoader.run();
-		}
+		}		
+		//stockService.refreshStockMap();
+		
 	}
 
 }

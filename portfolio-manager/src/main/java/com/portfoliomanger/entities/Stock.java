@@ -15,11 +15,16 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Stock {
 	
+	private Integer id;
 	private String exchange;
 	private String symbol;
 	private String name;
 	private Date listingDate;
 	private String isin;
 	private Double faceValue;
+	private Double price;
+	
+	//example value NSE:SBIN
+	private String key;
 
 }

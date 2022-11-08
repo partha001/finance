@@ -1,0 +1,11 @@
+************** running mysql *************************************
+docker run -d  --rm -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=mydatabase -p 3306:3306 --name  mysqlpartha mysql:5.7
+
+	#now to enter into the docker container  in interactive mode
+	docker exec -it mysqlpartha bash
+	
+	#entering into mysql terminal
+	mysql -u root -p
+	
+	
+	use mydatabase;

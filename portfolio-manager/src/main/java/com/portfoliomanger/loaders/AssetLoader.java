@@ -53,14 +53,14 @@ public class AssetLoader {
 			//rowIterator.next(); //to skip the header record
 			while(rowIterator.hasNext()) {
 				Row row = rowIterator.next();
-				logger.info("currently reacding row:{} ", row.getRowNum());
+				//logger.info("currently reading row:{} ", row.getRowNum());
 				if(row.getRowNum()==0) {
 					//counting number of cols
 					int i=1;			
 					while( excelUtil.getDate(row.getCell(i))!=null) {
 						Date currentDate = excelUtil.getDate(row.getCell(i));
 						dates.add(currentDate);
-						logger.info(""+currentDate);
+						//logger.info(""+currentDate);
 						i++;
 					}				
 				}else {
@@ -69,20 +69,15 @@ public class AssetLoader {
 					if(Strings.isNullOrEmpty(assetName))
 						break;
 
-//					double value = 0.0;
 					for(int m=0;m<dates.size();m++) {
 						Asset asset = new Asset();
 						asset.setName(assetName);
 						Double amount = excelUtil.getDouble(row.getCell(m+1));
 
-//						if(amount!=0) {
-//							value = amount;
-//						}
-
 						asset.setAmount(amount);
 						asset.setRecordDate(dates.get(m));
 						assetList.add(asset);
-						logger.info("assetName:{}  value:{}  recordDate:{}",asset.getName(),asset.getAmount(),asset.getRecordDate());
+						//logger.info("assetName:{}  value:{}  recordDate:{}",asset.getName(),asset.getAmount(),asset.getRecordDate());
 
 					}
 
@@ -92,8 +87,8 @@ public class AssetLoader {
 			logger.error("exception occured",e);
 		}
 
-		assetDao.insertAsssetDetails(assetList);
-
+		int recordsInserted = assetDao.insertAsssetDetails(assetList);
+		logger.info("asset count loaded into database:{}",recordsInserted);
 	}
 
 

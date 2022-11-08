@@ -48,8 +48,8 @@ public class NSEDataLoader {
 		loadEquityList();
 		
 		
-		logger.info("loading nse-equity-sme-list");
-		loadEquitySmeList();
+//		logger.info("loading nse-equity-sme-list");
+//		loadEquitySmeList();
 
 	}
 	
@@ -88,6 +88,7 @@ public class NSEDataLoader {
 				stock.setName(record.get("NAME OF COMPANY"));
 				stock.setFaceValue(CommonUtil.parseDouble(record.get("FACE VALUE")));
 				stock.setIsin(record.get("ISIN NUMBER"));
+				stock.setKey(stock.getExchange()+":"+stock.getSymbol());
 				stock.setListingDate(DateUtil.parseToUtilDate(record.get("DATE OF LISTING"), Constants.DATE_FORMAT1));
 				stockList.add(stock);				
 			}
@@ -134,6 +135,7 @@ public class NSEDataLoader {
 				stock.setName(record.get("NAME_OF_COMPANY"));
 				stock.setFaceValue(CommonUtil.parseDouble(record.get("FACE_VALUE")));
 				stock.setIsin(record.get("ISIN_NUMBER"));
+				stock.setKey(stock.getExchange()+":"+stock.getSymbol());
 				stock.setListingDate(DateUtil.parseToUtilDate(record.get("DATE_OF_LISTING"), Constants.DATE_FORMAT1));
 				stockList.add(stock);				
 			}
