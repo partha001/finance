@@ -1,5 +1,10 @@
 set mode MySQL;
 
+DROP TABLE test;
+DROP TABLE DividendMaster;
+DROP TABLE AssetMaster;
+DROP TABLE StockMaster;
+
 create table test(
 	symbol varchar(100)
 );
@@ -16,6 +21,7 @@ CREATE TABLE DividendMaster
   );  
 
 
+
 CREATE TABLE AssetMaster
   (
      id     		INT(11) NOT NULL auto_increment PRIMARY KEY,
@@ -24,6 +30,7 @@ CREATE TABLE AssetMaster
      recordDate		date
   );
   
+
 
 CREATE TABLE StockMaster
   (
@@ -34,5 +41,7 @@ CREATE TABLE StockMaster
      isinNumber     VARCHAR(50),
      faceValue      DOUBLE,
      listingDate	date,
+     price          Double,
+     stockKey        VARCHAR(50), 
      CONSTRAINT UC_ExchangeSymbol UNIQUE (exchange,symbol)
   );

@@ -2,9 +2,7 @@ package com.portfoliomanger.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +45,7 @@ public class StockDao {
 	
 	
 	public List<Stock> readAllStockData(){
-		return jdbcTemplate.query("select * from StockMaster", new RowMapper<Stock>() {
+		return jdbcTemplate.query(SqlConstant.SELECT_FROM_STOCK_MASTER, new RowMapper<Stock>() {
 
 			@Override
 			public Stock mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -59,6 +57,7 @@ public class StockDao {
 				stock.setFaceValue(rs.getDouble("faceValue"));
 				stock.setListingDate(rs.getDate("listingDate"));
 				stock.setKey(rs.getString("stockKey"));
+				stock.setIsin(rs.getString("isinNumber"));
 				return stock;
 			}
 		});
@@ -85,23 +84,6 @@ public class StockDao {
 		int recordsInserted = IntStream.of(batchUpdate).sum();
 		return recordsInserted;
 	}
-	
-//	public int insertDividends(List<Dividend> list) {
-//		MapSqlParameterSource[] map = new MapSqlParameterSource[list.size()];
-//		for(int i=0;i<list.size();i++) {
-//			Dividend dto = list.get(i);
-//			MapSqlParameterSource param = new MapSqlParameterSource();
-//			param.addValue("symbol", dto.getSymbol());
-//			param.addValue("name", dto.getName());
-//			param.addValue("dividendYear", dto.getDividendYear());
-//			param.addValue("quarter", dto.getQuarter());
-//			param.addValue("dividendAmount", dto.getAmount());
-//			map[i] = param;
-//		}
-//		int[] batchUpdate = jdbcTemplate.batchUpdate(SqlConstant.LOAD_DIVIDEND_DATA, map);
-//		int recordsInserted = IntStream.of(batchUpdate).sum();
-//		return recordsInserted;
-//	}
 
 
 }

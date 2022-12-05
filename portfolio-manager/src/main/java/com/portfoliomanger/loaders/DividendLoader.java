@@ -30,23 +30,23 @@ import com.portfoliomanger.util.StockUtil;
 
 @Component
 public class DividendLoader {
-	
-	
+
+
 	private static final Logger logger = LoggerFactory.getLogger(DividendLoader.class);
-	
+
 	ExcelUtil excelUtil = new ExcelUtil();
-	
+
 	@Value("${filename}")
 	private String filename;
-	
+
 	@Autowired
 	private DividendDao dividendDao;
-	
-	
-//	@Autowired
-//	private StockUtil stockUtil;
-	
-	
+
+
+	//	@Autowired
+	//	private StockUtil stockUtil;
+
+
 	@Autowired
 	private StockService stockService;
 
@@ -55,9 +55,8 @@ public class DividendLoader {
 		try (InputStream inputStream = new ClassPathResource(filename, this.getClass().getClassLoader()).getInputStream();
 				Workbook workbook = new XSSFWorkbook(inputStream);) {
 
-			
-			Map<String, Stock> stockMap = stockService.getStockMapFromDb();
-			
+			Map<String, Stock> stockMap = StockUtil.stockMap;
+
 			Sheet sheet = workbook.getSheet("dividend");
 			Iterator<Row> rowIterator = sheet.iterator();
 			rowIterator.next(); //to skip the header record
@@ -70,33 +69,33 @@ public class DividendLoader {
 				dto.setName(excelUtil.getString(row.getCell(4)));
 				dto.setAmount(excelUtil.getDouble(row.getCell(6)));
 				dividendList.add(dto);
-								
+
 				//logger.info("rowIndex:{} year:{}  quarter:{}  symbol:{}  name:{}  amount:{}",row.getRowNum()+1, dto.getDividendYear(),dto.getQuarter(),dto.getSymbol(),dto.getName(),dto.getAmount());
-				if(!checkIfValidSymbol(dto.getSymbol(),stockMap)) {
+				if(!StockUtil.checkIfValidSymbol(dto.getSymbol())) {
 					logger.info("rowIndex:{} symbol:{} is not valid",row.getRowNum()+1,dto.getSymbol());
 				}
-					
-						
+
+
 			}
 		} catch (IOException e) {
 			logger.error("exception occured",e);
 		}
-		
+
 		logger.info("total number of dividentRecordsRead:{}",dividendList.size());
 		int recordsInserted = dividendDao.insertDividends(dividendList);
 		logger.info("total number of inserted:{}",recordsInserted);
-		
+
 
 	}
-	
-	
-	
-	public boolean checkIfValidSymbol(String symbol,Map<String, Stock> stockMap) {
-		if(stockMap.containsKey("NSE:"+symbol) || stockMap.containsKey("BSE:"+symbol))
-			return true;
-		else
-			return false;
-	}
+
+
+
+//	public boolean checkIfValidSymbol(String symbol,Map<String, Stock> stockMap) {
+//		if(stockMap.containsKey("NSE:"+symbol) || stockMap.containsKey("BSE:"+symbol))
+//			return true;
+//		else
+//			return false;
+//	}
 
 
 

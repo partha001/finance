@@ -42,7 +42,7 @@ public class StockController {
 	@GetMapping("/getStockDetails")
 	public ResponseEntity<List<Stock>> getStockDetails(){
 		//Collection<Stock> values = StockUtil.stockMap.values();
-		List<Stock> list = StockUtil.stockMap.keySet().stream().map(item -> StockUtil.stockMap.get(item)).collect(Collectors.toList());
+		List<Stock> list = StockUtil.stockMap.values().stream().collect(Collectors.toList());
 		//stockUtil.stockMap.keySet().stream().map(item -> )
 		return new ResponseEntity<List<Stock>>(list,  HttpStatus.OK);
 	}

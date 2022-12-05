@@ -18,11 +18,12 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import com.portfoliomanger.constants.Constants;
-import com.portfoliomanger.dao.StockDao;
 import com.portfoliomanger.entities.Stock;
+import com.portfoliomanger.service.StockService;
 import com.portfoliomanger.util.CommonUtil;
 import com.portfoliomanger.util.DateUtil;
 import com.portfoliomanger.util.ExcelUtil;
+import com.portfoliomanger.util.StockUtil;
 
 @Component
 public class NSEDataLoader {
@@ -39,9 +40,8 @@ public class NSEDataLoader {
 	@Value("${nse.equity-sme.list}")
 	private String nseEquitySme;
 	
-	
 	@Autowired
-	private StockDao stockDao;
+	private StockService stockService;
 
 	public void run() {
 		logger.info("loading nse-equity-list");
@@ -50,6 +50,8 @@ public class NSEDataLoader {
 		
 //		logger.info("loading nse-equity-sme-list");
 //		loadEquitySmeList();
+		
+		stockService.refreshStockMap();
 
 	}
 	
@@ -93,7 +95,7 @@ public class NSEDataLoader {
 				stockList.add(stock);				
 			}
 			
-			int dataLoaded = stockDao.loadToStockmaster(stockList);
+			int dataLoaded = stockService.loadToStockmaster(stockList);
 			logger.info("records loaded:{}",dataLoaded);
 			
 		} catch (Exception e) {
@@ -140,7 +142,7 @@ public class NSEDataLoader {
 				stockList.add(stock);				
 			}
 			
-			int dataLoaded = stockDao.loadToStockmaster(stockList);
+			int dataLoaded = stockService.loadToStockmaster(stockList);
 			logger.info("records loaded:{}",dataLoaded);
 			
 		} catch (Exception e) {

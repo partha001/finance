@@ -27,14 +27,6 @@ public class StockDataLoader implements CommandLineRunner{
 	@Autowired
 	NSEDataLoader nseDataLoader;
 	
-	
-//	@Autowired
-//	StockService stockService;
-	
-	
-//	@Autowired
-//	StockUtil stockUtil;
-	
 
 	@Override
 	public void run(String... args) throws Exception {

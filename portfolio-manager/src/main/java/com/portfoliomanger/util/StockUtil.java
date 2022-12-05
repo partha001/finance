@@ -12,7 +12,11 @@ import com.portfoliomanger.entities.Stock;
 
 public class StockUtil {
 	
-	public static Map<String, Stock> stockMap = new HashMap<String,Stock>();
+	public static Map<String, Stock> stockMap ;
+	
+	static {	
+		stockMap = new HashMap<>();
+	}
 	
 //	@Autowired
 //	private StockDao stockDao;

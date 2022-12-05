@@ -19,6 +19,8 @@ public interface SqlConstant {
 	public static final String LOAD_NSE_DATA = "insert into StockMaster(exchange, symbol,name, isinNumber, faceValue, listingDate, stockKey) values (:exchange, :symbol, :name, :isinNumber, :faceValue, :listingDate, :stockKey) ";
 
 	public static final String UPDATE_STOCK_DETAILS = "update StockMaster set price=:price where id=:id";
+	
+	public static final String SELECT_FROM_STOCK_MASTER = "select * from StockMaster ";
 }
 
 
