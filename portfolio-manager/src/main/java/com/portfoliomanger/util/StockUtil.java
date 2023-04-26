@@ -1,13 +1,8 @@
 package com.portfoliomanger.util;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import com.portfoliomanger.dao.StockDao;
 import com.portfoliomanger.entities.Stock;
 
 public class StockUtil {
@@ -15,11 +10,8 @@ public class StockUtil {
 	public static Map<String, Stock> stockMap ;
 	
 	static {	
-		stockMap = new HashMap<>();
+		stockMap = new ConcurrentHashMap<>();
 	}
-	
-//	@Autowired
-//	private StockDao stockDao;
 	
 	public static boolean checkIfValidSymbol(String symbol) {
 		if(stockMap.containsKey("NSE:"+symbol) || stockMap.containsKey("BSE:"+symbol))
@@ -36,17 +28,5 @@ public class StockUtil {
 			return false;
 		}
 	}
-	
-
-//	public Map<String, Stock> getStockMap() {
-//		return stockMap;
-//	}
-//
-//
-//	public void setStockMap(Map<String, Stock> stockMap) {
-//		this.stockMap = stockMap;
-//	}
-//	
-	
 
 }

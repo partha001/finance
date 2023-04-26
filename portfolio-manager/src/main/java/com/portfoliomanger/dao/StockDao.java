@@ -2,6 +2,7 @@ package com.portfoliomanger.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -11,8 +12,10 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.portfoliomanger.constants.Constants;
 import com.portfoliomanger.constants.SqlConstant;
 import com.portfoliomanger.entities.Stock;
+import com.portfoliomanger.util.DateUtil;
 
 @Repository
 public class StockDao {
@@ -62,6 +65,32 @@ public class StockDao {
 			}
 		});
 	}
+	
+	
+	public int updateCurrentPriceInStockPriceMaster(List<Stock> list) throws ParseException {
+		MapSqlParameterSource[] map = new MapSqlParameterSource[list.size()];
+		for(int i=0;i<list.size();i++) {
+			Stock dto = list.get(i);
+			MapSqlParameterSource param = new MapSqlParameterSource();
+			//public static final String UPDATE_STOCK_DETAILS = "update StockMaster set price=:price where id=:id";
+			//public static final String UPDATE_STOCKPRICEMASTER = "insert into  StockPriceMaster (stockMasterId, stockKey, price, priceTime, timeZoneName ) 
+			//values (:stockMasterId , :stockKey , :price , :priceTime ,:timeZoneName)";
+			
+			
+			
+			param.addValue("id", dto.getId());
+			param.addValue("stockMasterId", dto.getId());
+			param.addValue("stockKey", dto.getKey());
+			param.addValue("price", dto.getPrice());
+			param.addValue("priceTime", DateUtil.convertStringToSqlDate(dto.getPriceTime(), Constants.DATE_FORMAT_IS08601));
+			param.addValue("priceTimeZone",dto.getPriceTimeZone());
+			map[i] = param;
+		}
+		int[] batchUpdate = jdbcTemplate.batchUpdate(SqlConstant.UPDATE_STOCKPRICEMASTER, map);
+		int recordsInserted = IntStream.of(batchUpdate).sum();
+		return recordsInserted;
+	}
+	
 	
 	
 	

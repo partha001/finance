@@ -1,5 +1,6 @@
 package com.portfoliomanger.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,6 +21,18 @@ public class DateUtil {
 			return new java.sql.Date(utilDate.getTime());
 	}
 	
+	public static java.sql.Timestamp convertStringToSqlDate(String input, String dateformat) throws ParseException{
+		DateFormat df1 = new SimpleDateFormat(dateformat);
+		Date date = df1.parse(input);
+		return new java.sql.Timestamp(date.getTime());		
+	}
+	
+	public static java.util.Date convertStringToUtilDate(String input, String dateformat) throws ParseException{
+		DateFormat df1 = new SimpleDateFormat(dateformat);
+		Date date = df1.parse(input);
+		return date;
+	}
+	
 	
 	public static java.util.Date parseToUtilDate(String input,String dateformat) {
 		SimpleDateFormat formatter = new SimpleDateFormat(dateformat);
@@ -32,5 +45,8 @@ public class DateUtil {
 			return null;
 		}
 	}
+	
+	
+	
 
 }

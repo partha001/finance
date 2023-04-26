@@ -23,6 +23,8 @@ public class Stock {
 	private String isin;
 	private Double faceValue;
 	private Double price;
+	private String priceTime;
+	private String priceTimeZone;
 	
 	//example value NSE:SBIN
 	private String key;

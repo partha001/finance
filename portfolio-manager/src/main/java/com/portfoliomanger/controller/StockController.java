@@ -2,16 +2,24 @@ package com.portfoliomanger.controller;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.portfoliomanger.dao.StockDao;
 import com.portfoliomanger.entities.Stock;
@@ -30,8 +38,7 @@ public class StockController {
 //	GoogleService service;
 	
 	
-	@Autowired
-	GoogleSheetsService googleSheetService;
+
 	
 //	@Autowired
 //	StockUtil stockUtil;
@@ -49,32 +56,51 @@ public class StockController {
 	
 	
 	
-	@GetMapping("/getFromGoogleSpreadSheet")
-	public ResponseEntity<List<Stock>> getFromGoogleSpreadSheet() throws IOException, GeneralSecurityException{
-//		//Collection<Stock> values = StockUtil.stockMap.values();
-//		//List<Stock> list = StockUtil.stockMap.keySet().stream().map(item -> StockUtil.stockMap.get(item)).collect(Collectors.toList());
-//		Sheets sheetsService = service.getSheetsService();
-//		String range ="StockData!A3:N";
-//		ValueRange response = sheetsService.spreadsheets().values().get(sheetId, range)
-//				.execute();
+
+	
+	
+//	@GetMapping("/test")
+//	public ResponseEntity<String> test(){
+//		RestTemplate restTemplate= new RestTemplate();
 //		
-//		List<List<Object>> values = response.getValues();
-//		if(values==null || values.isEmpty()) {
-//			logger.info("no data found");
-//		}else {
-//			for(List row: values) {
-//				//System.out.println(row.get(2));
-//				logger.info("row exchange:{} symbol:{} price:{} ",new Object[] {
-//						row.get(0), //exchange
-//						row.get(1), //symbol
-//						row.get(3) //price
-//						
-//				});
-//			}
-//		}
-//		return new ResponseEntity<String>("Success",  HttpStatus.OK);
-		
-		return new ResponseEntity<List<Stock>>(googleSheetService.getCurrentStockDetails(),  HttpStatus.OK);
-	}
+//		HttpHeaders headers = new HttpHeaders();
+//
+//		// set `Content-Type` and `Accept` headers
+////		headers.setContentType(MediaType.APPLICATION_JSON);
+////		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+//////		 'X-RapidAPI-Key': '7c8fa2f679msh9a7fbc452551bc3p1cd112jsnb7d48e402e99',
+//////		    'X-RapidAPI-Host': 'yh-finance.p.rapidapi.com'
+//		headers.set("X-RapidAPI-Key", "7c8fa2f679msh9a7fbc452551bc3p1cd112jsnb7d48e402e99");
+//		headers.set("X-RapidAPI-Host", "yh-finance.p.rapidapi.com");
+//		HttpEntity request = new HttpEntity(headers);
+//	
+//		Map<String, String> params = new HashMap<String, String>();
+//		params.put("symbol", "ITC.NS");
+//		params.put("region", "IN");
+//
+//		
+//		ResponseEntity<String> response = restTemplate.exchange(
+//		        "https://yh-finance.p.rapidapi.com/stock/v3/get-historical-data",
+//		        HttpMethod.GET,
+//		        request,
+//		        String.class,
+//		        params
+//		);
+//		
+//		
+//		Stock stock = YahooFinance.get("INTC");
+//
+//		BigDecimal price = stock.getQuote().getPrice();
+//		BigDecimal change = stock.getQuote().getChangeInPercent();
+//		BigDecimal peg = stock.getStats().getPeg();
+//		BigDecimal dividend = stock.getDividend().getAnnualYieldPercent();
+//
+//		stock.print();
+//		
+//		return response;
+//		
+//		
+//		//stTemplate.exchange("https://yh-finance.p.rapidapi.com/stock/v3/get-historical-data", HttpMethod.GET, requestEntity, String.class);
+//	}
 
 }
