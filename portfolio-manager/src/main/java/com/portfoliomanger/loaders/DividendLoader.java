@@ -67,7 +67,7 @@ public class DividendLoader {
 				dto.setQuarter(excelUtil.getInt(row.getCell(2)));
 				dto.setSymbol(excelUtil.getString(row.getCell(3)));
 				dto.setName(excelUtil.getString(row.getCell(4)));
-				dto.setAmount(excelUtil.getDouble(row.getCell(6)));
+				dto.setAmount(excelUtil.getDouble(row.getCell(5)));
 				dividendList.add(dto);
 
 				//logger.info("rowIndex:{} year:{}  quarter:{}  symbol:{}  name:{}  amount:{}",row.getRowNum()+1, dto.getDividendYear(),dto.getQuarter(),dto.getSymbol(),dto.getName(),dto.getAmount());
