@@ -1,0 +1,4 @@
+wealth-manager/wealth-manager-backend-service/target**
+wealth-manager/wealth-manager-backend-common/target/
+wealth-manager/wealth-manager-backend-client/target/
+wealth-manager/wealth-manager-frontend/target/
