@@ -1,0 +1,295 @@
+﻿id,dividendyear,quarter,symbol,name,dividendamount
+1,2021,1,BRITANNIA,Britannia Industries Limited,186
+2,2021,1,SBILIFE,SBI Life Insurance Company Limited,22
+3,2021,1,NESTLEIND,Nestle India Limited,90
+4,2021,1,COFORGE,Coforge Limited,52
+5,2021,1,BRITANNIA,Britannia Industries Limited,37
+6,2021,1,TCS,Tata Consultancy Services Limited,15
+7,2021,1,SBIN,State Bank of India,28
+8,2021,1,HINDUNILVR,Hindustan Unilever Limited,34
+9,2021,1,RELIANCE,Reliance Industries Limited,70
+10,2021,1,INFY,Infosys Limited,210
+11,2021,1,TPLPLASTEH,TPL Plastech Limited,50
+12,2021,2,ASIANPAINT,Asian Paints Limited,29
+13,2021,2,NAUKRI,Info Edge (India) Limited,8
+14,2021,2,TATACHEM,Tata Chemicals Limited,200
+15,2021,2,TATAPOWER,Tata Power Company Limited,147
+16,2021,2,HAPPSTMNDS,Happiest Minds Technologies Limited,36
+17,2021,2,HDFCAMC,HDFC Asset Management Company Limited,68
+18,2021,2,HDFCLIFE,HDFC Life Insurance Company Limited,12
+19,2021,2,BAJFINANCE,Bajaj Finance Limited,50
+20,2021,2,ALKYLAMINE,Alkyl Amines Chemicals Limited,48
+21,2021,2,DRREDDY,Dr. Reddy's Laboratories Limited,50
+22,2021,2,TCS,Tata Consultancy Services Limited,14
+23,2021,2,DEEPAKNTR,Deepak Nitrite Limited,88
+24,2021,2,HDFCBANK,HDFC Bank Limited,13
+25,2021,2,BSOFT,BIRLASOFT LIMITED,140
+26,2021,2,HEROMOTOCO,Hero MotoCorp Limited,35
+27,2021,2,ROUTE,ROUTE MOBILE LIMITED,12
+28,2021,2,KEC,KEC International Limited,12
+29,2021,2,COROMANDEL,Coromandel International Limited,48
+30,2021,2,GRANULES,Granules India Limited,19
+31,2021,2,PIDILITIND,Pidilite Industries Limited,34
+32,2021,2,ITC,ITC Limited,368
+33,2021,2,GMMPFAUDLR,GMM Pfaudler Limited,4
+34,2021,2,GRANULES,Granules India Limited,6
+35,2021,2,COFORGE,Coforge Limited,78
+36,2021,2,BALKRISIND,Balkrishna Industries Limited,8
+37,2021,2,CIPLA,Cipla Limited,50
+38,2021,2,PRAJIND,Praj Industries Limited,19
+39,2021,2,ICICIBANK,ICICI Bank Limited,60
+40,2021,2,DIVISLAB,Divi's Laboratories Limited,40
+41,2021,2,STLTECH,Sterlite Technologies Limited,40
+42,2021,2,GMMPFAUDLR,GMM Pfaudler Limited,2
+43,2021,2,INDIAMART,Indiamart Intermesh Limited,15
+44,2021,2,BERGEPAINT,BERGER PAINTS INDIA LTD.,33
+45,2021,2,ASTRAL,Astral Limited,4
+46,2021,2,INDUSINDBK,IndusInd Bank Limited,165
+47,2021,2,JBCHEPHARM,JB Chemicals & Pharmaceuticals Limited,24
+48,2021,2,PRINCEPIPE,Prince Pipes And Fittings Limited,18
+49,2021,2,HLEGLAS,HLE Glascoat Limited,40
+50,2021,2,MOTHERSON,Samvardhana Motherson International Limited,240
+51,2021,2,GARFIBRES,Garware Technical Fibres Limited,10
+52,2021,2,GLENMARK,Glenmark Pharmaceuticals Limited,12
+53,2021,3,PIIND,PI Industries Limited,4
+54,2021,3,HSCL,Himadri Speciality Chemical Limited,52
+55,2021,3,DIXON,Dixon Technologies (India) Limited,9
+56,2021,3,TCS,Tata Consultancy Services Limited,20
+57,2021,3,HCLTECH,HCL Technologies Limited,1240
+58,2021,3,INFY,Infosys Limited,480
+59,2021,3,HINDUNILVR,Hindustan Unilever Limited,30
+60,2021,3,TRIDENT,Trident Limited,18
+61,2021,3,NESTLEIND,Nestle India Limited,110
+62,2021,3,BSOFT,BIRLASOFT LIMITED,141
+63,2021,3,HAPPSTMNDS,Happiest Minds Technologies Limited,40
+64,2021,3,COFORGE,Coforge Limited,104
+65,2021,3,GMMPFAUDLR,GMM Pfaudler Limited,2
+66,2021,3,PRINCEPIPE,Prince Pipes And Fittings Limited,15
+67,2021,3,LAURUSLABS,Laurus Labs Limited,24
+68,2021,3,BALKRISIND,Balkrishna Industries Limited,12
+69,2021,3,GLENMARK,Glenmark Pharmaceuticals Limited,105
+70,2021,3,ASTRAL,Astral Limited,7
+71,2021,3,GRANULES,Granules India Limited,6
+72,2021,4,NAUKRI,Info Edge (India) Limited,32
+73,2021,4,WIPRO,Wipro Limited,15
+74,2021,4,HCLTECH,HCL Technologies Limited,300
+75,2021,4,TCS,Tata Consultancy Services Limited,42
+76,2021,4,GREENPANEL,Greenpanel Industries Limited,48
+77,2021,4,EXIDEIND,Exide Industries Limited,60
+78,2021,4,COFORGE,Coforge Limited,104
+79,2021,4,ROUTE,ROUTE MOBILE LIMITED,225
+80,2021,4,GMMPFAUDLR,GMM Pfaudler Limited,2
+81,2021,4,HEROMOTOCO,Hero MotoCorp Limited,60
+82,2021,4,PIIND,PI Industries Limited,9
+83,2021,4,ITC,ITC Limited,536
+84,2021,4,JBCHEPHARM,JB Chemicals & Pharmaceuticals Limited,42
+85,2021,4,BALKRISIND,Balkrishna Industries Limited,38
+86,2021,4,VEDL,Vedanta Limited,130
+87,2022,1,SBICARD,SBI Cards and Payment Services Limited,32
+88,2022,1,SBILIFE,SBI Life Insurance Company Limited,30
+89,2022,1,WIPRO,Wipro Limited,100
+90,2022,1,HCLTECH,HCL Technologies Limited,540
+91,2022,1,LAURUSLABS,Laurus Labs Limited,36
+92,2022,1,VEDL,Vedanta Limited,315
+93,2022,1,DOLATALGO,Dolat Algotech Limited,6
+94,2022,2,ASIANPAINT,Asian Paints Limited,47
+95,2022,2,HDFCLIFE,HDFC Life Insurance Company Limited,20
+96,2022,2,TATASTEEL,TATA Steel Limited,102
+97,2022,2,HAPPSTMNDS,Happiest Minds Technologies Limited,46
+98,2022,2,TATACHEM,Tata Chemicals Limited,437.5
+99,2022,2,TATAPOWER,Tata Power Company Limited,337.75
+100,2022,2,HDFCBANK,HDFC Bank Limited,124
+101,2022,2,ITC,ITC Limited,706
+102,2022,2,BAJFINANCE,Bajaj Finance Limited,220
+103,2022,2,HCLTECH,HCL Technologies Limited,300
+104,2022,2,TCS,Tata Consultancy Services Limited,56
+105,2022,2,VEDL,Vedanta Limited,195
+106,2022,2,DEEPAKNTR,Deepak Nitrite Limited,196
+107,2022,2,BSOFT,BIRLASOFT LIMITED,378
+108,2022,2,ROUTE,ROUTE MOBILE LIMITED,22
+109,2022,2,ALKYLAMINE,Alkyl Amines Chemicals Limited,120
+110,2022,2,REDINGTON,Redington Limited,132
+111,2022,2,HEROMOTOCO,Hero MotoCorp Limited,35
+112,2022,2,PIDILITIND,Pidilite Industries Limited,90
+113,2022,2,COFORGE,Coforge Limited,104
+114,2022,2,BHARTIARTL,Bharti Airtel Limited,90
+115,2022,2,LXCHEM,Laxmi Organic Industries Limited,7
+116,2022,2,PRAJIND,Praj Industries Limited,155
+117,2022,2,BALKRISIND,Balkrishna Industries Limited,16
+118,2022,2,AMARAJABAT,Amara Raja Batteries Limited,9
+119,2022,2,EICHERMOT,Eicher Motors Limited,105
+120,2022,2,RELIANCE,Reliance Industries Limited,104
+121,2022,2,DIVISLAB,Divi's Laboratories Limited,120
+122,2022,2,INDUSINDBK,IndusInd Bank Limited,306
+123,2022,2,ICICIBANK,ICICI Bank Limited,205
+124,2022,2,MSUMI,Motherson Sumi Wiring India Limited,187
+125,2022,2,JBCHEPHARM,JB Chemicals & Pharmaceuticals Limited,40
+126,2022,2,MOTHERSON,Samvardhana Motherson International Limited,156
+127,2022,2,HLEGLAS,HLE Glascoat Limited,55
+128,2022,2,STLTECH,Sterlite Technologies Limited,10
+129,2022,2,BERGEPAINT,BERGER PAINTS INDIA LTD.,434
+130,2022,2,ASTRAL,Astral Limited,14
+131,2022,2,KPITTECH,KPIT Technologies Limited,40
+132,2022,2,DIXON,Dixon Technologies (India) Limited,28
+133,2022,2,PIIND,PI Industries Limited,9
+134,2022,2,CDSL,Central Depository Services (India) Limited,30
+135,2022,2,NAUKRI,Info Edge (India) Limited,20
+136,2022,2,PRINCEPIPE,Prince Pipes And Fittings Limited,36
+137,2022,2,GARFIBRES,Garware Technical Fibres Limited,28
+138,2022,2,INDIAMART,Indiamart Intermesh Limited,6
+139,2022,3,HSCL,Himadri Speciality Chemical Limited,97
+140,2022,3,CHEMCRUX ,Chemcrux Enterprises Ltd,12
+141,2022,3,GMMPFAUDLR,GMM Pfaudler Limited,8
+142,2022,3,HFCL,HFCL Ltd.,11
+143,2022,3,BLACKROSE,Black Rose Industries Ltd,48
+144,2022,3,HCLTECH,HCL Technologies Limited,320
+145,2022,3,TCS,Tata Consultancy Services Limited,56
+146,2022,3,ASIANPAINT,Asian Paints Limited,18
+147,2022,3,INFY,Infosys Limited,660
+148,2022,3,BSOFT,BIRLASOFT LIMITED,189
+149,2022,3,LAURUSLABS,Laurus Labs Limited,24
+150,2022,3,HAPPSTMNDS,Happiest Minds Technologies Limited,46
+151,2022,3,COFORGE,Coforge Limited,104
+152,2022,3,HINDUNILVR,Hindustan Unilever Limited,85
+153,2022,3,ROUTE,ROUTE MOBILE LIMITED,33
+154,2022,3,RECLTD,REC Limited,250
+155,2022,3,GMMPFAUDLR,GMM Pfaudler Limited,10
+156,2022,3,AMARAJABAT,Amara Raja Batteries Limited,58
+157,2022,3,COALINDIA,Coal India Limited,225
+158,2022,3,ASTRAL,Astral Limited,10
+159,2022,3,BALKRISIND,Balkrishna Industries Limited,16
+160,2022,3,NAUKRI,Info Edge (India) Limited,40
+161,2022,3,VEDL,Vedanta Limited,700
+162,2022,4,TCS,Tata Consultancy Services Limited,525
+163,2022,4,WIPRO,Wipro Limited,36
+164,2022,4,HCLTECH,HCL Technologies Limited,320
+165,2022,4,COFORGE,Coforge Limited,152
+166,2022,4,VEDL,Vedanta Limited,500
+167,2022,4,ITC,ITC Limited,840
+168,2022,4,RECLTD,REC Limited,708
+169,2022,4,HEROMOTOCO,Hero MotoCorp Limited,130
+170,2022,4,GREENPANEL,Greenpanel Industries Limited,79
+171,2022,4,ROUTE,ROUTE MOBILE LIMITED,78
+172,2022,4,KPITTECH,KPIT Technologies Limited,33
+173,2022,4,COALINDIA,Coal India Limited,384
+174,2022,4,BALKRISIND,Balkrishna Industries Limited,16
+175,2022,4,JBCHEPHARM,JB Chemicals & Pharmaceuticals Limited,68
+176,2022,4,PIIND,PI Industries Limited,13
+177,2022,4,SBILIFE,SBI Life Insurance Company Limited,42
+178,2023,1,VEDL,Vedanta Limited,1950
+179,2023,1,SBICARD,SBI Cards and Payment Services Limited,40
+180,2023,1,HUL,Hindustan Unilever Limited,110
+181,2023,1,HCLTECH,HCL Technologies Limited,576
+182,2023,1,TATACHEM,Tata Chemicals Limited,612
+183,2023,1,TATAPOWER,Tata Power Company Limited,420
+184,2023,1,LAURUSLABS,Laurus Labs Limited,48
+185,2023,1,polycab,polycab,100
+186,2023,1,HSCL,Himadri Speciality Chemical Limited,137
+187,2023,1,COFORGE,Coforge Limited,152
+188,2023,1,SBIN,State Bank of India,384.2
+189,2023,1,HDFCAMC,HDFC Asset Management Company Limited,192
+190,2023,2,TCS,Tata Consultancy Services Limited,168
+191,2023,2,INFY,Infosys Limited,700
+192,2023,2,TATAELXSI,Tata Elxsi Limited ,181
+193,2023,2,HAPPSTMNDS,Happiest Minds Technologies Limited,88
+194,2023,2,HDFCLIFE,HDFC Life Insurance Company Limited,39.9
+195,2023,2,BALKRISIND,Balkrishna Industries Limited,16
+196,2023,2,BAJFINSV,Bajaj Finserv Limited ,2.4
+197,2023,2,BAJFINANCE,Bajaj Finance Limited,90
+198,2023,2,BSOFT,BIRLASOFT LIMITED,252
+199,2023,2,HCLTECH,HCL Technologies Limited,320
+200,2023,2,REDINGTON,Redington Limited,144
+201,2023,2,TCS,Tata Consultancy Services Limited,63
+202,2023,2,LXCHEM,Laxmi Organic Industries Limited,11
+203,2023,2,DEEPAKNTR,Deepak Nitrite Limited,240
+204,2023,2,tatamorot,tata motors,202
+205,2023,2,EXIDEIND,Exide Industries Limited,80
+206,2023,2,HDFCBANK,HDFC Bank Limited,209
+207,2023,2,COFORGE,Coforge Limited,152
+208,2023,2,AMARAJABAT,Amara Raja Batteries Limited,67
+209,2023,2,ITC,ITC Limited,1330
+210,2023,2,HEROMOTOCO,Hero MotoCorp Limited,70
+211,2023,2,PIDILITIND,Pidilite Industries Limited,143
+212,2023,2,PRAJIND,Praj Industries Limited,203
+213,2023,2,STLTECH,Sterlite Technologies Limited,30
+214,2023,2,BERGEPAINT,BERGER PAINTS INDIA LTD.,96
+215,2023,2,ROUTE,ROUTE MOBILE LIMITED,39
+216,2023,2,INDIGOPNTS,Indigo Paints Limited ,14
+217,2023,2,PIIND,PI Industries Limited,16.5
+218,2023,2,RECLTD,REC Limited,1110
+219,2023,2,BALKRISIND,Balkrishna Industries Limited,16
+220,2023,2,ASTRAL,Astral Limited,24.75
+221,2023,2,EICHERMOT,Eicher Motors Limited,222
+222,2023,2,BHARTIARTL,Bharti Airtel Limited,144
+223,2023,2,RELIANCE,Reliance Industries Limited,225
+224,2023,2,KPITTECH,KPIT Technologies Limited,60
+225,2023,2,MSUMI,Motherson Sumi Wiring India Limited,325
+226,2023,2,JBCHEPHARM,JB Chemicals & Pharmaceuticals Limited,74
+227,2023,2,ICICIBANK,ICICI Bank Limited,408
+228,2023,2,IOC,Indian Oil Corporation Limited,1125
+229,2023,2,DIVISLAB,Divi's Laboratories Limited,240
+230,2023,2,JUBLFOOD,Jubilant Foodworks Limited ,27
+231,2023,2,NAUKRI,Info Edge (India) Limited,36
+232,2023,2,DEEPAKFERT,Deepak Fertilizers And Petrochemicals Corporation Limited,240
+233,2023,2,CDSL,Central Depository Services (India) Limited ,192
+234,2023,2,MOTHERSON,Samvardhana Motherson International Limited,263.25
+235,2023,2,COALINDIA,Coal India Limited,332
+236,2023,2,GMMPFAUDLR,GMM Pfaudler Limited,13
+237,2023,2,GARFIBRES,Garware Technical Fibres Limited,21
+238,2023,3,ROUTE,ROUTE MOBILE LIMITED,26
+239,2023,3,HLEGLAS,HLE Glascoat Limited,60
+240,2023,3,RECLTD,REC Limited,1566
+241,2023,3,HFCL,HFCL Ltd.,30
+242,2023,3,PARADEEP,Paradeep Phosphates Limited ,250
+243,2023,3,DIXON,Dixon Technologies (India) Limited,42
+244,2023,3,OLECTRA,Olectra Greentech Limited ,6
+245,2023,3,TALBROSENG,Talbros Engineering Ltd,20
+246,2023,3,BLACKROSE,Black Rose Industries Ltd,39
+247,2023,3,AWL,Adani Wilmar Limited ,60
+248,2023,3,HCLTECH,HCL Technologies Limited,384
+249,2023,3,INFY,Infosys Limited,720
+250,2023,3,TCS,Tata Consultancy Services Limited,63
+251,2023,3,BALKRISIND,Balkrishna Industries Limited,16
+252,2023,3,LAURUSLABS,Laurus Labs Limited,16
+253,2023,3,ASTRAL,Astral Limited,16
+254,2023,3,ASIANPAINT,Asian Paints Limited,26
+255,2023,3,COFORGE,Coforge Limited,152
+256,2023,3,HAPPSTMNDS,Happiest Minds Technologies Limited,65
+257,2023,3,HINDUNILVR,Hindustan Unilever Limited,90
+258,2023,3,BSOFT,BIRLASOFT LIMITED,315
+259,2023,3,ROUTE,ROUTE MOBILE LIMITED,39
+260,2023,3,IOC,Indian Oil Corporation Limited,1875
+261,2023,3,AMARAJABAT,Amara Raja Batteries Limited,100
+262,2023,3,DOLATALGO,Dolat Algotech Limited,7
+263,2023,3,NAUKRI,Info Edge (India) Limited,40
+264,2023,3,RECLTD,REC Limited,1309
+265,2023,3,MCDOWELL-N,United Spirits Limited ,76
+266,2023,3,GMMPFAUDLR,GMM Pfaudler Limited,13
+267,2023,3,TALBROSENG,Talbros Engineering Ltd,15
+268,2023,3,COALINDIA,Coal India Limited,1266
+269,2023,4,VEDL,Vedanta Limited,682
+270,2023,4,HCLTECH,HCL Technologies Limited,384
+271,2023,4,TCS,Tata Consultancy Services Limited,135
+272,2023,4,WIPRO,Wipro Limited,36
+273,2023,4,BALKRISIND,Balkrishna Industries Limited,16
+274,2023,4,COFORGE,Coforge Limited,152
+275,2023,4,ROUTE,ROUTE MOBILE LIMITED,39
+276,2023,4,KPITTECH,KPIT Technologies Limited,48
+277,2023,4,DOLATALGO,Dolat Algotech Limited,4
+278,2023,4,ITC,ITC Limited,900
+279,2023,4,JBCHEPHARM,JB Chemicals & Pharmaceuticals Limited,88
+280,2023,4,HEROMOTOCO,Hero MotoCorp Limited,200
+281,2023,4,PIIND,PI Industries Limited,18
+282,2023,4,COALINDIA,Coal India Limited,446
+283,2023,4,SBILIFE,SBI Life Insurance Company Limited,51
+284,2024,1,RECLTD,REC Limited,1160
+285,2024,1,HCLTECH,HCL Technologies Limited,576
+286,2024,1,LAURUSLABS,Laurus Labs Limited,16
+287,2024,1,COFORGE,Coforge Limited,152
+288,2024,1,TCS,Tata Consultancy Services Limited,140
+289,2024,1,SBI,State Bank of India,479
+290,2024,1,VEDL,Vedanta Limited,726
+291,2024,1,HSCL,Himadri Speciality Chemical Limited,287
+292,2024,1,TATAMOTORS,Tata Motors Limited,624
+293,2024,1,ASIANPAINT,Asian Paints Limited,141
+294,2024,1,TATACHEM,Tata Chemicals Limited,540

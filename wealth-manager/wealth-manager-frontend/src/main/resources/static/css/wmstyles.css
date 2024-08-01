@@ -1,0 +1,13 @@
+.header-style{
+  min-height: 100px;
+  background-color:#b1bfdb;
+}
+
+.footer-style{
+  background-color:#b1bfdb;
+  text-align: center;
+}
+
+.body-style{
+  height:700px;
+}
