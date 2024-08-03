@@ -4,10 +4,10 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
 
-    <changeSet id="mychangeset1" author="user">
+    <changeSet id="1_ddl_creatingTables" author="partha">
         <sql>
-            CREATE SCHEMA WealthManager;
 
+            CREATE SCHEMA WealthManager;
 
             CREATE TABLE IF NOT EXISTS WealthManager.DividendMaster(
             id serial primary key,
