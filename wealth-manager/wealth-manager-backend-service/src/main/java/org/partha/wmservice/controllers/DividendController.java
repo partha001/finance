@@ -5,6 +5,7 @@ import org.partha.wmservice.service.DividendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.partha.wmcommon.response.DividendSummaryResponse;
 
@@ -40,7 +41,7 @@ public class DividendController {
 
 	@GetMapping("/dividendDetails")
 	public ResponseEntity<DividendSummaryResponse> getDividendDetails() throws InterruptedException{
-		Thread.currentThread().sleep(1000);
+		//Thread.currentThread().sleep(1000);
 		return service.getDividendDetails();		
 	}
 
