@@ -12,7 +12,7 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "WealthManager", name = "Dividend")
+@Table(schema = "WealthManager", name = "DividendMaster")
 public class Dividend {
 
 	@Id
@@ -25,7 +25,8 @@ public class Dividend {
 	private String symbol;
 	@Column
 	private String name;
-	@Column
+
+	@Column(name="dividendAmount")
 	private Double amount;
 
 }

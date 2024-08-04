@@ -9,9 +9,7 @@
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/datatables/css/dataTables.bootstrap.min.css}"/>
-    <!--    <script type="text/javascript" th:src="@{/webjars/datatables/js/dataTables.bootstrap.min.js}"></script>-->
     <script type="text/javascript" th:src="@{/webjars/datatables/js/dataTables.min.js}"></script>
-
     <title>Bootstrap Example</title>
 
 
@@ -30,138 +28,67 @@
             <div th:replace="~{fragments/navbar :: mynavbar}"></div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12 body-style">
-            https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-datatable
 
-            this is the dividends page
-            <div class="container">
-
-                dividend details go here
-                <div class="row">
-                    <div class="col-lg-10 mt-5 mb-5">
-                        <h3>Datatable using list of Objects in data parameter</h3>
-                        <table id="dividendTable" class="table table-bordered table-responsive" style="width: 100%">
-                            <thead>
-                            <tr>
-                                <th>Year</th>
-                                <th>Quarter</th>
-                                <th>ISIN</th>
-                                <th>Name</th>
-                                <th>Amount</th>
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-
-                employee list go here
-                <div class="row">
-                    <div class="col-lg-10 mt-5 mb-5">
-                        <h3>Datatable using list of Objects in data parameter</h3>
-                        <table id="example" class="table table-bordered table-responsive" style="width: 100%">
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-
+    <div class="row col-lg-12 body-style">
+        <div class="row">
+            <div class="col-lg-12 mt-16 mb-6">
+<!--                <h3>Dividend details</h3>-->
+                <table id="dividendTable" class="table table-bordered table-responsive" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Quarter</th>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Year</th>
+                        <th>Quarter</th>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                    </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
-        <div class="row  justify-content-center">
-            <div class="col-lg-12">
-                <div th:replace="~{fragments/footer :: footer}"></div>
-            </div>
-        </div>
-
-
     </div>
+
+
+    <div class="row  justify-content-center">
+        <div class="col-lg-12">
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+
 
     <script>
 
-            $('#dividendTable').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    "url": "/dividendDetails",
-                    "type": "POST",
-                    "dataType": "json",
-                    "contentType": "application/json",
-                    "data": function (d) {
-                        return JSON.stringify(d);
-                    }
-                },
+        $('#dividendTable').DataTable({
+            "processing": true,
+            "serverSide": false,
+            "ajax": {
+                "url": "/dividendDetails",
+                "type": "POST",
+                "dataType": "json",
+                "contentType": "application/json",
+                "data": function (d) {
+                    return JSON.stringify(d);
+                }
+            },
+            "columns": [
+                {"data":"dividendYear", "width": "10%"},
+                {"data": "quarter","width": "10%"},
+                {"data": "symbol", "width": "20%"},
+                {"data": "name", "width": "50%"},
+                {"data": "amount", "width": "10%"}
+            ]
+        });
 
-                "columns": [
-                    {"data":"dividendYear", "width": "20%"},
-                    {"data": "quarter","width": "20%"},
-                    {"data": "symbol", "width": "20%"},
-                    {"data": "name", "width": "20%"},
-                    {"data": "amount", "width": "20%"}
-                ]
-            });
-
-
-<!--            $('#example').DataTable({-->
-<!--                "processing": true,-->
-<!--                "serverSide": true,-->
-<!--                "ajax": {-->
-<!--                    "url": "/employees",-->
-<!--                    "type": "POST",-->
-<!--                    "dataType": "json",-->
-<!--                    "contentType": "application/json",-->
-<!--                    "data": function (d) {-->
-<!--                        return JSON.stringify(d);-->
-<!--                    }-->
-<!--                },-->
-<!--                "columns": [-->
-<!--                    {"data": "name", "width": "20%"},-->
-<!--                    {"data": "position","width": "20%"},-->
-<!--                    {"data": "office", "width": "20%"},-->
-<!--                    {"data": "start_date", "width": "20%"},-->
-<!--                    {"data": "salary", "width": "20%"}-->
-<!--                ]-->
-<!--            });-->
-
-<!--            $('#exampleArray').DataTable({-->
-<!--                "processing": true,-->
-<!--                "serverSide": true,-->
-<!--                "ajax": {-->
-<!--                    "url": "/employees/array",-->
-<!--                    "type": "POST",-->
-<!--                    "dataType": "json",-->
-<!--                    "contentType": "application/json",-->
-<!--                    "data": function (d) {-->
-<!--                        return JSON.stringify(d);-->
-<!--                    }-->
-<!--                }-->
-<!--            });-->
     </script>
-
+</div>
 </body>
 </html>
