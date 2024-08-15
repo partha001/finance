@@ -2,37 +2,32 @@ package org.partha.wmcommon.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.partha.wmcommon.enums.AssetType;
 
-import java.util.Date;
-
-
-@Entity
 @Getter
 @Setter
 @Builder
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "WealthManager", name = "AssetMaster")
-public class Asset {
+@Table(schema = "WealthManager", name = "HoldingMaster")
+public class Holding {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
 	@Column
 	private String username;
-
 	@Column
-	private AssetType assetType;
-
+	private String brokername;
 	@Column
-	private String assetName;
-
+	private String isin;
 	@Column
-	private Double amount;
-
+	private String brokersymbol;
 	@Column
-	private Date  valuationdDate;
+	private String exchangesymbol;
+	@Column
+	private Integer quantity;
 
 }
+
+

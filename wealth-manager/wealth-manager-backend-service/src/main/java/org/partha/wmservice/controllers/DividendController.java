@@ -2,7 +2,7 @@ package org.partha.wmservice.controllers;
 
 
 import org.partha.wmcommon.response.ResponseDto;
-import org.partha.wmservice.service.DividendService;
+import org.partha.wmservice.service.domain.DividendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

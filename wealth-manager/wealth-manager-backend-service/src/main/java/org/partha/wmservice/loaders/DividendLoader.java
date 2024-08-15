@@ -16,7 +16,7 @@ import org.partha.wmcommon.entities.Stock;
 import org.partha.wmcommon.util.ExcelUtil;
 import org.partha.wmcommon.util.StockUtil;
 import org.partha.wmservice.dao.DividendDao;
-import org.partha.wmservice.service.StockService;
+import org.partha.wmservice.service.domain.StockService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,10 +39,6 @@ public class DividendLoader {
 
 	@Autowired
 	private DividendDao dividendDao;
-
-
-	//	@Autowired
-	//	private StockUtil stockUtil;
 
 
 	@Autowired

@@ -1,4 +1,4 @@
-package org.partha.wmservice.service;
+package org.partha.wmservice.service.domain;
 
 
 import org.partha.wmservice.dao.StockDao;

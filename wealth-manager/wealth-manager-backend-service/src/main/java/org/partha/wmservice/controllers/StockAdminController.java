@@ -4,7 +4,7 @@ package org.partha.wmservice.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.partha.wmservice.service.StockService;
+import org.partha.wmservice.service.domain.StockService;
 
 @RestController
 @RequestMapping("/admin")

@@ -71,11 +71,11 @@ public class AssetLoader {
 
 					for(int m=0;m<dates.size();m++) {
 						Asset asset = new Asset();
-						asset.setName(assetName);
+						asset.setAssetName(assetName);
 						Double amount = excelUtil.getDouble(row.getCell(m+1));
 
 						asset.setAmount(amount);
-						asset.setRecordDate(dates.get(m));
+						asset.setValuationdDate(dates.get(m));
 						assetList.add(asset);
 						//logger.info("assetName:{}  value:{}  recordDate:{}",asset.getName(),asset.getAmount(),asset.getRecordDate());
 

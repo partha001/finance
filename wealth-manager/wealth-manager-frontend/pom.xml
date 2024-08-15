@@ -67,6 +67,13 @@
             <artifactId>datatables</artifactId>
             <version>2.1.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars.bower/google-chart -->
+<!--        <dependency>-->
+<!--            <groupId>org.webjars.bower</groupId>-->
+<!--            <artifactId>google-chart</artifactId>-->
+<!--            <version>5.0.0</version>-->
+<!--        </dependency>-->
+
 
 
 

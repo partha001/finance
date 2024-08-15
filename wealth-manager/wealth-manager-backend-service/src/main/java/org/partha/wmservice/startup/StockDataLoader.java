@@ -16,9 +16,7 @@ public class StockDataLoader implements CommandLineRunner{
 	private static final Logger logger = LoggerFactory.getLogger(StockDataLoader.class);
 
 
-	
-	@Value("${nseEquityListLoadFlag}")
-	private Boolean nseEquityListLoadFlag;
+
 	
 	@Autowired
     NSEDataLoader nseDataLoader;
@@ -26,10 +24,10 @@ public class StockDataLoader implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		if(nseEquityListLoadFlag) {
+		////if(nseEquityListLoadFlag) {
 			logger.info("loading nse data");
 			nseDataLoader.run();
-		}		
+		//}
 		//stockService.refreshStockMap();
 		
 	}

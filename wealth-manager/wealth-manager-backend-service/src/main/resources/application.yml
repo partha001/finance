@@ -1,0 +1,19 @@
+nse:
+  equity:
+    list-fileName: mydata/nse/EQUITY_L.csv
+    list-LoadFlag: true
+    smelist-fileName: mydata/nse/SME_EQUITY_L.csv
+    smelist-LoadFlag: true
+
+
+#personal:
+#  data:
+#    globalLoader: true
+#    dividendDataLoader
+#
+
+
+
+  
+#filename=classpath:/mydata/invested.xlsx
+# nse.equity-sme.list=mydata/nse/SME_EQUITY_L.csv

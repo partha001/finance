@@ -22,9 +22,12 @@
             CREATE TABLE IF NOT EXISTS WealthManager.AssetMaster
             (
             id serial PRIMARY KEY,
+            username varchar(50),
+            assetType varchar(30),
             assetName VARCHAR(100),
             amount decimal,
-            recordDate DATE
+            valuationdDate DATE,
+            CONSTRAINT UC_ExchangeSymbol UNIQUE (username,assetName,valuationDate)
             );
 
 
