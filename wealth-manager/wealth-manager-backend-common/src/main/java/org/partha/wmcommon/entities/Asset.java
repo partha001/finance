@@ -23,7 +23,7 @@ public class Asset {
 	@Column
 	private String username;
 
-	@Column
+	@Enumerated(EnumType.STRING)
 	private AssetType assetType;
 
 	@Column
@@ -33,6 +33,6 @@ public class Asset {
 	private Double amount;
 
 	@Column
-	private Date  valuationdDate;
+	private Date  valuationDate;
 
 }

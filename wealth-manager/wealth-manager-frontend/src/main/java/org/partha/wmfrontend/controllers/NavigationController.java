@@ -31,4 +31,9 @@ public class NavigationController {
         return "about";
     }
 
+    @GetMapping(value = "/importHoldings")
+    public String importHoldings(){
+        return "importHoldings";
+    }
+
 }

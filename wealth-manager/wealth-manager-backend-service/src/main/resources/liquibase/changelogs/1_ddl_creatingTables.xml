@@ -26,8 +26,8 @@
             assetType varchar(30),
             assetName VARCHAR(100),
             amount decimal,
-            valuationdDate DATE,
-            CONSTRAINT UC_ExchangeSymbol UNIQUE (username,assetName,valuationDate)
+            valuationDate DATE,
+            CONSTRAINT uc_am_ExchangeSymbol UNIQUE (username,assetName,valuationDate)
             );
 
 
@@ -42,7 +42,7 @@
             listingDate DATE,
             price decimal,
             stockKey VARCHAR(50),
-            CONSTRAINT UC_ExchangeSymbol UNIQUE (exchange,symbol)
+            CONSTRAINT uc_sm_ExchangeSymbol UNIQUE (exchange,symbol)
             );
 
 

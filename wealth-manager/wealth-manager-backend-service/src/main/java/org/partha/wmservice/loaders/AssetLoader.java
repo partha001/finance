@@ -75,7 +75,7 @@ public class AssetLoader {
 						Double amount = excelUtil.getDouble(row.getCell(m+1));
 
 						asset.setAmount(amount);
-						asset.setValuationdDate(dates.get(m));
+						asset.setValuationDate(dates.get(m));
 						assetList.add(asset);
 						//logger.info("assetName:{}  value:{}  recordDate:{}",asset.getName(),asset.getAmount(),asset.getRecordDate());
 

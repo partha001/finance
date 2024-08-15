@@ -26,7 +26,7 @@ public class AssetDao {
 			MapSqlParameterSource param = new MapSqlParameterSource();
 			param.addValue("name", dto.getAssetName());
 			param.addValue("amount", dto.getAmount());
-			param.addValue("valueationDate", DateUtil.convertUtilDateToSqlDate(dto.getValuationdDate()));
+			param.addValue("valueationDate", DateUtil.convertUtilDateToSqlDate(dto.getValuationDate()));
 			map[i] = param;
 		}
 		int[] batchUpdate = jdbcTemplate.batchUpdate(SqlConstant.LOAD_ASSET_DETAILS, map);
