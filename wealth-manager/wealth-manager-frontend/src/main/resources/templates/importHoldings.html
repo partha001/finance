@@ -32,31 +32,77 @@
     <div class="row col-lg-12 body-style">
         <div class="row">
             <div class="col-lg-12 mt-16 mb-6">
-                <h3>Import Holdings</h3>
-                <div class="container" style="max-width: 500px">
-                    <h3 class="mb-3">Thymeleaf File Upload example</h3>
+<!--                <div class="container" style="max-width: 500px">-->
 
-                    <form
-                            id="uploadForm"
-                            method="post"
-                            th:action="@{/holdings/import}"
-                            enctype="multipart/form-data">
-                        <input id="input-file" type="file" name="file" />
-                        <button class="btn btn-sm btn-outline-success float-right" type="submit">
-                            Upload
-                        </button>
-                    </form>
+                    <div class="container container-fluid">
+                        <form id="uploadForm" method="post" th:action="@{/holdings/import}"
+                              enctype="multipart/form-data">
 
-                    <div
-                            th:if="${message != null}"
-                            class="alert alert-secondary alert-dismissible fade show text-center message mt-3"
-                            role="alert">
-                        [[${message}]]
-                        <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
+                            <div class="row">
+                                <div class="col">
+                                    <input id="holdingOwner" type="text" name="holdingOwner" value="enter owner name"/>
+                                </div>
+                                <div class="col">
+                                    <input id="input-file" type="file" name="file"/>
+                                </div>
+                                <div class="col">
+                                    <select id="importFormat" name="importFormat">
+                                        <option value="">Select import format</option>
+                                        <option th:each="importFormat : ${importFormats}"
+                                                th:value="${importFormat}"
+                                                th:text="${importFormat}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-sm btn-outline-success float-right" type="submit">
+                                        Upload
+                                    </button>
+                                </div>
+                                <div class="col">
+                                    <div
+                                            th:if="${message != null}"
+                                            class="alert alert-secondary alert-dismissible fade show text-center message mt-3"
+                                            role="alert">
+                                        [[${message}]]
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </div>
+
+
+
+
+
+
+<!--                        <form id="uploadForm" method="post" th:action="@{/holdings/import}" enctype="multipart/form-data">-->
+<!--                            <input id="input-file" type="file" name="file" />-->
+<!--                            <select id="importFormat" name="importFormat">-->
+<!--                                <option value="">Select import format</option>-->
+<!--                                <option th:each="importFormat : ${importFormats}"-->
+<!--                                        th:value="${importFormat}"-->
+<!--                                        th:text="${importFormat}">-->
+<!--                                </option>-->
+<!--                            </select>-->
+<!--                            <button class="btn btn-sm btn-outline-success float-right" type="submit">-->
+<!--                                Upload-->
+<!--                            </button>-->
+<!--                        </form>-->
+
+
+
+
+<!--                    <div-->
+<!--                            th:if="${message != null}"-->
+<!--                            class="alert alert-secondary alert-dismissible fade show text-center message mt-3"-->
+<!--                            role="alert">-->
+<!--                        [[${message}]]-->
+<!--                        <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">-->
+<!--                            <span aria-hidden="true">×</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -70,27 +116,6 @@
 
 
     <script>
-
-        $('#dividendTable').DataTable({
-            "processing": true,
-            "serverSide": false,
-            "ajax": {
-                "url": "/dividendDetails",
-                "type": "POST",
-                "dataType": "json",
-                "contentType": "application/json",
-                "data": function (d) {
-                    return JSON.stringify(d);
-                }
-            },
-            "columns": [
-                {"data":"dividendYear", "width": "10%"},
-                {"data": "quarter","width": "10%"},
-                {"data": "symbol", "width": "20%"},
-                {"data": "name", "width": "50%"},
-                {"data": "amount", "width": "10%"}
-            ]
-        });
 
     </script>
 </div>

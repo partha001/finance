@@ -1,0 +1,4 @@
+for displaying list from model attribute
+<p th:each="emailAddress : ${emailModelAttribute.getEmailAddresses()}">
+    <span th:text="${emailAddress}"></span>
+</p>

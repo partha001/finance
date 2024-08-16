@@ -27,7 +27,7 @@ public class WmService {
         return dividendControllerClient.getAllDividends();
     }
 
-    public String importFile(MultipartFile file, HttpHeaders header) throws IOException {
+    public String importFile(MultipartFile file) throws IOException {
         log.info("file:{}", file.getBytes().length);
         holdingControllerClient.importHoldings(file, ExportImportFormat.ZerodhaHoldingExport_Import, "partha");
         return "upload successfull";
