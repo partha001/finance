@@ -29,7 +29,7 @@ public class ImportService {
             case UpstoxHoldingExport_Import:
                 return context.getBean("upstoxHoldingImporter", UpstoxHoldingImporter.class);
         }
-        throw new RuntimeException("no imprter found for the given type");
+        throw new RuntimeException("no importer found for the given type");
     }
 
     public void importHoldings(MultipartFile multipartFile, ExportImportFormat inputFormat, String username) throws IOException {

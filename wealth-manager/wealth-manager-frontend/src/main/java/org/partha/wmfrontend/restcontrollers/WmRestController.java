@@ -13,8 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+
 @Log4j2
 @RestController
+@RequestMapping("/rest")
 public class WmRestController {
 
     @Autowired
@@ -25,16 +27,9 @@ public class WmRestController {
         return wmService.getDividendDetails(payload);
     }
 
-
-
-    @PostMapping(value="/holdings/import"
-            ,consumes = MediaType.MULTIPART_FORM_DATA_VALUE
-    )
-    public String importFile(@RequestParam("importFormat") String importFormat,
-                             @RequestParam("file") MultipartFile file) throws IOException {
-        log.info("importFormat:{}",importFormat);
-        return wmService.importFile(file);
+    @PostMapping("/holdingDetails")
+    public ResponseDto getHoldingDetails(@RequestParam(required = false) String  usernames){
+        return wmService.getHoldingDetails(usernames);
     }
-
 
 }

@@ -1,8 +1,10 @@
 package org.partha.wmclient.client;
 
 import org.partha.wmcommon.enums.ExportImportFormat;
+import org.partha.wmcommon.response.ResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -19,6 +21,9 @@ public interface HoldingControllerClient {
     public void importHoldings(@RequestPart("file") MultipartFile multipartFile,
                                @RequestParam ExportImportFormat inputFormat,
                                @RequestParam(defaultValue = "partha") String username) throws IOException;
+
+    @GetMapping(value="/getHoldings")
+    public ResponseDto getHoldings(@RequestParam("users") String users);
 
 
 }

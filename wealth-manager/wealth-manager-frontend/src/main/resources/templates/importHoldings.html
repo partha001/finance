@@ -40,7 +40,13 @@
 
                             <div class="row">
                                 <div class="col">
-                                    <input id="holdingOwner" type="text" name="holdingOwner" value="enter owner name"/>
+                                Import Holding
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <input id="holdingOwner" type="text" name="holdingOwner" value="Holder name"/>
                                 </div>
                                 <div class="col">
                                     <input id="input-file" type="file" name="file"/>
@@ -103,6 +109,32 @@
 <!--                        </button>-->
 <!--                    </div>-->
 <!--                </div>-->
+
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 mt-16 mb-6">
+                        <!--                <h3>Dividend details</h3>-->
+                        <table id="holdingTable" class="table table-bordered table-responsive" style="width: 100%">
+                            <thead>
+                            <tr>
+                                <th>Owner</th>
+                                <th>Broker</th>
+                                <th>BrokerSymbol</th>
+                                <th>Quantity</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Owner</th>
+                                <th>Broker</th>
+                                <th>BrokerSymbol</th>
+                                <th>Quantity</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -116,6 +148,26 @@
 
 
     <script>
+
+        $('#holdingTable').DataTable({
+            "processing": true,
+            "serverSide": false,
+            "ajax": {
+                "url": "/rest/holdingDetails",
+                "type": "POST",
+                "dataType": "json",
+                "contentType": "application/json",
+                "data": function (d) {
+                    return JSON.stringify(d);
+                }
+            },
+            "columns": [
+                {"data": "username", "width": "10%"},
+                {"data": "brokername","width": "10%"},
+                {"data": "brokersymbol", "width": "20%"},
+                {"data": "quantity", "width": "50%"}
+            ]
+        });
 
     </script>
 </div>

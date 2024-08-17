@@ -1,5 +1,6 @@
 package org.partha.wmfrontend.service;
 
+import com.google.common.base.Strings;
 import lombok.extern.log4j.Log4j2;
 import org.partha.wmclient.client.DividendControllerClient;
 import org.partha.wmclient.client.HoldingControllerClient;
@@ -27,9 +28,16 @@ public class WmService {
         return dividendControllerClient.getAllDividends();
     }
 
-    public String importFile(MultipartFile file) throws IOException {
-        log.info("file:{}", file.getBytes().length);
-        holdingControllerClient.importHoldings(file, ExportImportFormat.ZerodhaHoldingExport_Import, "partha");
-        return "upload successfull";
+    public void importFile(MultipartFile file,ExportImportFormat importFormat, String holdingOwner) throws IOException {
+        log.info("file:{} importFormat:{} holdingOnwer:{}", file.getBytes().length,importFormat,holdingOwner);
+        holdingControllerClient.importHoldings(file, importFormat, holdingOwner);
+    }
+
+    public ResponseDto getHoldingDetails(String usernames) {
+        if(Strings.isNullOrEmpty(usernames)){
+            usernames="partha,shibani";
+        }
+        ResponseDto response = holdingControllerClient.getHoldings(usernames);
+        return response;
     }
 }
