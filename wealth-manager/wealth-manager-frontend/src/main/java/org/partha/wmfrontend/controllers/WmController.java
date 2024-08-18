@@ -73,4 +73,13 @@ public class WmController {
         return new ModelAndView("importHoldings", map);
     }
 
+    /** asset related endpoints **/
+    @GetMapping(value = "/assets")
+    public String assets(){
+        return "assets";
+    }
+
+
+
+
 }

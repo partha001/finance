@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+    <changeSet id="4_dml_assetMaster" author="partha">
+        <sql>
+
+
+            -- 2022 data. 192 records
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1565,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',670,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',6,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1275,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',10,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',225,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',0,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',620,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',21,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',10,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',0,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',0,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',0,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',123,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',921,'2022-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2022-01-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1596,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',673,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',0,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1257,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',218,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',7,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',630,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',14,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',8,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',0,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',0,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',0,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',0,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',944,'2022-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2022-02-01');
+
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1584,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',643,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',5,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1302,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',50,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',191,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',0,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',611,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',17,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',8,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',10,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',0,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',0,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',0,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',967,'2022-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2022-03-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1600,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',641,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',54,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1284,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',20,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',143,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',8,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',620,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',14,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',8,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',8,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',109,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',66,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',0,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',990,'2022-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2022-04-01');
+
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1600,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',641,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',54,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1284,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',20,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',143,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',8,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',620,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',14,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',8,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',8,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',109,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',66,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',0,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1013,'2022-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2022-05-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1600,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',641,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',54,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1284,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',20,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',143,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',8,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',620,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',14,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',8,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',8,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',109,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',66,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',0,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1036,'2022-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2022-06-01');
+
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1516,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',602,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',3,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1466,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',50,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',166,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',0,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',674,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',7,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',7,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',178,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',0,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',0,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1059,'2022-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2022-07-01');
+
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1682,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',656,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',3,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1637,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',10,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',106,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',0,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',794,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',7,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',193,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',0,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',148,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1082,'2022-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2022-08-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1737,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',679,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',0,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1685,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',116,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',14,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',827,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',7,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',134,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',80,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',148,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1105,'2022-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2022-09-01');
+
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1672,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',651,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',0,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1716,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',116,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',14,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',862,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',7,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',134,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',80,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',148,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1131,'2022-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2022-10-01');
+
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1764,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',662,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',0,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1778,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',123,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',1,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',880,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',7,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',99,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',62,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',148,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1157,'2022-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',210,'2022-11-01');
+
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1856,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',669,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',4,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1831,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',100,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',8,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',943,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',7,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_equity',110,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','upstox_cash',47,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',148,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1182,'2022-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',160,'2022-12-01');
+
+
+            -- 2023 data. 228 records
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1834,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',660,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',15,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1822,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',116,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',4,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',960,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',7,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',110,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',47,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',0,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',0,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',100,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',0,'2023-01-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1209,'2023-01-01');
+
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1786,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',661,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',1,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',2016,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',119,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',0,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',985,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',8,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',152,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',0,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',0,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',0,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',0,'2023-02-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1234,'2023-02-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1760,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',649,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',0,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',1975,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',115,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',0,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',971,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',8,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',152,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',0,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',0,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',0,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',102,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',0,'2023-03-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1303,'2023-03-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1814,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',660,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',0,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',2032,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',152,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',4,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',1024,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',9,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',116,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',0,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',0,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',0,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',201,'2023-04-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1328,'2023-04-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',1999,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',710,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',0,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',2172,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',163,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',0,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',1001,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',10,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',97,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',26.9,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',0,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',2.5,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',453,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',201,'2023-05-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1354,'2023-05-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',2063,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',735,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',17,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',2257,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',180,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',0,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',1031,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',10,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',101,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',26.9,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',108,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',5.5,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',185,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',447,'2023-06-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1379,'2023-06-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',2089,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',753,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',17,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',2353,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',200,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',0,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',1061,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',13.53,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',12,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',0,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',119,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',2,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',0,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',896,'2023-07-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1433,'2023-07-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',2184,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',759,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',1.3,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',2410,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',225,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',3,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',1035,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',13.6,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',11,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',0,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',136,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',2,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',280,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',897,'2023-08-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1531,'2023-08-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',2273,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',791,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',1.3,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',2522,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',229,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',3.2,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',1081,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',13.6,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',11,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',0,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',139,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',2.6,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',34,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',1664,'2023-09-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1556,'2023-09-01');
+
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',2177,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',768,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',0,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',2411,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',239,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',0,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',1039,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',19.2,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',8,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',0,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',164,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',1.8,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',85,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',1664,'2023-10-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1516,'2023-10-01');
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',2304,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',817,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',22,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',2572,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',273,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',6,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',1089,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',9,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',21,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',31,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',7,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',155,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',9.8,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',60,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',1844.8,'2023-11-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1769,'2023-11-01');
+
+
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_equity',2483,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_mf',859,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','zerodha_cash',38,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_mf',2562,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','groww_cash',0,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_equity',288,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','angelone_cash',20,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','axis_mf',1169,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','wazirx',13,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','vauld',3,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','indmoney_us_stocks',21,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_equity',56,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','upstox_cash',2,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','lic',174,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_equity',173,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','zerodha_cash',24,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','cash',295,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('shibani','goldenpi_bond',1945,'2023-12-01');
+            insert into WealthManager.AssetMaster (username,assetName,amount,valuationDate) values ('partha','pf',1812,'2023-12-01');
+
+
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>
