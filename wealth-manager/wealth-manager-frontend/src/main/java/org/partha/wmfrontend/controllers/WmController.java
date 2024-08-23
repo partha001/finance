@@ -8,6 +8,7 @@ import org.partha.wmfrontend.util.WmUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,6 +79,16 @@ public class WmController {
     public String assets(){
         return "assets";
     }
+
+
+    @GetMapping(value = "/assetCharts")
+    public String assetCharts(Model model){
+        model.addAttribute("graphTitle", "special graph");
+
+        return "assetCharts";
+    }
+
+
 
 
 

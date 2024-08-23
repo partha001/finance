@@ -6,4 +6,5 @@ import org.partha.wmcommon.entities.Dividend;
 
 @Repository
 public interface DividendRepository extends JpaRepository<Dividend,Integer> {
+
 }
