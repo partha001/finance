@@ -3,7 +3,7 @@ ECHO %cd%
 CALL mvn clean install -f pom.xml
 
 ECHO %cd%
-CD setup
+CD wealth-manager-docker
 
 ECHO %cd%
 REM CALL docker-compose up -d
