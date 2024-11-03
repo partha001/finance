@@ -1,7 +1,9 @@
-FROM python:3.12.7-alpine3.19
+FROM python:3.12.4
 EXPOSE 5000
 WORKDIR /app
 COPY requirements.txt .
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+# RUN pip install flask flask-smorest python-dotenv pandas numpy scipy scikit-learn matplotlib jupyter
 COPY . .
 CMD ["flask","run","--host","0.0.0.0"]

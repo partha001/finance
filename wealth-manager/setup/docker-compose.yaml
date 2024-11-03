@@ -40,6 +40,15 @@ services:
     stdin_open: true
     tty: true
 
+  data-analytics:
+    build: ../wealth-manager-data-analytics
+    container_name: dataAnalyticsContainer
+    depends_on:
+      - mypostgres
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../wealth-manager-data-analytics:/app
 
 volumes:
   mypostgres:

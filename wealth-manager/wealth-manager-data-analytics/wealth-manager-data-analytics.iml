@@ -3,7 +3,7 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 3.12 (.problemSolvingWithPythonVenv)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.12 (.wealth-manager-data-analyticsVenv)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

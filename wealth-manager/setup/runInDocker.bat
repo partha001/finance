@@ -6,4 +6,5 @@ ECHO %cd%
 CD setup
 
 ECHO %cd%
-CALL docker-compose up -d
+REM CALL docker-compose up -d
+CALL docker compose up --build --force-recreate -d
