@@ -47,6 +47,7 @@ services:
       - mypostgres
     ports:
       - "5000:5000"
+      - "8888:8888"
     environment:
       - secretKey=keyvalue1
       - POSTGRES_HOST=mypostgresContainer

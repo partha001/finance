@@ -1,9 +1,10 @@
 FROM python:3.12.4
-EXPOSE 5000
+EXPOSE 5000 8888
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 # RUN pip install flask flask-smorest python-dotenv pandas numpy scipy scikit-learn matplotlib jupyter psycopg2-binary
 COPY . .
-CMD ["flask","run","--host","0.0.0.0"]
+#CMD ["flask","run","--host","0.0.0.0"]
+CMD flask run --host 0.0.0.0; jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root;
