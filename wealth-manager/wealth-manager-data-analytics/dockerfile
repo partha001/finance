@@ -4,6 +4,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-# RUN pip install flask flask-smorest python-dotenv pandas numpy scipy scikit-learn matplotlib jupyter
+# RUN pip install flask flask-smorest python-dotenv pandas numpy scipy scikit-learn matplotlib jupyter psycopg2-binary
 COPY . .
 CMD ["flask","run","--host","0.0.0.0"]

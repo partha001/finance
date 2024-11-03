@@ -47,6 +47,13 @@ services:
       - mypostgres
     ports:
       - "5000:5000"
+    environment:
+      - secretKey=keyvalue1
+      - POSTGRES_HOST=mypostgresContainer
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DATABASE=mydatabase
+      - POSTGRES_PORT= 5432
     volumes:
       - ../wealth-manager-data-analytics:/app
 
