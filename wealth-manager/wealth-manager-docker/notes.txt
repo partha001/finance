@@ -2,11 +2,13 @@
 docker run  --name mypostgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=mydatabase -p 5432:5432  -d --rm postgres:16.3
 
 #swagger links
-http://localhost:8081/wm-backend/swagger-ui/index.html
+    http://localhost:8081/wm-backend/swagger-ui/index.html
 
-http://localhost:8080/dividends
+    http://localhost:8080/dividends
 
+    http://localhost:5000/swagger-ui
 
+    http://127.0.0.1:8888/tree/jupyternotebooks
 
 
 python hacks
