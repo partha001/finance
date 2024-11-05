@@ -21,6 +21,7 @@ services:
       - '8081:8081'
     environment:
       - spring.datasource.url=jdbc:postgresql://mypostgresContainer:5432/mydatabase?allowPublicKeyRetrieval=true&useSSL=false
+      - dataAnalytics.HostName=http://dataAnalyticsContainer:5000
 #    volumes:
 #      - .m2:/root/.m2
     stdin_open: true
