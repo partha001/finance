@@ -2,6 +2,7 @@ import csv
 import pandas as pd
 
 import psycopg2
+from anyio.streams import file
 
 from config import *
 
@@ -25,8 +26,6 @@ def printHello():
     df.to_csv('./test.csv', index=False)
 
 
-
-
     #Closing the connection
     conn.close()
 
@@ -34,3 +33,7 @@ def printHello():
     print(secretKey)
     print("hello world")
     return result
+
+
+def sendimage() :
+    data = file.read()

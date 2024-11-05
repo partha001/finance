@@ -20,4 +20,9 @@ public class AssetController {
     public List<List<Object>> getGraphData(@RequestParam("users") String users){
         return assetService.getGraphData(users);
     }
+
+    @GetMapping("/getChartData")
+    public String getGraphData(){
+        return assetService.getChartData();
+    }
 }

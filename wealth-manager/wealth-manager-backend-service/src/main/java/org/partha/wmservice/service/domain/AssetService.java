@@ -3,6 +3,7 @@ package org.partha.wmservice.service.domain;
 import lombok.extern.slf4j.Slf4j;
 import org.partha.wmcommon.entities.Asset;
 import org.partha.wmservice.repositories.AssetRepository;
+import org.partha.wmservice.service.DataAnalyticsClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class AssetService {
     @Autowired
     AssetRepository assetRepository;
 
+    @Autowired
+    DataAnalyticsClientService dataAnalyticsClientService;
+
     public List<List<Object>> getGraphData(String users){
         List<String> usernames = Arrays.asList(users.split(","));
         List<Asset> assets = assetRepository.getAsstsByUsernames(usernames);
@@ -26,5 +30,10 @@ public class AssetService {
                         (item.getAssetName().equals("zerodha_equity") || item.getAssetName().equals("groww_mf")))
                 .collect(Collectors.groupingBy(Asset::getValuationDate));
         return null;
+    }
+
+
+    public String getChartData(){
+        return dataAnalyticsClientService.getAssetChart();
     }
 }
