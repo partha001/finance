@@ -22,7 +22,7 @@ public class AssetController {
     }
 
     @GetMapping("/getChartData")
-    public String getGraphData(){
+    public String getChartData(){
         return assetService.getChartData();
     }
 }

@@ -73,7 +73,6 @@ public class WmController {
         map.put("importFormats", WmUtil.getHoldingImportFormats());
         return new ModelAndView("importHoldings", map);
     }
-
     /** asset related endpoints **/
     @GetMapping(value = "/assets")
     public String assets(){
@@ -84,7 +83,8 @@ public class WmController {
     @GetMapping(value = "/assetCharts")
     public String assetCharts(Model model){
         model.addAttribute("graphTitle", "special graph");
-
+        String imageString = wmService.getCharData();
+        model.addAttribute("imageString",imageString);
         return "assetCharts";
     }
 

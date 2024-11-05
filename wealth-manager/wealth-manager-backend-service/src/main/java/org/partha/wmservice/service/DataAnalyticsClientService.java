@@ -15,7 +15,7 @@ public class DataAnalyticsClientService {
 
     public String getAssetChart(){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.getForEntity(dataAnalyticsHostname + "/assets/chart", String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(dataAnalyticsHostname + "/assets", String.class);
         return response.getBody();
     }
 }

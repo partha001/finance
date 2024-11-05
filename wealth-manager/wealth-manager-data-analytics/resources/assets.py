@@ -5,7 +5,7 @@ import PIL.Image
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
-from services.AssetService import printHello
+from services.AssetService import getAssetChart
 
 blp = Blueprint("assets",__name__,description="operations on assets")
 
@@ -13,8 +13,8 @@ blp = Blueprint("assets",__name__,description="operations on assets")
 class Assets(MethodView):
 
     def get(self):
-        test = printHello()
-        return {"assets": test},200
+        test = getAssetChart()
+        return test,200
 
 @blp.route("/assets/chart")
 class AssetChartOperations(MethodView):

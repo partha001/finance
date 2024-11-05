@@ -2,12 +2,12 @@ package org.partha.wmfrontend.service;
 
 import com.google.common.base.Strings;
 import lombok.extern.log4j.Log4j2;
+import org.partha.wmclient.client.AssetControllerClient;
 import org.partha.wmclient.client.DividendControllerClient;
 import org.partha.wmclient.client.HoldingControllerClient;
 import org.partha.wmcommon.enums.ExportImportFormat;
 import org.partha.wmcommon.response.ResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +22,9 @@ public class WmService {
 
     @Autowired
     HoldingControllerClient holdingControllerClient;
+
+    @Autowired
+    AssetControllerClient assetControllerClient;
 
 
     public ResponseDto getDividendDetails(String payload) {
@@ -40,4 +43,9 @@ public class WmService {
         ResponseDto response = holdingControllerClient.getHoldings(usernames);
         return response;
     }
+
+    public String getCharData(){
+        return assetControllerClient.getCharData();
+    }
+
 }
