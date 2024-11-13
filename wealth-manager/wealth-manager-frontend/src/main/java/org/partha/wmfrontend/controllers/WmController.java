@@ -45,10 +45,11 @@ public class WmController {
     @PostMapping(value = "/dividendSummary")
     public ModelAndView getdividendSummary(@RequestParam("dividendChartType") DividendChartType dividendChartType,
                                            ModelMap map){
+        log.info("input params. dividendChartType:{}", dividendChartType);
         map.put("dividendChartTypes", WmUtil.getDividendSummaryTypes());
         map.put("selectedDividendChartType", dividendChartType);
-        DividendChartDto dividendChartDetails = wmService.getDividendChartDetails();
-        map.put("charImageString", dividendChartDetails.getImageString());
+        DividendChartDto dividendChartDetails = wmService.getDividendChartDetails(dividendChartType);
+        map.put("imageString", dividendChartDetails.getImageString());
         map.put("key", "hello dividend");
         return new ModelAndView("dividendSummary",map);
     }

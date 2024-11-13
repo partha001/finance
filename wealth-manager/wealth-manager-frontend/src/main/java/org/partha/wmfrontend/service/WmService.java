@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.partha.wmclient.client.AssetControllerClient;
 import org.partha.wmclient.client.DividendControllerClient;
 import org.partha.wmclient.client.HoldingControllerClient;
+import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
 import org.partha.wmcommon.response.DividendChartDto;
 import org.partha.wmcommon.response.ResponseDto;
@@ -49,8 +50,8 @@ public class WmService {
         return assetControllerClient.getCharData();
     }
 
-    public DividendChartDto getDividendChartDetails(){
-        return dividendControllerClient.getDividendChartDetails();
+    public DividendChartDto getDividendChartDetails(DividendChartType dividendChartType){
+        return dividendControllerClient.getDividendChartDetails(dividendChartType);
     }
 
 }

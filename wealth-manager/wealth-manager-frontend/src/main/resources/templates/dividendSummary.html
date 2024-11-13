@@ -28,37 +28,48 @@
     </div>
     <div class="row">
         <div class="col-lg-12 body-style">
-            This is the dividend summary page
+
             <div>
                 <form id="dividendSummaryForm" method="post" th:action="@{/dividendSummary}">
-                <table>
-                    <tr>
-                        <td>
-                            <select id="dividendChartType" name="dividendChartType">
-                                <option value="">Select dividend summary type</option>
-                                <option th:each="dividendChartType : ${dividendChartTypes}"
-                                        th:value="${dividendChartType}"
-                                        th:text="${dividendChartType}">
-                                </option>
-                            </select>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-success float-right" type="submit">
-                                Get Summary
-                            </button>
-                        </td>
-                    </tr>
-                </table>
+                    <table style="width:100%">
+                        <tr>
+                            <th>
+                                <select id="dividendChartType" name="dividendChartType">
+                                    <option value="">Select dividend summary type</option>
+                                    <option th:each="dividendChartType : ${dividendChartTypes}"
+                                            th:value="${dividendChartType}"
+                                            th:text="${dividendChartType}">
+                                    </option>
+                                </select>
+                            </th>
+                            <th>
+
+
+                            </th>
+                            <th>
+                                <button class="btn btn-sm btn-outline-success float-right" type="submit">
+                                    Get Summary
+                                </button>
+
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3">
+                                <img th:if="${imageString!=null}" th:src="@{'data:image/jpeg;base64,'+${imageString}}"/>
+                            </td>
+                        </tr>
+
+                    </table>
                     <span th:text="${key}"></span>
                 </form>
-
-
             </div>
+
         </div>
     </div>
     <div class="row  justify-content-center">
         <div class="col-lg-12">
-        <div th:replace="~{fragments/footer :: footer}"></div>
+            <div th:replace="~{fragments/footer :: footer}"></div>
         </div>
     </div>
 

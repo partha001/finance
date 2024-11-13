@@ -18,4 +18,17 @@ public class DataAnalyticsClientService {
         ResponseEntity<String> response = restTemplate.getForEntity(dataAnalyticsHostname + "/assets", String.class);
         return response.getBody();
     }
+
+
+    public String getDividendChartByYear(){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.getForEntity(dataAnalyticsHostname + "/dividends/dividendSummaryByYear", String.class);
+        return response.getBody();
+    }
+
+    public String getDividendChartByQuarter(){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.getForEntity(dataAnalyticsHostname + "/dividends/dividendSummaryByQuarter", String.class);
+        return response.getBody();
+    }
 }
