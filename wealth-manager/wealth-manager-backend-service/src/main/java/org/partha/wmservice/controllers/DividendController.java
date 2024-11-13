@@ -1,6 +1,7 @@
 package org.partha.wmservice.controllers;
 
 
+import org.partha.wmcommon.response.DividendChartDto;
 import org.partha.wmcommon.response.ResponseDto;
 import org.partha.wmservice.service.domain.DividendService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,12 @@ public class DividendController {
     @GetMapping("/getAllDividends")
     public ResponseDto getAllDividends() {
         return service.getAllDividends();
+    }
+
+
+    @GetMapping("/getDividendChartDetails")
+    public DividendChartDto getDividendChartDetails(){
+        return service.getDividendChartDetails();
     }
 
 }

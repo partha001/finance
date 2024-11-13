@@ -2,7 +2,9 @@ package org.partha.wmfrontend.controllers;
 
 
 import lombok.extern.log4j.Log4j2;
+import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
+import org.partha.wmcommon.response.DividendChartDto;
 import org.partha.wmfrontend.service.WmService;
 import org.partha.wmfrontend.util.WmUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +28,7 @@ public class WmController {
     @Autowired
     WmService wmService;
 
-    @GetMapping(value = "/home")
-    public String home(){
-        return "home";
-    }
-
-    @GetMapping(value = "/stocks")
-    public String stocks(){
-        return "stocks";
-    }
+    /***************************  dividend related endpoints *****************************************************/
 
     @GetMapping(value = "/dividends")
     public String dividends(){
@@ -42,17 +36,25 @@ public class WmController {
     }
 
     @GetMapping(value = "/dividendSummary")
-    public String dividendSummary(){
-        return "dividendSummary";
+    public ModelAndView dividendSummary(){
+        ModelMap map = new ModelMap();
+        map.put("dividendChartTypes", WmUtil.getDividendSummaryTypes());
+        return new ModelAndView("dividendSummary",map);
     }
 
-    @GetMapping(value = "/about")
-    public String about(){
-        return "about";
+    @PostMapping(value = "/dividendSummary")
+    public ModelAndView getdividendSummary(@RequestParam("dividendChartType") DividendChartType dividendChartType,
+                                           ModelMap map){
+        map.put("dividendChartTypes", WmUtil.getDividendSummaryTypes());
+        map.put("selectedDividendChartType", dividendChartType);
+        DividendChartDto dividendChartDetails = wmService.getDividendChartDetails();
+        map.put("charImageString", dividendChartDetails.getImageString());
+        map.put("key", "hello dividend");
+        return new ModelAndView("dividendSummary",map);
     }
 
 
-    /** holding related endpoints **/
+    /***************************  holding related endpoints ******************************************************/
 
     @GetMapping(value = "/holdings/importHoldings")
     public ModelAndView importHoldings(){
@@ -73,7 +75,9 @@ public class WmController {
         map.put("importFormats", WmUtil.getHoldingImportFormats());
         return new ModelAndView("importHoldings", map);
     }
-    /** asset related endpoints **/
+
+
+    /***************************  asset related endpoints **********************************************************/
     @GetMapping(value = "/assets")
     public String assets(){
         return "assets";
@@ -88,9 +92,22 @@ public class WmController {
         return "assetCharts";
     }
 
+    /***************************  others  **************************************************************************/
 
+    @GetMapping(value = "/home")
+    public String home(){
+        return "home";
+    }
 
+    @GetMapping(value = "/stocks")
+    public String stocks(){
+        return "stocks";
+    }
 
+    @GetMapping(value = "/about")
+    public String about(){
+        return "about";
+    }
 
 
 }

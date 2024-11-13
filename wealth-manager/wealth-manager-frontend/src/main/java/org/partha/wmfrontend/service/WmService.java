@@ -6,6 +6,7 @@ import org.partha.wmclient.client.AssetControllerClient;
 import org.partha.wmclient.client.DividendControllerClient;
 import org.partha.wmclient.client.HoldingControllerClient;
 import org.partha.wmcommon.enums.ExportImportFormat;
+import org.partha.wmcommon.response.DividendChartDto;
 import org.partha.wmcommon.response.ResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,10 @@ public class WmService {
 
     public String getCharData(){
         return assetControllerClient.getCharData();
+    }
+
+    public DividendChartDto getDividendChartDetails(){
+        return dividendControllerClient.getDividendChartDetails();
     }
 
 }

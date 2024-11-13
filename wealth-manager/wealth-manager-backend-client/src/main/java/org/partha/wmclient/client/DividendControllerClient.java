@@ -1,5 +1,6 @@
 package org.partha.wmclient.client;
 
+import org.partha.wmcommon.response.DividendChartDto;
 import org.partha.wmcommon.response.ResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,5 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface DividendControllerClient {
 
     @GetMapping("/getAllDividends")
-    public ResponseDto getAllDividends();
+    ResponseDto getAllDividends();
+
+    @GetMapping("/getDividendChartDetails")
+    DividendChartDto getDividendChartDetails();
 }

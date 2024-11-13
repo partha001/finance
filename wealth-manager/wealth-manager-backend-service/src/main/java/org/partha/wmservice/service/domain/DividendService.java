@@ -4,6 +4,7 @@ package org.partha.wmservice.service.domain;
 
 import lombok.extern.log4j.Log4j2;
 import org.partha.wmcommon.entities.Dividend;
+import org.partha.wmcommon.response.DividendChartDto;
 import org.partha.wmcommon.response.ResponseDto;
 import org.partha.wmservice.repositories.DividendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,9 @@ public class DividendService {
 				.data(dividendList)
 				.build();
 	}
-	
-	
-	
-	
-	
 
+
+	public DividendChartDto getDividendChartDetails() {
+		return null;
+	}
 }

@@ -1,5 +1,6 @@
 package org.partha.wmfrontend.util;
 
+import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
 
 import java.util.EnumSet;
@@ -11,5 +12,13 @@ public class WmUtil {
                 ExportImportFormat.UpstoxHoldingExport_Import,
                 ExportImportFormat.AngelOneHoldingExport_Import
                 );
+    }
+
+
+    public static EnumSet<DividendChartType> getDividendSummaryTypes() {
+        return EnumSet.of(DividendChartType.DividendSummmaryByYear,
+                DividendChartType.DividendSummaryByQuarter,
+                DividendChartType.DividendSummaryByEquity
+        );
     }
 }
