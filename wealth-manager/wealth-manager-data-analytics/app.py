@@ -6,6 +6,7 @@ from flask_smorest import Api
 from resources.item import blp as item_blueprint
 from resources.store import blp as store_blueprint
 from resources.assets import blp as asset_blueprint
+from resources.dividends import blp as dividend_blueprint
 
 
 app = Flask(__name__)
@@ -24,5 +25,7 @@ api = Api(app)
 api.register_blueprint(item_blueprint)
 api.register_blueprint(store_blueprint)
 api.register_blueprint(asset_blueprint)
+api.register_blueprint(dividend_blueprint)
+
 
 

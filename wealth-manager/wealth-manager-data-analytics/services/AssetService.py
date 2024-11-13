@@ -1,6 +1,7 @@
 from base64 import encodebytes
 from io import BytesIO
 
+import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 import psycopg2
@@ -13,6 +14,8 @@ def getAssetChart():
 
     conn = None
     cursor = None
+
+    matplotlib.use('agg')
 
     #establishing the connection
     conn = psycopg2.connect(
