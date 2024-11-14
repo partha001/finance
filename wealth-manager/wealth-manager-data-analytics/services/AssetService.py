@@ -37,7 +37,7 @@ def getAssetChart():
     #Closing the connection
     conn.close()
 
-    fig = plt.subplots(figsize=(15, 7))
+    fig = plt.subplots(figsize=(12, 7))
     plt.xlabel('Date', fontsize=15)
     plt.ylabel('INR', fontsize=15)
     plt.title('assets-vs-time', fontsize=20)
