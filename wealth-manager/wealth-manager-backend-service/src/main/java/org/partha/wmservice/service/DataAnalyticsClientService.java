@@ -13,20 +13,20 @@ public class DataAnalyticsClientService {
     @Value("${dataAnalytics.HostName}")
     private String dataAnalyticsHostname;
 
-    public String getAssetChart(){
+    public String getAssetChartAssetsVsTime() {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.getForEntity(dataAnalyticsHostname + "/assets", String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(dataAnalyticsHostname + "/assets/chart/assetsVsTime", String.class);
         return response.getBody();
     }
 
 
-    public String getDividendChartByYear(){
+    public String getDividendChartByYear() {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.getForEntity(dataAnalyticsHostname + "/dividends/dividendSummaryByYear", String.class);
         return response.getBody();
     }
 
-    public String getDividendChartByQuarter(){
+    public String getDividendChartByQuarter() {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.getForEntity(dataAnalyticsHostname + "/dividends/dividendSummaryByQuarter", String.class);
         return response.getBody();

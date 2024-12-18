@@ -32,41 +32,41 @@ public class WmController {
     /***************************  dividend related endpoints *****************************************************/
 
     @GetMapping(value = "/dividends")
-    public String dividends(){
+    public String dividends() {
         return "dividends";
     }
 
     @GetMapping(value = "/dividendSummary")
-    public ModelAndView dividendSummary(){
+    public ModelAndView dividendSummary() {
         ModelMap map = new ModelMap();
         map.put("dividendChartTypes", WmUtil.getDividendSummaryTypes());
         DividendChartType defaultDividendCharType = DividendChartType.DividendSummaryByYear;
         map.put("selectedDividendChartType", defaultDividendCharType);
         DividendChartDto dividendChartDetails = wmService.getDividendChartDetails(defaultDividendCharType);
         map.put("imageString", dividendChartDetails.getImageString());
-        return new ModelAndView("dividendSummary",map);
+        return new ModelAndView("dividendSummary", map);
     }
 
     @PostMapping(value = "/dividendSummary")
     public ModelAndView getdividendSummary(@RequestParam("dividendChartType") DividendChartType dividendChartType,
-                                           ModelMap map){
+                                           ModelMap map) {
         log.info("input params. dividendChartType:{}", dividendChartType);
         map.put("dividendChartTypes", WmUtil.getDividendSummaryTypes());
         map.put("selectedDividendChartType", dividendChartType);
         DividendChartDto dividendChartDetails = wmService.getDividendChartDetails(dividendChartType);
         map.put("imageString", dividendChartDetails.getImageString());
         map.put("key", "hello dividend");
-        return new ModelAndView("dividendSummary",map);
+        return new ModelAndView("dividendSummary", map);
     }
 
 
     /***************************  holding related endpoints ******************************************************/
 
     @GetMapping(value = "/holdings/importHoldings")
-    public ModelAndView importHoldings(){
+    public ModelAndView importHoldings() {
         ModelMap map = new ModelMap();
         map.put("importFormats", WmUtil.getHoldingImportFormats());
-        return new ModelAndView("importHoldings",map);
+        return new ModelAndView("importHoldings", map);
     }
 
     @PostMapping(value = "/holdings/import"
@@ -76,7 +76,7 @@ public class WmController {
                                    @RequestParam("file") MultipartFile file,
                                    @RequestParam("holdingOwner") String holdingOwner) throws IOException {
         log.info("importFormat:{}", importFormat);
-        wmService.importFile( file, importFormat, holdingOwner);
+        wmService.importFile(file, importFormat, holdingOwner);
         ModelMap map = new ModelMap();
         map.put("importFormats", WmUtil.getHoldingImportFormats());
         return new ModelAndView("importHoldings", map);
@@ -85,35 +85,46 @@ public class WmController {
 
     /***************************  asset related endpoints **********************************************************/
     @GetMapping(value = "/assets")
-    public String assets(){
+    public String assets() {
         return "assets";
     }
 
 
     @GetMapping(value = "/assetCharts")
-    public ModelAndView assetCharts(Model model){
+    public ModelAndView assetCharts(Model model) {
         ModelMap map = new ModelMap();
         map.put("assetChartTypes", WmUtil.getAssetChartTypes());
         AssetChartType defaultAssetChartType = AssetChartType.Chart_AssetVsTime;
-        map.put("imageString",wmService.getCharData());
+        map.put("imageString", wmService.getAssetChart(defaultAssetChartType).getImageString());
         map.put("selectedAssetChartType", defaultAssetChartType);
         return new ModelAndView("assetCharts", map);
     }
 
+    @PostMapping(value = "/assetCharts")
+    public ModelAndView assetCharts(@RequestParam("assetChartType") AssetChartType assetChartType,
+                                    ModelMap map) {
+        log.info("input params. assetChartType:{}", assetChartType);
+        map.put("assetChartTypes", WmUtil.getAssetChartTypes());
+        map.put("selectedAssetChartType", assetChartType);
+        map.put("imageString", wmService.getAssetChart(assetChartType).getImageString());
+        return new ModelAndView("assetCharts", map);
+    }
+
+
     /***************************  others  **************************************************************************/
 
     @GetMapping(value = "/home")
-    public String home(){
+    public String home() {
         return "home";
     }
 
     @GetMapping(value = "/stocks")
-    public String stocks(){
+    public String stocks() {
         return "stocks";
     }
 
     @GetMapping(value = "/about")
-    public String about(){
+    public String about() {
         return "about";
     }
 

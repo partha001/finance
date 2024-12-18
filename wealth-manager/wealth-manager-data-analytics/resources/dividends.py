@@ -5,7 +5,6 @@ import PIL.Image
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
-from services.AssetService import getAssetChart
 from services.DividendService import getDividendChartByYear,getDividendChartByQuarter
 
 blp = Blueprint("dividends",__name__,description="operations on dividends")

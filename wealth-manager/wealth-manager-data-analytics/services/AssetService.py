@@ -10,7 +10,7 @@ from anyio.streams import file
 from config import *
 
 
-def getAssetChart():
+def getAssetChartAssetsVsTime():
 
     conn = None
     cursor = None

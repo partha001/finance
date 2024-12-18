@@ -1,5 +1,7 @@
 package org.partha.wmservice.controllers;
 
+import org.partha.wmcommon.enums.AssetChartType;
+import org.partha.wmcommon.response.AssetChartDto;
 import org.partha.wmservice.service.domain.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,7 @@ public class AssetController {
     }
 
     @GetMapping("/getChartData")
-    public String getChartData(){
-        return assetService.getChartData();
+    public AssetChartDto getChartData(@RequestParam(name = "assetChartType") AssetChartType assetChartType){
+        return assetService.getChartData(assetChartType);
     }
 }
