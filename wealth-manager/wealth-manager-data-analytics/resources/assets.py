@@ -16,7 +16,7 @@ class Assets(MethodView):
         test = getAssetChart()
         return test,200
 
-@blp.route("/assets/chart")
+@blp.route("/assets/chart/assetsVsTime")
 class AssetChartOperations(MethodView):
 
     def get(self):
