@@ -33,16 +33,41 @@
     </div>
 
     <div class="row col-lg-12 body-style">
-        <div class="row">
-            this is the asset char page
-<!--            <div class="col-sm-12">-->
-<!--&lt;!&ndash;                <div class="container" style="max-width: 500px">&ndash;&gt;-->
-<!--                    this is the asset chart page-->
-<!--                    <div id="curve_chart" style="width: 1200px; height: 700px;"></div>-->
-<!--            </div>-->
+<!--        <div class="row">-->
+<!--            this is the asset char page-->
+<!--            <img  th:src="@{'data:image/jpeg;base64,'+${imageString}}" />-->
+<!--        </div>-->
 
-            <img  th:src="@{'data:image/jpeg;base64,'+${imageString}}" />
+        <div class="row">
+            <form id="assetChartForm" method="post" th:action="@{/assetCharts}">
+                <table style="width:100%">
+                    <tr>
+                        <th>
+                            <select id="assetChartType" name="assetChartType" onchange="this.form.submit()">
+                                <!--                                    <option value="">Select dividend summary type</option>-->
+                                <option th:each="assetChartType : ${assetChartTypes}"
+                                        th:value="${assetChartType}"
+                                        th:text="${assetChartType}">
+<!--                                        th:selected="${selectedAssetChartType.equals(assetChartType)}" -->
+
+                                </option>
+                            </select>
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            <img th:if="${imageString!=null}" th:src="@{'data:image/jpeg;base64,'+${imageString}}"/>
+                        </td>
+                    </tr>
+
+                </table>
+                <span th:text="${key}"></span>
+            </form>
         </div>
+
     </div>
 
 

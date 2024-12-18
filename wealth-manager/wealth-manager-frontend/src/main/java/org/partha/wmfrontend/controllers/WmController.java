@@ -2,6 +2,7 @@ package org.partha.wmfrontend.controllers;
 
 
 import lombok.extern.log4j.Log4j2;
+import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
 import org.partha.wmcommon.response.DividendChartDto;
@@ -90,11 +91,13 @@ public class WmController {
 
 
     @GetMapping(value = "/assetCharts")
-    public String assetCharts(Model model){
-        model.addAttribute("graphTitle", "special graph");
-        String imageString = wmService.getCharData();
-        model.addAttribute("imageString",imageString);
-        return "assetCharts";
+    public ModelAndView assetCharts(Model model){
+        ModelMap map = new ModelMap();
+        map.put("assetChartTypes", WmUtil.getAssetChartTypes());
+        AssetChartType defaultAssetChartType = AssetChartType.Chart_AssetVsTime;
+        map.put("imageString",wmService.getCharData());
+        map.put("selectedAssetChartType", defaultAssetChartType);
+        return new ModelAndView("assetCharts", map);
     }
 
     /***************************  others  **************************************************************************/
