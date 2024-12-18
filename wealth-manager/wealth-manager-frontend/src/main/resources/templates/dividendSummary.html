@@ -34,11 +34,12 @@
                     <table style="width:100%">
                         <tr>
                             <th>
-                                <select id="dividendChartType" name="dividendChartType">
-                                    <option value="">Select dividend summary type</option>
+                                <select id="dividendChartType" name="dividendChartType" onchange="this.form.submit()">
+<!--                                    <option value="">Select dividend summary type</option>-->
                                     <option th:each="dividendChartType : ${dividendChartTypes}"
                                             th:value="${dividendChartType}"
-                                            th:text="${dividendChartType}">
+                                            th:text="${dividendChartType}"
+                                            th:selected="${selectedDividendChartType.equals(dividendChartType)}" >
                                     </option>
                                 </select>
                             </th>
@@ -46,12 +47,14 @@
 
 
                             </th>
-                            <th>
-                                <button class="btn btn-sm btn-outline-success float-right" type="submit">
-                                    Get Summary
-                                </button>
 
-                            </th>
+<!--submit not required since submitting form on dropdown selection change-->
+<!--                            <th>-->
+<!--                                <button class="btn btn-sm btn-outline-success float-right" type="submit">-->
+<!--                                    Get Summary-->
+<!--                                </button>-->
+
+<!--                            </th>-->
                         </tr>
 
                         <tr>

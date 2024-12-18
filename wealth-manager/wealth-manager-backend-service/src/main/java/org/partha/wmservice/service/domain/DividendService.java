@@ -36,7 +36,7 @@ public class DividendService {
 	public DividendChartDto getDividendChartDetails(DividendChartType dividendChartType) {
 		log.info("inside DividendService.getDividendChartDetails() . input details. dividendChartType:{}",dividendChartType );
 		String imageString = null;
-		if(dividendChartType.equals(DividendChartType.DividendSummmaryByYear)){
+		if(dividendChartType.equals(DividendChartType.DividendSummaryByYear)){
 			imageString = dataAnalyticsClientService.getDividendChartByYear();
 		}else if(dividendChartType.equals(DividendChartType.DividendSummaryByQuarter)) {
 			imageString = dataAnalyticsClientService.getDividendChartByQuarter();

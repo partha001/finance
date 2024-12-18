@@ -16,7 +16,7 @@ public class WmUtil {
 
 
     public static EnumSet<DividendChartType> getDividendSummaryTypes() {
-        return EnumSet.of(DividendChartType.DividendSummmaryByYear,
+        return EnumSet.of(DividendChartType.DividendSummaryByYear,
                 DividendChartType.DividendSummaryByQuarter,
                 DividendChartType.DividendSummaryByEquity
         );

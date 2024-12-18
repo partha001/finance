@@ -39,6 +39,10 @@ public class WmController {
     public ModelAndView dividendSummary(){
         ModelMap map = new ModelMap();
         map.put("dividendChartTypes", WmUtil.getDividendSummaryTypes());
+        DividendChartType defaultDividendCharType = DividendChartType.DividendSummaryByYear;
+        map.put("selectedDividendChartType", defaultDividendCharType);
+        DividendChartDto dividendChartDetails = wmService.getDividendChartDetails(defaultDividendCharType);
+        map.put("imageString", dividendChartDetails.getImageString());
         return new ModelAndView("dividendSummary",map);
     }
 

@@ -3,7 +3,7 @@ package org.partha.wmcommon.enums;
 public enum DividendChartType {
 
 
-    DividendSummmaryByYear,
+    DividendSummaryByYear,
     DividendSummaryByQuarter,
     DividendSummaryByEquity
 }
