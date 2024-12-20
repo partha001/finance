@@ -1,0 +1,1 @@
+nse list shares : https://www.nseindia.com/market-data/securities-available-for-trading

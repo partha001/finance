@@ -11,9 +11,9 @@
 nse:
   equity:
     list-fileName: mydata/nse/EQUITY_L.csv
-    list-LoadFlag: false
+    list-LoadFlag: true
     smelist-fileName: mydata/nse/SME_EQUITY_L.csv
-    smelist-LoadFlag: false
+    smelist-LoadFlag: true
 
 
 

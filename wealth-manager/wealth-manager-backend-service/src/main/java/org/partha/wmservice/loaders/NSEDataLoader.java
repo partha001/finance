@@ -105,7 +105,7 @@ public class NSEDataLoader {
                 stock.setFaceValue(CommonUtil.parseDouble(record.get("FACE VALUE")));
                 stock.setIsin(record.get("ISIN NUMBER"));
                 stock.setKey(stock.getExchange() + ":" + stock.getSymbol());
-                stock.setListingDate(DateUtil.parseToUtilDate(record.get("DATE OF LISTING"), Constants.DATE_FORMAT1));
+                stock.setListingDate(DateUtil.convertStringToUtilDate(record.get("DATE OF LISTING"), Constants.DATE_FORMAT1));
                 stockList.add(stock);
             }
 
@@ -125,6 +125,7 @@ public class NSEDataLoader {
              CSVParser csvParser = new CSVParser(reader,
                      CSVFormat.DEFAULT.withHeader(
                              //SYMBOL	NAME_OF_COMPANY	SERIES	DATE_OF_LISTING	PAID_UP_VALUE	ISIN_NUMBER	FACE_VALUE
+                             //SYMBOL,NAME_OF_COMPANY,SERIES,DATE_OF_LISTING,PAID_UP_VALUE,ISIN_NUMBER,FACE_VALUE,
                              "SYMBOL",
                              "NAME_OF_COMPANY",
                              "SERIES",
@@ -151,7 +152,7 @@ public class NSEDataLoader {
                 stock.setFaceValue(CommonUtil.parseDouble(record.get("FACE_VALUE")));
                 stock.setIsin(record.get("ISIN_NUMBER"));
                 stock.setKey(stock.getExchange() + ":" + stock.getSymbol());
-                stock.setListingDate(DateUtil.parseToUtilDate(record.get("DATE_OF_LISTING"), Constants.DATE_FORMAT1));
+                stock.setListingDate(DateUtil.convertStringToUtilDate(record.get("DATE_OF_LISTING"), Constants.DATE_FORMAT1));
                 stockList.add(stock);
             }
 

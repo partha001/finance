@@ -29,7 +29,7 @@ public class StockDao {
 		for(int i=0;i<list.size();i++) {
 			Stock dto = list.get(i);
 			MapSqlParameterSource param = new MapSqlParameterSource();
-			//public static final String LOAD_NSE_DATA = "insert into StockMaster(symbol,name, isinNumber, faceValue, listingDate) values (:symbol, :name, :isinNumber, :faceValue, :listingDate) ";
+			//public static final String LOAD_NSE_DATA = "insert into StockMaster(symbol,name, isinNumber, faceValue, listingDate) values (:symbol, :name, :isinNumber, :faceValue, :listingDate) on conflict (exchange,symbol) do nothing";
 
 			param.addValue("exchange", dto.getExchange());
 			param.addValue("symbol", dto.getSymbol());
@@ -81,9 +81,9 @@ public class StockDao {
 			param.addValue("id", dto.getId());
 			param.addValue("stockMasterId", dto.getId());
 			param.addValue("stockKey", dto.getKey());
-			param.addValue("price", dto.getPrice());
-			param.addValue("priceTime", DateUtil.convertStringToSqlDate(dto.getPriceTime(), Constants.DATE_FORMAT_IS08601));
-			param.addValue("priceTimeZone",dto.getPriceTimeZone());
+//			param.addValue("price", dto.getPrice());
+//			param.addValue("priceTime", DateUtil.convertStringToSqlDate(dto.getPriceTime(), Constants.DATE_FORMAT_IS08601));
+//			param.addValue("priceTimeZone",dto.getPriceTimeZone());
 			map[i] = param;
 		}
 		int[] batchUpdate = jdbcTemplate.batchUpdate(SqlConstant.UPDATE_STOCKPRICEMASTER, map);
@@ -106,7 +106,7 @@ public class StockDao {
 			//public static final String UPDATE_STOCK_DETAILS = "update StockMaster set price=:price where id=:id";
 			
 			param.addValue("id", dto.getId());
-			param.addValue("price", dto.getPrice());
+			//param.addValue("price", dto.getPrice());
 			map[i] = param;
 		}
 		int[] batchUpdate = jdbcTemplate.batchUpdate(SqlConstant.UPDATE_STOCK_DETAILS, map);
