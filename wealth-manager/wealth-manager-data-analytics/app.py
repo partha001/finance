@@ -7,6 +7,7 @@ from resources.item import blp as item_blueprint
 from resources.store import blp as store_blueprint
 from resources.assets import blp as asset_blueprint
 from resources.dividends import blp as dividend_blueprint
+from resources.instrument import blp as instrument_blueprint
 
 
 app = Flask(__name__)
@@ -26,6 +27,7 @@ api.register_blueprint(item_blueprint)
 api.register_blueprint(store_blueprint)
 api.register_blueprint(asset_blueprint)
 api.register_blueprint(dividend_blueprint)
+api.register_blueprint(instrument_blueprint)
 
 
 
