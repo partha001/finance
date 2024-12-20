@@ -1,1 +1,3 @@
 nse list shares : https://www.nseindia.com/market-data/securities-available-for-trading
+
+https://www.nseindia.com/products-services/indices-sectoral
