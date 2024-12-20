@@ -58,23 +58,34 @@
 
             CREATE TABLE IF NOT EXISTS WealthManager.DailyPriceMaster (
             id serial4 NOT NULL,
-            stockmasterid int4 NULL,
+            PriceDate date,
             stockkey varchar(50) NULL,
-            price numeric NULL,
             AdjClosePrice numeric NULL,
             ClosePrice numeric NULL,
             OpenPrice numeric null,
             High numeric NULL,
             Low numeric NULL,
             Volume numeric null,
-            PriceDate date,
             CONSTRAINT uc_dpm_ExchangeSymbol UNIQUE (PriceDate,stockkey),
             primary key (id, PriceDate, stockkey)
             ) partition by range (PriceDate);
 
-
+            CREATE TABLE WealthManager.DailyPriceMaster_2010 PARTITION OF WealthManager.DailyPriceMaster for values from ('2010-01-01') to ('2011-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2011 PARTITION OF WealthManager.DailyPriceMaster for values from ('2011-01-01') to ('2012-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2012 PARTITION OF WealthManager.DailyPriceMaster for values from ('2012-01-01') to ('2013-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2013 PARTITION OF WealthManager.DailyPriceMaster for values from ('2013-01-01') to ('2014-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2014 PARTITION OF WealthManager.DailyPriceMaster for values from ('2014-01-01') to ('2015-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2015 PARTITION OF WealthManager.DailyPriceMaster for values from ('2015-01-01') to ('2016-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2016 PARTITION OF WealthManager.DailyPriceMaster for values from ('2016-01-01') to ('2017-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2017 PARTITION OF WealthManager.DailyPriceMaster for values from ('2017-01-01') to ('2018-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2018 PARTITION OF WealthManager.DailyPriceMaster for values from ('2018-01-01') to ('2019-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2019 PARTITION OF WealthManager.DailyPriceMaster for values from ('2019-01-01') to ('2020-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2020 PARTITION OF WealthManager.DailyPriceMaster for values from ('2020-01-01') to ('2021-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2021 PARTITION OF WealthManager.DailyPriceMaster for values from ('2021-01-01') to ('2022-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2022 PARTITION OF WealthManager.DailyPriceMaster for values from ('2022-01-01') to ('2023-01-01');
+            CREATE TABLE WealthManager.DailyPriceMaster_2023 PARTITION OF WealthManager.DailyPriceMaster for values from ('2023-01-01') to ('2024-01-01');
             CREATE TABLE WealthManager.DailyPriceMaster_2024 PARTITION OF WealthManager.DailyPriceMaster for values from ('2024-01-01') to ('2025-01-01');
-
+            CREATE TABLE WealthManager.DailyPriceMaster_2025 PARTITION OF WealthManager.DailyPriceMaster for values from ('2025-01-01') to ('2026-01-01');
 
 
         </sql>
