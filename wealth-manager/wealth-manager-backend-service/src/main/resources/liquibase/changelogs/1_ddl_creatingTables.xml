@@ -59,15 +59,15 @@
             CREATE TABLE IF NOT EXISTS WealthManager.DailyPriceMaster (
             id serial4 NOT NULL,
             PriceDate date,
-            stockkey varchar(50) NULL,
+            key varchar(50) NULL,
             AdjClosePrice numeric NULL,
             ClosePrice numeric NULL,
             OpenPrice numeric null,
             High numeric NULL,
             Low numeric NULL,
             Volume numeric null,
-            CONSTRAINT uc_dpm_ExchangeSymbol UNIQUE (PriceDate,stockkey),
-            primary key (id, PriceDate, stockkey)
+            CONSTRAINT uc_dpm_ExchangeSymbol UNIQUE (PriceDate,key),
+            primary key (id, PriceDate, key)
             ) partition by range (PriceDate);
 
             CREATE TABLE IF NOT EXISTS WealthManager.DailyPriceMaster_2010 PARTITION OF WealthManager.DailyPriceMaster for values from ('2010-01-01') to ('2011-01-01');

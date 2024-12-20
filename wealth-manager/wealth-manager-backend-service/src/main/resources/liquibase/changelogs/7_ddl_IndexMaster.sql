@@ -4,6 +4,7 @@
 CREATE TABLE IF NOT EXISTS WealthManager.IndexMaster (
             id serial4 NOT NULL,
             indexName text,
+            indexKey text,
             yahoofinanceTicker text,
 			CONSTRAINT uc_im_indexName UNIQUE (indexName),
             primary key (id)
