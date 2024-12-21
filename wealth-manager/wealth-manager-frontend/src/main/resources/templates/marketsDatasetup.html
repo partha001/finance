@@ -48,13 +48,11 @@
 
                                 <select id="instrumentName" name="instrumentName"  onchange="this.form.submit()">
                                     <option value="">Select instrument</option>
-                                    <option value="instrument1">instrument1</option>
-                                    <option value="instrument2">instrument2</option>
-<!--                                    <option th:each="instrumentType : ${instrumentTypes}"-->
-<!--                                            th:value="${instrumentType}"-->
-<!--                                            th:text="${instrumentType}">-->
-                                        <!--                                            th:selected="${selectedDividendChartType.equals(dividendChartType)}" >-->
-<!--                                    </option>-->
+                                    <option th:each="instrumentkey : ${instrumentKeys}"
+                                            th:value="${instrumentkey}"
+                                            th:text="${instrumentkey}"
+                                            th:selected="${instrumentkey.equals(selectedInstrumentName)}">
+                                    </option>
                                 </select>
                             </th>
 

@@ -64,8 +64,6 @@ public class NSEDataLoader {
         }else{
             logger.info("skipping nse-sme-data load since load-flag is false");
         }
-
-
         stockService.refreshStockMap();
 
     }

@@ -5,9 +5,11 @@ import lombok.extern.log4j.Log4j2;
 import org.partha.wmclient.client.AssetControllerClient;
 import org.partha.wmclient.client.DividendControllerClient;
 import org.partha.wmclient.client.HoldingControllerClient;
+import org.partha.wmclient.client.InstrumentControllerClient;
 import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
+import org.partha.wmcommon.enums.InstrumentType;
 import org.partha.wmcommon.response.AssetChartDto;
 import org.partha.wmcommon.response.DividendChartDto;
 import org.partha.wmcommon.response.ResponseDto;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Log4j2
 @Service
@@ -29,6 +32,9 @@ public class WmService {
 
     @Autowired
     AssetControllerClient assetControllerClient;
+
+    @Autowired
+    InstrumentControllerClient instrumentControllerClient;
 
 
     public ResponseDto getDividendDetails(String payload) {
@@ -54,6 +60,10 @@ public class WmService {
 
     public DividendChartDto getDividendChartDetails(DividendChartType dividendChartType) {
         return dividendControllerClient.getDividendChartDetails(dividendChartType);
+    }
+
+    public List<String> getInstrumentKeys(InstrumentType instrumentType){
+        return instrumentControllerClient.getInstrumenKeys(instrumentType);
     }
 
 }

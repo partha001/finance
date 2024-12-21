@@ -37,7 +37,7 @@ public class StockDao {
 			param.addValue("isinNumber", dto.getIsin());
 			param.addValue("faceValue", dto.getFaceValue());
 			param.addValue("listingDate", dto.getListingDate());
-			param.addValue("stockKey", dto.getKey());
+			param.addValue("key", dto.getKey());
 			map[i] = param;
 		}
 		int[] batchUpdate = jdbcTemplate.batchUpdate(SqlConstant.LOAD_NSE_DATA, map);
@@ -59,7 +59,7 @@ public class StockDao {
 				stock.setName(rs.getString("name"));
 				stock.setFaceValue(rs.getDouble("faceValue"));
 				stock.setListingDate(rs.getDate("listingDate"));
-				stock.setKey(rs.getString("stockKey"));
+				stock.setKey(rs.getString("key"));
 				stock.setIsin(rs.getString("isinNumber"));
 				return stock;
 			}
@@ -113,6 +113,9 @@ public class StockDao {
 		int recordsInserted = IntStream.of(batchUpdate).sum();
 		return recordsInserted;
 	}
+
+
+
 
 
 }

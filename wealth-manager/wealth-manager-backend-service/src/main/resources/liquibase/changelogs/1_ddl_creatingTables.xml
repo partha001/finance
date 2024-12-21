@@ -40,7 +40,7 @@
             isinNumber VARCHAR(50),
             faceValue decimal,
             listingDate DATE,
-            stockKey VARCHAR(50),
+            key VARCHAR(50),
             CONSTRAINT uc_sm_ExchangeSymbol UNIQUE (exchange,symbol)
             );
 

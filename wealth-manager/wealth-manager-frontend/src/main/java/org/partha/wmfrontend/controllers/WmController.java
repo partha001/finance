@@ -1,10 +1,12 @@
 package org.partha.wmfrontend.controllers;
 
 
+import com.google.common.base.Strings;
 import lombok.extern.log4j.Log4j2;
 import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
+import org.partha.wmcommon.enums.InstrumentType;
 import org.partha.wmcommon.response.DividendChartDto;
 import org.partha.wmfrontend.service.WmService;
 import org.partha.wmfrontend.util.WmUtil;
@@ -78,6 +80,8 @@ public class WmController {
         map.put("instrumentTypes", WmUtil.getInstrumentTypes());
         map.put("selectedInstrumentType", selectedInstrumentType);
         map.put("selectedInstrumentName", selectedInstrumentName);
+        if(!Strings.isNullOrEmpty(selectedInstrumentType))
+            map.put("instrumentKeys", wmService.getInstrumentKeys(InstrumentType.valueOf(selectedInstrumentType)));
         return new ModelAndView("marketsDatasetup", map);
     }
 
