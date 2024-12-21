@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.Map;
 
 
 @Log4j2
@@ -59,6 +60,35 @@ public class WmController {
         return new ModelAndView("dividendSummary", map);
     }
 
+    /***************************  Markets related endpoints **********************************************************/
+    @GetMapping(value = "/markets/dataSetup")
+    public ModelAndView datasetup() {
+        ModelMap map = new ModelMap();
+        map.put("instrumentTypes", WmUtil.getInstrumentTypes());
+        map.put("selectedInstrumentType", "");
+        map.put("selectedInstrumentName", "");
+        return new ModelAndView("marketsDatasetup", map);
+    }
+
+    @PostMapping(value = "/markets/dataSetup")
+   //public ModelAndView datasetup(@RequestParam MultiValueMap<String, Object> inputMap) {
+    public ModelAndView datasetup(@RequestParam Map<String,Object> inputMap, ModelMap map) {
+        String selectedInstrumentType = inputMap.get("instrumentType").toString();
+        String selectedInstrumentName = inputMap.get("instrumentName").toString();
+        map.put("instrumentTypes", WmUtil.getInstrumentTypes());
+        map.put("selectedInstrumentType", selectedInstrumentType);
+        map.put("selectedInstrumentName", selectedInstrumentName);
+        return new ModelAndView("marketsDatasetup", map);
+    }
+
+
+
+    @GetMapping(value = "/markets/analyseData")
+    public ModelAndView analyseData() {
+        ModelMap map = new ModelMap();
+        //map.put("importFormats", WmUtil.getHoldingImportFormats());
+        return new ModelAndView("marketsAnalyseData", map);
+    }
 
     /***************************  holding related endpoints ******************************************************/
 

@@ -3,6 +3,7 @@ package org.partha.wmfrontend.util;
 import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
+import org.partha.wmcommon.enums.InstrumentType;
 
 import java.util.EnumSet;
 
@@ -26,6 +27,13 @@ public class WmUtil {
     public static EnumSet<AssetChartType> getAssetChartTypes() {
         return EnumSet.of(AssetChartType.Chart_AssetVsTime,
                 AssetChartType.Chart_CurrentAssetCategoryDistribution
+        );
+    }
+
+    public static EnumSet<InstrumentType> getInstrumentTypes() {
+        return EnumSet.of(InstrumentType.Index,
+                InstrumentType.Equity,
+                InstrumentType.Commodity
         );
     }
 }

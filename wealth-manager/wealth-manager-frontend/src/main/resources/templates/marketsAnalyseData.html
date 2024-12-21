@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <link rel="stylesheet" th:href="@{/css/wmstyles.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <title>Bootstrap Example</title>
+
+
+</head>
+
+<body>
+<div class="container  container-fluid">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div th:replace="~{fragments/header :: header}"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div th:replace="~{fragments/navbar :: mynavbar}"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 body-style">
+
+            <div>
+                <form id="dividendSummaryForm" method="post" th:action="@{/dividendSummary}">
+                    <table style="width:100%">
+                        <tr>
+                            <th>
+                                <select id="dividendChartType" name="dividendChartType" onchange="this.form.submit()">
+<!--                                    <option value="">Select dividend summary type</option>-->
+                                    <option th:each="dividendChartType : ${dividendChartTypes}"
+                                            th:value="${dividendChartType}"
+                                            th:text="${dividendChartType}"
+                                            th:selected="${selectedDividendChartType.equals(dividendChartType)}" >
+                                    </option>
+                                </select>
+                            </th>
+                            <th>
+
+
+                            </th>
+
+<!--submit not required since submitting form on dropdown selection change-->
+<!--                            <th>-->
+<!--                                <button class="btn btn-sm btn-outline-success float-right" type="submit">-->
+<!--                                    Get Summary-->
+<!--                                </button>-->
+
+<!--                            </th>-->
+                        </tr>
+
+                        <tr>
+                            <td colspan="3">
+                                <img th:if="${imageString!=null}" th:src="@{'data:image/jpeg;base64,'+${imageString}}"/>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <span th:text="${key}"></span>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div class="row  justify-content-center">
+        <div class="col-lg-12">
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
