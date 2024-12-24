@@ -10,13 +10,13 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "WealthManager", name = "IndexMaster")
-public class IndexMaster {
+public class IndexMaster implements  Instrument {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String indexName;
-	private String indexKey;
+	private String key;
 	private String yahooFinanceKey;
 
 

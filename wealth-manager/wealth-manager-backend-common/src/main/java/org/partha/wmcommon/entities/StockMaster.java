@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "WealthManager", name = "StockMaster")
-public class StockMaster {
+public class StockMaster implements Instrument {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

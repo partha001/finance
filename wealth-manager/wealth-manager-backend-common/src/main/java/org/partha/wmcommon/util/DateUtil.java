@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.DateFormat;
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,6 +32,11 @@ public class DateUtil {
     public static Date convertStringToUtilDate(String input, String dateformat) throws ParseException {
         DateFormat format = new SimpleDateFormat(dateformat, Locale.ENGLISH);
         return format.parse(input);
+    }
+
+    public static String convertUtilDateToFormattedString(Date date,String dateFormat){
+        Format formatter = new SimpleDateFormat(dateFormat);
+        return formatter.format(date);
     }
 
 

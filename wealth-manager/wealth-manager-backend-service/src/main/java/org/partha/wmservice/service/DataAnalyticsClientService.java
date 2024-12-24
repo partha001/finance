@@ -40,7 +40,7 @@ public class DataAnalyticsClientService {
         return response.getBody();
     }
 
-    public void downloadDailyData(DownloadDailyDataRequest req) throws JsonProcessingException {
+    public void downloadDailyData(DownloadDailyDataRequest req) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

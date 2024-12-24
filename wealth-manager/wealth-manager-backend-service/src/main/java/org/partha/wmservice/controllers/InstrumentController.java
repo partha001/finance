@@ -22,8 +22,8 @@ public class InstrumentController {
     @Autowired
     InstrumentService instrumentService;
 
-    @PostMapping("/downloadInstrumentData")
-    public ResponseEntity<?> downloadResponseEntity(@RequestBody DownloadDailyDataRequest request) throws JsonProcessingException {
+    @PostMapping("/downloadInstrumentDailyData")
+    public ResponseEntity<?> downloadInstrumentDailyData(@RequestBody DownloadDailyDataRequest request) {
         dataAnalyticsClientservice.downloadDailyData(request);
         return new ResponseEntity<>(HttpStatus.OK);
     }

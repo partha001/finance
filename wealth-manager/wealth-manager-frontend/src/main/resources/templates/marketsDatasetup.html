@@ -41,11 +41,10 @@
                                             th:text="${instrumentType}"
                                             th:selected="${instrumentType.toString().equals(selectedInstrumentType)}">
                                     </option>
-
                                 </select>
                             </th>
-                            <th>
 
+                            <th>
                                 <select id="instrumentName" name="instrumentName"  onchange="this.form.submit()">
                                     <option value="">Select instrument</option>
                                     <option th:each="instrumentkey : ${instrumentKeys}"
@@ -54,6 +53,15 @@
                                             th:selected="${instrumentkey.equals(selectedInstrumentName)}">
                                     </option>
                                 </select>
+                            </th>
+
+                            <input type="hidden" id="downloadDataFlag" name="downloadDataFlag" value=""/>
+
+                            <th>
+                                <button class="btn btn-sm btn-outline-success float-right" onclick="document.getElementById('downloadDataFlag').value = 'true';" type="submit">
+                                    Get data data since 2010
+                                </button>
+
                             </th>
 
 <!--submit not required since submitting form on dropdown selection change-->

@@ -1,5 +1,6 @@
 package org.partha.wmfrontend.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.base.Strings;
 import lombok.extern.log4j.Log4j2;
 import org.partha.wmclient.client.AssetControllerClient;
@@ -10,15 +11,20 @@ import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
 import org.partha.wmcommon.enums.InstrumentType;
+import org.partha.wmcommon.request.DownloadDailyDataRequest;
 import org.partha.wmcommon.response.AssetChartDto;
 import org.partha.wmcommon.response.DividendChartDto;
 import org.partha.wmcommon.response.ResponseDto;
+import org.partha.wmcommon.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+
+import static org.partha.wmcommon.constants.Constants.DATE_FORMAT2;
 
 @Log4j2
 @Service
@@ -65,5 +71,15 @@ public class WmService {
     public List<String> getInstrumentKeys(InstrumentType instrumentType){
         return instrumentControllerClient.getInstrumenKeys(instrumentType);
     }
+
+    public void downloadDailyData(String selectedKey) {
+        DownloadDailyDataRequest request = DownloadDailyDataRequest.builder()
+                .key(selectedKey)
+                .start_date("2010-01-01")
+                .end_date(DateUtil.convertUtilDateToFormattedString(new Date(), DATE_FORMAT2))
+                .build();
+        instrumentControllerClient.downloadInstrumentDailyData(request);
+    }
+
 
 }
