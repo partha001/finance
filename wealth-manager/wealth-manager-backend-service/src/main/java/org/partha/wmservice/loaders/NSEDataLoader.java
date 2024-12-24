@@ -5,11 +5,13 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.partha.wmcommon.constants.Constants;
-import org.partha.wmcommon.entities.Stock;
+import org.partha.wmcommon.entities.Instrument;
+import org.partha.wmcommon.enums.InstrumentType;
 import org.partha.wmcommon.util.CommonUtil;
 import org.partha.wmcommon.util.DateUtil;
 import org.partha.wmcommon.util.ExcelUtil;
-import org.partha.wmservice.service.domain.StockService;
+import org.partha.wmservice.service.domain.InstrumentService;
+//import org.partha.wmservice.service.domain.StockService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +47,11 @@ public class NSEDataLoader {
     @Value("${nse.equity.smelist-LoadFlag}")
     private Boolean nseEquitySmeListLoadFlag;
 
+//    @Autowired
+//    private StockService stockService;
+
     @Autowired
-    private StockService stockService;
+    private InstrumentService instrumentService;
 
     public void run() {
 
@@ -64,7 +69,7 @@ public class NSEDataLoader {
         }else{
             logger.info("skipping nse-sme-data load since load-flag is false");
         }
-        stockService.refreshStockMap();
+        //stockService.refreshStockMap();
 
     }
 
@@ -84,7 +89,7 @@ public class NSEDataLoader {
                              "MARKET LOT",
                              "ISIN NUMBER",
                              "FACE VALUE").withIgnoreHeaderCase().withTrim())) {
-            List<Stock> stockList = new ArrayList<>();
+            List<Instrument> stockList = new ArrayList<>();
             for (CSVRecord record : csvParser) {
                 if (csvParser.getCurrentLineNumber() == 1) {
                     if (!record.isConsistent()) {
@@ -96,18 +101,19 @@ public class NSEDataLoader {
 
                 //validation can be plugged in here
 
-                Stock stock = new Stock();
-                stock.setExchange(Constants.NSE);
-                stock.setSymbol(record.get("SYMBOL"));
-                stock.setName(record.get("NAME OF COMPANY"));
-                stock.setFaceValue(CommonUtil.parseDouble(record.get("FACE VALUE")));
-                stock.setIsin(record.get("ISIN NUMBER"));
-                stock.setKey(stock.getExchange() + ":" + stock.getSymbol());
-                stock.setListingDate(DateUtil.convertStringToUtilDate(record.get("DATE OF LISTING"), Constants.DATE_FORMAT1));
-                stockList.add(stock);
+                Instrument instrument = new Instrument();
+                instrument.setExchange(Constants.NSE);
+                instrument.setSymbol(record.get("SYMBOL"));
+                instrument.setName(record.get("NAME OF COMPANY"));
+                instrument.setInstrumentType(InstrumentType.EQUITY.name());
+                instrument.setFaceValue(CommonUtil.parseDouble(record.get("FACE VALUE")));
+                instrument.setIsin(record.get("ISIN NUMBER"));
+                instrument.setSourceName("EQUITY_L.csv");
+                instrument.setListingDate(DateUtil.convertStringToUtilDate(record.get("DATE OF LISTING"), Constants.DATE_FORMAT1));
+                stockList.add(instrument);
             }
 
-            int dataLoaded = stockService.loadToStockmaster(stockList);
+            int dataLoaded = instrumentService.loadToInstrumentMaster(stockList);
             logger.info("records loaded:{}", dataLoaded);
 
         } catch (Exception e) {
@@ -131,7 +137,7 @@ public class NSEDataLoader {
                              "PAID_UP_VALUE",
                              "ISIN_NUMBER",
                              "FACE_VALUE").withIgnoreHeaderCase().withTrim())) {
-            List<Stock> stockList = new ArrayList<>();
+            List<Instrument> instrumentList = new ArrayList<>();
             for (CSVRecord record : csvParser) {
                 if (csvParser.getCurrentLineNumber() == 1) {
                     if (!record.isConsistent()) {
@@ -143,18 +149,21 @@ public class NSEDataLoader {
 
                 //validation can be plugged in here
 
-                Stock stock = new Stock();
-                stock.setExchange(Constants.NSE);
-                stock.setSymbol(record.get("SYMBOL"));
-                stock.setName(record.get("NAME_OF_COMPANY"));
-                stock.setFaceValue(CommonUtil.parseDouble(record.get("FACE_VALUE")));
-                stock.setIsin(record.get("ISIN_NUMBER"));
-                stock.setKey(stock.getExchange() + ":" + stock.getSymbol());
-                stock.setListingDate(DateUtil.convertStringToUtilDate(record.get("DATE_OF_LISTING"), Constants.DATE_FORMAT1));
-                stockList.add(stock);
+                Instrument instrument = new Instrument();
+                instrument.setExchange(Constants.NSE);
+                instrument.setSymbol(record.get("SYMBOL"));
+                instrument.setInstrumentType(InstrumentType.EQUITY.name());
+                instrument.setName(record.get("NAME_OF_COMPANY"));
+                instrument.setFaceValue(CommonUtil.parseDouble(record.get("FACE_VALUE")));
+                instrument.setIsin(record.get("ISIN_NUMBER"));
+                instrument.setSourceName("SME_EQUITY_L.csv");
+                instrument.setListingDate(DateUtil.convertStringToUtilDate(record.get("DATE_OF_LISTING"), Constants.DATE_FORMAT1));
+
+
+                instrumentList.add(instrument);
             }
 
-            int dataLoaded = stockService.loadToStockmaster(stockList);
+            int dataLoaded = instrumentService.loadToInstrumentMaster(instrumentList);
             logger.info("records loaded:{}", dataLoaded);
 
         } catch (Exception e) {

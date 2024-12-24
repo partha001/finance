@@ -14,13 +14,9 @@ import org.springframework.stereotype.Component;
 public class StockDataLoader implements CommandLineRunner{
 	
 	private static final Logger logger = LoggerFactory.getLogger(StockDataLoader.class);
-
-
-
 	
 	@Autowired
     NSEDataLoader nseDataLoader;
-	
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -29,7 +25,6 @@ public class StockDataLoader implements CommandLineRunner{
 			nseDataLoader.run();
 		//}
 		//stockService.refreshStockMap();
-		
 	}
 
 }

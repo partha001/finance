@@ -31,9 +31,9 @@ public class WmUtil {
     }
 
     public static EnumSet<InstrumentType> getInstrumentTypes() {
-        return EnumSet.of(InstrumentType.Index,
-                InstrumentType.Equity,
-                InstrumentType.Commodity
+        return EnumSet.of(InstrumentType.INDEX,
+                InstrumentType.EQUITY,
+                InstrumentType.COMMODITY
         );
     }
 }

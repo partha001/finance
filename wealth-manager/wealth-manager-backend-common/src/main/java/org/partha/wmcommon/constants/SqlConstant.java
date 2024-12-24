@@ -16,7 +16,7 @@ public interface SqlConstant {
 	
 	public static final String LOAD_ASSET_DETAILS = "insert into wealthmanager.AssetMaster (assetName, amount, valueationDate) values (:name, :amount, :valueationDate) ";
 	
-	public static final String LOAD_NSE_DATA = "insert into wealthmanager.StockMaster(exchange, symbol,name, isinNumber, faceValue, listingDate, key) values (:exchange, :symbol, :name, :isinNumber, :faceValue, :listingDate, :key) on conflict(exchange, symbol) do nothing ";
+	public static final String LOAD_NSE_DATA = "insert into wealthmanager.InstrumentMaster (instrumentType,name, exchange, key, symbol, isin, faceValue,  listingDate, yahooFinanceTicker, sourceName, createdDate) values (:instrumentType,:name, :exchange, :key, :symbol, :isin, :faceValue,  :listingDate, :yahooFinanceTicker, :sourceName, :createdDate) on conflict (key) do nothing";
 
 	public static final String UPDATE_STOCK_DETAILS = "update wealthmanager.StockMaster set price=:price where id=:id";
 	

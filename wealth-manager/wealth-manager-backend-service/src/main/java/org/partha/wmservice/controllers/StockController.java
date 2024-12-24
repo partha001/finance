@@ -8,9 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.partha.wmcommon.entities.Stock;
-import org.partha.wmcommon.util.StockUtil;
-import org.partha.wmservice.dao.StockDao;
+//import org.partha.wmcommon.entities.Stock;
+//import org.partha.wmcommon.util.StockUtil;
+//import org.partha.wmservice.dao.StockDao;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,8 +20,8 @@ public class StockController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(StockController.class);
 	
-	@Autowired
-	StockDao dao;
+//	@Autowired
+//	StockDao dao;
 	
 //	@Autowired
 //	GoogleService service;
@@ -34,14 +34,14 @@ public class StockController {
 	
 //	private static String sheetId ="1zI0xbc_wDrECMi9IVX_wPNj3kECiq0NMXYFB0-FFFnU";
 	
-	
-	@GetMapping("/getStockDetails")
-	public ResponseEntity<List<Stock>> getStockDetails(){
-		//Collection<Stock> values = StockUtil.stockMap.values();
-		List<Stock> list = StockUtil.stockMap.values().stream().collect(Collectors.toList());
-		//stockUtil.stockMap.keySet().stream().map(item -> )
-		return new ResponseEntity<List<Stock>>(list,  HttpStatus.OK);
-	}
+//
+//	@GetMapping("/getStockDetails")
+//	public ResponseEntity<List<Stock>> getStockDetails(){
+//		//Collection<Stock> values = StockUtil.stockMap.values();
+//		List<Stock> list = StockUtil.stockMap.values().stream().collect(Collectors.toList());
+//		//stockUtil.stockMap.keySet().stream().map(item -> )
+//		return new ResponseEntity<List<Stock>>(list,  HttpStatus.OK);
+//	}
 	
 	
 	

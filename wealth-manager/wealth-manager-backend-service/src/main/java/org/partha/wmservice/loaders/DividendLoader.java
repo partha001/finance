@@ -12,11 +12,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.partha.wmcommon.entities.Dividend;
-import org.partha.wmcommon.entities.Stock;
+//import org.partha.wmcommon.entities.Stock;
 import org.partha.wmcommon.util.ExcelUtil;
-import org.partha.wmcommon.util.StockUtil;
+//import org.partha.wmcommon.util.StockUtil;
 import org.partha.wmservice.dao.DividendDao;
-import org.partha.wmservice.service.domain.StockService;
+//import org.partha.wmservice.service.domain.StockService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,16 +41,16 @@ public class DividendLoader {
 	private DividendDao dividendDao;
 
 
-	@Autowired
-	private StockService stockService;
+//	@Autowired
+//	private StockService stockService;
 
 	public void run()  {		
 		List<Dividend> dividendList = new ArrayList<>();
 		try (InputStream inputStream = new ClassPathResource(filename, this.getClass().getClassLoader()).getInputStream();
 				Workbook workbook = new XSSFWorkbook(inputStream);) {
 
-			Map<String, Stock> stockMap = StockUtil.stockMap;
-
+//			Map<String, Stock> stockMap = StockUtil.stockMap;
+//
 			Sheet sheet = workbook.getSheet("dividend");
 			Iterator<Row> rowIterator = sheet.iterator();
 			rowIterator.next(); //to skip the header record
@@ -65,9 +65,9 @@ public class DividendLoader {
 				dividendList.add(dto);
 
 				//logger.info("rowIndex:{} year:{}  quarter:{}  symbol:{}  name:{}  amount:{}",row.getRowNum()+1, dto.getDividendYear(),dto.getQuarter(),dto.getSymbol(),dto.getName(),dto.getAmount());
-				if(!StockUtil.checkIfValidSymbol(dto.getSymbol())) {
-					logger.info("rowIndex:{} symbol:{} is not valid",row.getRowNum()+1,dto.getSymbol());
-				}
+//				if(!StockUtil.checkIfValidSymbol(dto.getSymbol())) {
+//					logger.info("rowIndex:{} symbol:{} is not valid",row.getRowNum()+1,dto.getSymbol());
+//				}
 
 
 			}

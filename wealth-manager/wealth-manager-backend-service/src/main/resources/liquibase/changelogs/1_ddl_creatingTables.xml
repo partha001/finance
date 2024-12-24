@@ -31,35 +31,35 @@
             );
 
 
-            CREATE TABLE IF NOT EXISTS WealthManager.StockMaster
-            (
-            id serial PRIMARY KEY,
-            exchange VARCHAR(20),
-            symbol VARCHAR(50),
-            name VARCHAR(100),
-            isinNumber VARCHAR(50),
-            faceValue decimal,
-            listingDate DATE,
-            key VARCHAR(50),
-            CONSTRAINT uc_sm_ExchangeSymbol UNIQUE (exchange,symbol)
-            );
+<!--            CREATE TABLE IF NOT EXISTS WealthManager.StockMaster-->
+<!--            (-->
+<!--            id serial PRIMARY KEY,-->
+<!--            exchange VARCHAR(20),-->
+<!--            symbol VARCHAR(50),-->
+<!--            name VARCHAR(100),-->
+<!--            isinNumber VARCHAR(50),-->
+<!--            faceValue decimal,-->
+<!--            listingDate DATE,-->
+<!--            key VARCHAR(50),-->
+<!--            CONSTRAINT uc_sm_ExchangeSymbol UNIQUE (exchange,symbol)-->
+<!--            );-->
 
 
-            CREATE TABLE IF NOT EXISTS WealthManager.StockPriceMaster
-            (
-            id serial PRIMARY KEY,
-            stockMasterId INTEGER,
-            stockKey VARCHAR(50),
-            price decimal,
-            priceTime timestamp,
-            timeZoneName VARCHAR(20)
-            );
+<!--            CREATE TABLE IF NOT EXISTS WealthManager.StockPriceMaster-->
+<!--            (-->
+<!--            id serial PRIMARY KEY,-->
+<!--            stockMasterId INTEGER,-->
+<!--            stockKey VARCHAR(50),-->
+<!--            price decimal,-->
+<!--            priceTime timestamp,-->
+<!--            timeZoneName VARCHAR(20)-->
+<!--            );-->
 
 
             CREATE TABLE IF NOT EXISTS WealthManager.DailyPriceMaster (
             id serial4 NOT NULL,
-            PriceDate date,
-            key varchar(50) NULL,
+            PriceDate date NOT NULL,
+            key varchar(50) NOT NULL,
             AdjClosePrice numeric NULL,
             ClosePrice numeric NULL,
             OpenPrice numeric null,
@@ -87,6 +87,26 @@
             CREATE TABLE IF NOT EXISTS WealthManager.DailyPriceMaster_2024 PARTITION OF WealthManager.DailyPriceMaster for values from ('2024-01-01') to ('2025-01-01');
             CREATE TABLE IF NOT EXISTS WealthManager.DailyPriceMaster_2025 PARTITION OF WealthManager.DailyPriceMaster for values from ('2025-01-01') to ('2026-01-01');
 
+
+<!--            &#45;&#45; instrumentType = equity, index, commodity, crypt,  derivative , etc-->
+<!--            &#45;&#45; key for equity = EQUITY:EXCHANGE_SYMBOL-->
+<!--            &#45;&#45; key for index = IDX:INDEXSYMBOL-->
+            CREATE TABLE WealthManager.InstrumentMaster (
+                id serial4 NOT NULL,
+                instrumentType text NOT NULL,
+                "name" varchar(255) NOT NULL,
+                exchange varchar(255) NULL,
+                key varchar(255) NOT NULL,
+                symbol varchar(255) NULL,
+                isin varchar(50) NULL,
+                facevalue float8 NULL,
+                listingDate timestamp(6) NULL,
+                yahooFinanceTicker text NULL,
+                sourceName text NULL,
+                createdDate timestamp(6) NULL,
+                CONSTRAINT uc_instrumentMaster_key UNIQUE (key),
+                CONSTRAINT indexInstrumentMaster_pkey PRIMARY KEY (id)
+            )
 
 
         </sql>

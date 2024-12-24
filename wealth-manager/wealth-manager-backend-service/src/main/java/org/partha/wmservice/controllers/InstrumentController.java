@@ -24,7 +24,7 @@ public class InstrumentController {
 
     @PostMapping("/downloadInstrumentDailyData")
     public ResponseEntity<?> downloadInstrumentDailyData(@RequestBody DownloadDailyDataRequest request) {
-        dataAnalyticsClientservice.downloadDailyData(request);
+        instrumentService.downloadInstrumentDailyData(request);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
