@@ -2,6 +2,7 @@ package org.partha.wmservice.service.domain;
 
 import com.google.common.base.Strings;
 import lombok.extern.log4j.Log4j2;
+import org.partha.wmcommon.constants.Constants;
 import org.partha.wmcommon.entities.Instrument;
 import org.partha.wmcommon.enums.InstrumentType;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
@@ -39,6 +40,9 @@ public class InstrumentService {
                 .findByKey(request.getKey())
                 .orElseThrow(()-> new NoSuchElementException(String.format("no instrument found for key: %s",request.getKey())));
         request.setTicker(instrument.getYahooFinanceTicker());
+        if(instrument.getInstrumentType().equals(InstrumentType.EQUITY.name()) && Strings.isNullOrEmpty(instrument.getYahooFinanceTicker())){
+            request.setTicker(instrument.getSymbol()+"."+ Constants.YAHOO_FINANCE_TICKER_EXTENSION_NS);
+        }
         dataAnalyticsClientService.downloadDailyData(request);
     }
 

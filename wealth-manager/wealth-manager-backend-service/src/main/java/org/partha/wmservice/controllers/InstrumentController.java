@@ -1,6 +1,5 @@
 package org.partha.wmservice.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.partha.wmcommon.enums.InstrumentType;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
 import org.partha.wmservice.service.DataAnalyticsClientService;

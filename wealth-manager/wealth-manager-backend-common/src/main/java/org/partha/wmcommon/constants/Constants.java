@@ -7,6 +7,7 @@ public interface Constants {
 	public static final String DATE_FORMAT2 = "yyyy-MM-dd";
 	public static final String DATE_FORMAT_IS08601 = "yyyy-MM-dd'T'hh:mm:ss.SSSZ";
 	public static final String TIMEZONE_IST = "IST";
+	public static final String YAHOO_FINANCE_TICKER_EXTENSION_NS = "NS";
 
 	String BROKER_ZERODHA = "zerodha";
 	String BROKER_ANGELONE = "angelone";
@@ -14,6 +15,8 @@ public interface Constants {
 
 	String USER_PARTHA_USERNAME = "partha";
 	String USER_SHIBANI_USERNAME = "shibani";
+
+
 
 
 }
