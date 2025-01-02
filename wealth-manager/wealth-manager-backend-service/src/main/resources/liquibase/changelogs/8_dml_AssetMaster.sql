@@ -10,7 +10,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,308  ,'2024-01-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,18   ,'2024-01-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1180 ,'2024-01-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,14   ,'2024-01-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,14   ,'2024-01-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,3    ,'2024-01-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,24   ,'2024-01-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199  ,'2024-01-01');
@@ -41,7 +41,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,344  ,'2024-02-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,6.9  ,'2024-02-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1208 ,'2024-02-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,14   ,'2024-02-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,14   ,'2024-02-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,3    ,'2024-02-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,32   ,'2024-02-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199  ,'2024-02-01');
@@ -72,7 +72,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,341   ,'2024-03-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,6.4   ,'2024-03-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1222  ,'2024-03-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,14    ,'2024-03-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,14    ,'2024-03-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,3     ,'2024-03-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,32    ,'2024-03-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199   ,'2024-03-01');
@@ -103,7 +103,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,384   ,'2024-04-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,0     ,'2024-04-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1260  ,'2024-04-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,19    ,'2024-04-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,19    ,'2024-04-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,3     ,'2024-04-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,31    ,'2024-04-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199   ,'2024-04-01');
@@ -135,7 +135,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,387  ,'2024-05-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,0    ,'2024-05-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1266 ,'2024-05-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,18.9 ,'2024-05-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,18.9 ,'2024-05-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,0    ,'2024-05-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,34   ,'2024-05-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199  ,'2024-05-01');
@@ -164,7 +164,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,397   ,'2024-06-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,4     ,'2024-06-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1216  ,'2024-06-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,19    ,'2024-06-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,19    ,'2024-06-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,0     ,'2024-06-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,34    ,'2024-06-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199   ,'2024-06-01');
@@ -193,7 +193,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,448    ,'2024-07-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,0      ,'2024-07-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1300   ,'2024-07-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,19     ,'2024-07-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,19     ,'2024-07-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,0      ,'2024-07-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,38.8   ,'2024-07-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199    ,'2024-07-01');
@@ -221,7 +221,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,468    ,'2024-08-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,9      ,'2024-08-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1370   ,'2024-08-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,19     ,'2024-08-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,19     ,'2024-08-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,0      ,'2024-08-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,38.8   ,'2024-08-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199    ,'2024-08-01');
@@ -251,7 +251,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,459    ,'2024-09-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,3      ,'2024-09-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1383   ,'2024-09-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,19     ,'2024-09-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,19     ,'2024-09-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,0      ,'2024-09-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,38.8   ,'2024-09-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199    ,'2024-09-01');
@@ -282,7 +282,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,453     ,'2024-10-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,3       ,'2024-10-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1446    ,'2024-10-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,19      ,'2024-10-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,19      ,'2024-10-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,0       ,'2024-10-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,38.8    ,'2024-10-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199     ,'2024-10-01');
@@ -311,7 +311,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,442    ,'2024-11-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,2      ,'2024-11-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1408   ,'2024-11-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,18     ,'2024-11-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,18     ,'2024-11-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,0      ,'2024-11-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,41     ,'2024-11-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199    ,'2024-11-01');
@@ -340,7 +340,7 @@ insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valua
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_equity'    ,'equity'       ,420     ,'2024-12-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'angelone_cash'      ,'cash'         ,2       ,'2024-12-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'axis_mf'            ,'mutual-fund'  ,1426    ,'2024-12-01');
-insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'              ,'crypto'       ,18      ,'2024-12-01');
+insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'wazirx'             ,'crypto'       ,18      ,'2024-12-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'vauld'              ,'crypto'       ,0       ,'2024-12-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'indmoney_us_stocks' ,'equity'       ,41      ,'2024-12-01');
 insert into WealthManager.AssetMaster(username,assetName,assetType, amount,valuationDate) values ('partha',  'lic'                ,'debt'         ,199     ,'2024-12-01');
