@@ -6,6 +6,7 @@ import org.partha.wmclient.client.AssetControllerClient;
 import org.partha.wmclient.client.DividendControllerClient;
 import org.partha.wmclient.client.HoldingControllerClient;
 import org.partha.wmclient.client.InstrumentControllerClient;
+import org.partha.wmcommon.entities.Instrument;
 import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
@@ -88,5 +89,9 @@ public class WmService {
         return downloadStatusMessage;
     }
 
+
+    public Instrument getInstrument(String selectedInstrumentKey){
+        return null;
+    }
 
 }

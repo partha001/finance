@@ -1,5 +1,6 @@
 package org.partha.wmservice.controllers;
 
+import org.partha.wmcommon.entities.Instrument;
 import org.partha.wmcommon.enums.InstrumentType;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
 import org.partha.wmservice.service.DataAnalyticsClientService;
@@ -30,5 +31,10 @@ public class InstrumentController {
     @GetMapping
     public List<String> getInstrumenKeys(@RequestParam(name = "InstrumentType") InstrumentType instrumentType){
         return instrumentService.getInstrumentKeys(instrumentType);
+    }
+
+    @GetMapping
+    public Instrument getInstrumentByKey(@RequestParam(name = "InstrumentKey") String instrumentKey){
+        return getInstrumentByKey(instrumentKey);
     }
 }

@@ -70,6 +70,7 @@ public class WmController {
         map.put("selectedInstrumentType", "");
         map.put("selectedInstrumentName", "");
         map.put("fromHiddenField", "");
+        map.put("downloadDataButton_Disabled",false);
         return new ModelAndView("marketsDatasetup", map);
     }
 
@@ -81,13 +82,27 @@ public class WmController {
         map.put("instrumentTypes", WmUtil.getInstrumentTypes());
         map.put("selectedInstrumentType", selectedInstrumentType);
         map.put("selectedInstrumentName", selectedInstrumentName);
-        if(!Strings.isNullOrEmpty(selectedInstrumentType))
+
+        if (!Strings.isNullOrEmpty(selectedInstrumentType))
             map.put("instrumentKeys", wmService.getInstrumentKeys(InstrumentType.valueOf(selectedInstrumentType)));
 
-        System.out.println("downloadDataFlag:"+inputMap.get("downloadDataFlag").toString());
-        if (!Strings.isNullOrEmpty(inputMap.get("downloadDataFlag").toString())){
+//        if ((!Strings.isNullOrEmpty(selectedInstrumentType) && selectedInstrumentType.equals(InstrumentType.EQUITY.name()))
+//                || ((!Strings.isNullOrEmpty(selectedInstrumentType))) {
+//            map.put("downloadDataButton_Disabled", false);
+//        } else {
+//            map.put("downloadDataButton_Disabled", true);
+//        }
+
+        if(Strings.isNullOrEmpty(selectedInstrumentName)){
+
+        }
+
+        System.out.println("downloadDataFlag:" + inputMap.get("downloadDataFlag").toString());
+        if (!Strings.isNullOrEmpty(inputMap.get("downloadDataFlag").toString())) {
             wmService.downloadDailyData(selectedInstrumentName);
         }
+
+
         return new ModelAndView("marketsDatasetup", map);
     }
 

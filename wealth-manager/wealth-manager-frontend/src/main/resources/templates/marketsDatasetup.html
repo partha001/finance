@@ -58,7 +58,7 @@
                             <input type="hidden" id="downloadDataFlag" name="downloadDataFlag" value=""/>
 
                             <th>
-                                <button class="btn btn-sm btn-outline-success float-right" onclick="document.getElementById('downloadDataFlag').value = 'true';" type="submit">
+                                <button class="btn btn-sm btn-outline-success float-right" onclick="document.getElementById('downloadDataFlag').value = 'true';" type="submit" th:disabled="${downloadDataButton_Disabled}">
                                     Get data data since 2010
                                 </button>
 

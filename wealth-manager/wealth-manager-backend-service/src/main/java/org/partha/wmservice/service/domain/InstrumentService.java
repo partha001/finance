@@ -50,4 +50,8 @@ public class InstrumentService {
     public int loadToInstrumentMaster(List<Instrument> list) {
         return instrumentRepository.loadToInstrumentMaster(list);
 	}
+
+    public Instrument getInstrumentByKey(String instrumentKey){
+        return instrumentRepository.findByKey(instrumentKey).orElse(null);
+    }
 }
