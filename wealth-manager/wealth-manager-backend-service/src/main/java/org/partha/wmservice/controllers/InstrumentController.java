@@ -1,13 +1,10 @@
 package org.partha.wmservice.controllers;
 
-import org.partha.wmcommon.entities.Instrument;
 import org.partha.wmcommon.enums.InstrumentType;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
-import org.partha.wmservice.service.DataAnalyticsClientService;
+import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
 import org.partha.wmservice.service.domain.InstrumentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,24 +14,16 @@ import java.util.List;
 public class InstrumentController {
 
     @Autowired
-    DataAnalyticsClientService dataAnalyticsClientservice;
-
-    @Autowired
     InstrumentService instrumentService;
 
     @PostMapping("/downloadInstrumentDailyData")
-    public ResponseEntity<?> downloadInstrumentDailyData(@RequestBody DownloadDailyDataRequest request) {
-        instrumentService.downloadInstrumentDailyData(request);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public InstrumentDataDownloadResponseDto downloadInstrumentDailyData(@RequestBody DownloadDailyDataRequest request) {
+        return instrumentService.downloadInstrumentDailyData(request);
     }
 
-    @GetMapping
-    public List<String> getInstrumenKeys(@RequestParam(name = "InstrumentType") InstrumentType instrumentType){
+    @GetMapping("/instrumentKeysByType")
+    public List<String> getInstrumenKeysByType(@RequestParam(name = "InstrumentType") InstrumentType instrumentType){
         return instrumentService.getInstrumentKeys(instrumentType);
     }
 
-    @GetMapping
-    public Instrument getInstrumentByKey(@RequestParam(name = "InstrumentKey") String instrumentKey){
-        return getInstrumentByKey(instrumentKey);
-    }
 }

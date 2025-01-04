@@ -1,4 +1,4 @@
-package org.partha.wmcommon.request;
+package org.partha.wmcommon.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -9,10 +9,13 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DownloadDailyDataRequest {
+public class InstrumentDataDownloadResponseDto {
 
-    private String ticker;
     private String key;
+    private String ticker;
     private String startDate;
     private String endDate;
+    private Integer recordsFetched;
+    private Integer recordsInserted;
+
 }

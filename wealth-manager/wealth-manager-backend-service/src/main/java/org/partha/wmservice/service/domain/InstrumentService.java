@@ -6,6 +6,7 @@ import org.partha.wmcommon.constants.Constants;
 import org.partha.wmcommon.entities.Instrument;
 import org.partha.wmcommon.enums.InstrumentType;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
+import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
 import org.partha.wmservice.repositories.InstrumentRepository;
 import org.partha.wmservice.service.DataAnalyticsClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class InstrumentService {
         return instrumentKeys;
     }
 
-    public void downloadInstrumentDailyData(DownloadDailyDataRequest request){
+    public InstrumentDataDownloadResponseDto downloadInstrumentDailyData(DownloadDailyDataRequest request){
         Instrument instrument = instrumentRepository
                 .findByKey(request.getKey())
                 .orElseThrow(()-> new NoSuchElementException(String.format("no instrument found for key: %s",request.getKey())));
@@ -43,7 +44,7 @@ public class InstrumentService {
         if(instrument.getInstrumentType().equals(InstrumentType.EQUITY.name()) && Strings.isNullOrEmpty(instrument.getYahooFinanceTicker())){
             request.setTicker(instrument.getSymbol()+"."+ Constants.YAHOO_FINANCE_TICKER_EXTENSION_NS);
         }
-        dataAnalyticsClientService.downloadDailyData(request);
+        return dataAnalyticsClientService.downloadDailyData(request);
     }
 
 

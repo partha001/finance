@@ -14,10 +14,10 @@ import org.partha.wmcommon.enums.InstrumentType;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
 import org.partha.wmcommon.response.AssetChartDto;
 import org.partha.wmcommon.response.DividendChartDto;
+import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
 import org.partha.wmcommon.response.ResponseDto;
 import org.partha.wmcommon.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -69,28 +69,23 @@ public class WmService {
         return dividendControllerClient.getDividendChartDetails(dividendChartType);
     }
 
-    public List<String> getInstrumentKeys(InstrumentType instrumentType){
-        return instrumentControllerClient.getInstrumenKeys(instrumentType);
+    public List<String> getInstrumentKeys(InstrumentType instrumentType) {
+        return instrumentControllerClient.getInstrumenKeysByType(instrumentType);
     }
 
-    public String downloadDailyData(String selectedKey) {
+    public InstrumentDataDownloadResponseDto downloadDailyData(String selectedKey) {
         String downloadStatusMessage = null;
         DownloadDailyDataRequest request = DownloadDailyDataRequest.builder()
                 .key(selectedKey)
-                .start_date("2010-01-01")
-                .end_date(DateUtil.convertUtilDateToFormattedString(new Date(), DATE_FORMAT2))
+                .startDate("2010-01-01")
+                .endDate(DateUtil.convertUtilDateToFormattedString(new Date(), DATE_FORMAT2))
                 .build();
-        ResponseEntity<?> responseEntity = instrumentControllerClient.downloadInstrumentDailyData(request);
-        if (responseEntity.getStatusCode().value()==200){
-            downloadStatusMessage = "message1";
-        }else{
-            downloadStatusMessage = "message2";
-        }
-        return downloadStatusMessage;
+        return instrumentControllerClient.downloadInstrumentDailyData(request);
+
     }
 
 
-    public Instrument getInstrument(String selectedInstrumentKey){
+    public Instrument getInstrument(String selectedInstrumentKey) {
         return null;
     }
 
