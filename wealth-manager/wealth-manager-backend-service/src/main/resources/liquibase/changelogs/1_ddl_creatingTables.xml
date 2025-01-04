@@ -66,6 +66,7 @@
             High numeric NULL,
             Low numeric NULL,
             Volume numeric null,
+            CreateTime  TIMESTAMP null,
             CONSTRAINT uc_dpm_ExchangeSymbol UNIQUE (PriceDate,key),
             primary key (id, PriceDate, key)
             ) partition by range (PriceDate);
