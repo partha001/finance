@@ -42,4 +42,9 @@ public class DailyPrice {
     @Column(name="Volume")
     private Double volume;
 
+    @Column(name="createTime")
+    private Date createTime;
+
+
+
 }
