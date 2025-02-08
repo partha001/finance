@@ -107,7 +107,22 @@
                 createdDate timestamp(6) NULL,
                 CONSTRAINT uc_instrumentMaster_key UNIQUE (key),
                 CONSTRAINT indexInstrumentMaster_pkey PRIMARY KEY (id)
-            )
+            );
+
+            CREATE TABLE wealthmanager.InstrumentMasterStaging (
+            id int4 NULL,
+            instrumenttype varchar(255) NULL,
+            "name" varchar(255) NULL,
+            exchange varchar(255) NULL,
+            "key" varchar(255) NULL,
+            symbol varchar(255) NULL,
+            isin varchar(255) NULL,
+            facevalue float8 NULL,
+            listingdate timestamp(6) NULL,
+            yahoofinanceticker varchar(255) NULL,
+            sourcename varchar(255) NULL,
+            createddate varchar(255) NULL
+            );
 
 
         </sql>

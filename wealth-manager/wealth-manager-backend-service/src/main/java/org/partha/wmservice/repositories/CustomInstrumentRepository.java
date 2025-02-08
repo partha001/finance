@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface CustomInstrumentRepository {
 
-    public int loadToInstrumentMaster(List<Instrument> list) ;
 
 }
