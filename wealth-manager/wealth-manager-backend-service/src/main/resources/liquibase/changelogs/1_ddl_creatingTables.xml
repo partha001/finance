@@ -89,6 +89,21 @@
             CREATE TABLE IF NOT EXISTS WealthManager.DailyPriceMaster_2025 PARTITION OF WealthManager.DailyPriceMaster for values from ('2025-01-01') to ('2026-01-01');
 
 
+            CREATE TABLE IF NOT EXISTS WealthManager.DailyPriceMasterStaging (
+                id serial4 NOT NULL,
+                PriceDate date NOT NULL,
+                key varchar(50) NOT NULL,
+                AdjClosePrice numeric NULL,
+                ClosePrice numeric NULL,
+                OpenPrice numeric null,
+                High numeric NULL,
+                Low numeric NULL,
+                Volume numeric null,
+                CreateTime  TIMESTAMP null
+            ) ;
+
+
+
 <!--            &#45;&#45; instrumentType = equity, index, commodity, crypt,  derivative , etc-->
 <!--            &#45;&#45; key for equity = EQUITY:EXCHANGE_SYMBOL-->
 <!--            &#45;&#45; key for index = IDX:INDEXSYMBOL-->
