@@ -79,7 +79,7 @@ public class InstrumentService {
         return instrumentRepository.findByKey(instrumentKey).orElse(null);
     }
 
-    public List<String> downloadAllData() throws JsonProcessingException {
+    public List<String> downloadNseEquityDailyData() throws JsonProcessingException {
         List<Instrument> instrumentList = instrumentRepository.findAll().stream()
                 .filter(item ->
                         //Strings.isNullOrEmpty(item.getExchange())
@@ -107,6 +107,39 @@ public class InstrumentService {
         return result;
     }
 
+
+    public List<InstrumentDataDownloadResponseDto> downloadIndexDailyData() {
+        List<Instrument> instrumentList = instrumentRepository.findAll().stream()
+                .filter(item -> item.getInstrumentType().equals("INDEX"))
+                .collect(Collectors.toList());
+        String indexesWithoutTicker = instrumentList.stream()
+                .filter(item -> Strings.isNullOrEmpty(item.getYahooFinanceTicker()))
+                .map(item -> item.getKey()).collect(Collectors.joining(", "));
+        log.info("skipping download for these keys since yfinance tiker not available:{}", indexesWithoutTicker);
+
+        List<Instrument> indexesWithTicker = instrumentList.stream().filter(item -> !Strings.isNullOrEmpty(item.getYahooFinanceTicker())).collect(Collectors.toList());
+
+        List<InstrumentDataDownloadResponseDto> result = new ArrayList<>();
+        indexesWithTicker.forEach( item -> {
+            DownloadDailyDataRequest request = DownloadDailyDataRequest.builder()
+                    .key(item.getKey())
+                    .ticker(item.getYahooFinanceTicker())
+                    .startDate("2010-01-01")
+                    .endDate(DateUtil.convertUtilDateToFormattedString(new Date(), "yyyy-MM-dd"))
+                    .build();
+            InstrumentDataDownloadResponseDto responseDto = dataAnalyticsClientService.downloadDailyData(request);
+            log.info("key:{}   yfinanceTicker:{}   datafetched:{}   dataInserted:{}", responseDto.getKey(), responseDto.getTicker(), responseDto.getRecordsFetched(), responseDto.getRecordsInserted());
+            result.add(responseDto);
+
+        });
+        return result;
+    }
+
+    /**
+     * it is to be kept in mind that will reading data page-wise if sorting is not applied on any unique key column
+     * that 2 page might pick up same/overlapping data
+     * @param filepath
+     */
     public void exportInstrumentDailyData(String filepath) {
         log.info("filepath:{}", filepath);
         try (

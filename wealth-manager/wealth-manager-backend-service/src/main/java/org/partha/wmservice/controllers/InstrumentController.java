@@ -37,9 +37,17 @@ public class InstrumentController {
     @Operation(summary = "download all NSE equity daily data",
             description = "downloads all NSE equity daily data since 2010 and stores in dailyPriceMaster table ")
     @GetMapping("/downloadNseEquityDailyData")
-    public List<String> downloadAllData() throws JsonProcessingException {
-        return instrumentService.downloadAllData();
+    public List<String> downloadNseEquityDailyData() throws JsonProcessingException {
+        return instrumentService.downloadNseEquityDailyData();
     }
+
+    @Operation(summary = "download index daily data",
+            description = "downloads all index daily data since 2010 and stores in dailyPriceMaster table ")
+    @GetMapping("/downloadIndexData")
+    public List<InstrumentDataDownloadResponseDto> downloadIndexDailData() throws JsonProcessingException {
+        return instrumentService.downloadIndexDailyData();
+    }
+
 
     @Operation(summary = "export dailyPriceMaster data to csv",
             description = "export dailyPriceMaster data to csv to keep backeup and import later. example-filepath: C:\\Users\\partha\\test.csv")
