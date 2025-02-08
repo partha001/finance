@@ -7,6 +7,8 @@ import org.partha.wmcommon.request.DownloadDailyDataRequest;
 import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
 import org.partha.wmservice.service.domain.InstrumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,6 +36,20 @@ public class InstrumentController {
     @GetMapping
     public List<String> downloadAllData() throws JsonProcessingException {
         return instrumentService.downloadAllData();
+    }
+
+
+    @GetMapping("/exportInstrumentDailyData")
+    public ResponseEntity exportInstrumentDailyData(){
+        instrumentService.exportInstrumentDailyData();
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+
+    @GetMapping("/importInstrumentDailyData")
+    public ResponseEntity importInstrumentDailyData(){
+        instrumentService.importInstrumentDailyData();
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 

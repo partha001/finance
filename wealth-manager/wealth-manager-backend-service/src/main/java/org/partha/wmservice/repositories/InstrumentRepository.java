@@ -1,6 +1,7 @@
 package org.partha.wmservice.repositories;
 
 import org.partha.wmcommon.entities.Instrument;
+import org.partha.wmservice.repositories.custom.CustomInstrumentRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

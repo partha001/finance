@@ -2,6 +2,7 @@ package org.partha.wmservice.repositories;
 
 import jakarta.transaction.Transactional;
 import org.partha.wmcommon.entities.InstrumentStaging;
+import org.partha.wmservice.repositories.custom.CustomInstrumentStagingRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface InstrumentStagingRepository extends JpaRepository<InstrumentStaging,Integer>, CustomInstrumentStagingRepository{
+public interface InstrumentStagingRepository extends JpaRepository<InstrumentStaging,Integer>, CustomInstrumentStagingRepository {
 
     @Transactional
     @Modifying

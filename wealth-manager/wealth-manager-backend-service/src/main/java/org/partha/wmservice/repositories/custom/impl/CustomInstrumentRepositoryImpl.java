@@ -1,17 +1,10 @@
-package org.partha.wmservice.repositories;
+package org.partha.wmservice.repositories.custom.impl;
 
-import org.partha.wmcommon.constants.SqlConstant;
-import org.partha.wmcommon.entities.Instrument;
-import org.partha.wmcommon.enums.InstrumentType;
+import org.partha.wmservice.repositories.custom.CustomInstrumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import java.util.Date;
-import java.util.List;
-import java.util.stream.IntStream;
-
-public class CustomInstrumentRepositoryImpl implements  CustomInstrumentRepository{
+public class CustomInstrumentRepositoryImpl implements CustomInstrumentRepository {
 
 
     @Autowired
