@@ -2853,5 +2853,14 @@ INSERT INTO wealthmanager.instrumentmaster (instrumenttype,"name",exchange,"key"
 
 
 --update wealthmanager.InstrumentMaster  set yahoofinanceticker = '^NSEI' where key = 'IDX:NIFTY_50';
---update wealthmanager.InstrumentMaster  set yahoofinanceticker = '^NSMIDCP' where key = 'IDX:NIFTY_NEXT_50';
+--update wealthmanager.InstrumentMaster  set yahoofinanceticker = '^NSMIDCP' where key = 'IDX:NIFTY_NEXT_50'
+update wealthmanager.instrumentmaster set yahoofinanceticker='^NSEBANK' where key='IDX:NIFTY_BANK';
+update wealthmanager.instrumentmaster set yahoofinanceticker='^CNXAUTO' where key='IDX:NIFTY_AUTO';
+update wealthmanager.instrumentmaster set yahoofinanceticker='^CNXMEDIA' where key='IDX:NIFTY_MEDIA';
+
+
+
+^CNXMEDIA
+
+^
 

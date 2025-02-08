@@ -107,9 +107,10 @@ public class InstrumentService {
         return result;
     }
 
-    public void exportInstrumentDailyData() {
+    public void exportInstrumentDailyData(String filepath) {
+        log.info("filepath:{}", filepath);
         try (
-                BufferedWriter writer = Files.newBufferedWriter(Paths.get("C:\\Users\\partha\\test.csv"));
+                BufferedWriter writer = Files.newBufferedWriter(Paths.get(filepath));
                 CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("pricedate", "key", "adjcloseprice", "closeprice", "openprice", "high", "low", "volume"));
         ) {
 
@@ -146,11 +147,12 @@ public class InstrumentService {
     }
 
 
-    public void importInstrumentDailyData() {
+    public void importInstrumentDailyData(String filepath) {
 
         dailyPriceRepository.deleteAll();
+        Date date = new Date();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\partha\\test.csv"), 1048576 * 10);
+        try (BufferedReader reader = new BufferedReader(new FileReader(filepath), 1048576 * 10);
              CSVParser csvParser = new CSVParser(reader,
                      CSVFormat.DEFAULT.withHeader("pricedate", "key", "adjcloseprice", "closeprice", "openprice", "high", "low", "volume").withIgnoreHeaderCase().withTrim())
         ) {
@@ -178,6 +180,7 @@ public class InstrumentService {
                         .high(Double.parseDouble(record.get("high")))
                         .low(Double.parseDouble(record.get("low")))
                         .volume(Double.parseDouble(record.get("volume")))
+                        .createTime(date)
                         .build();
 
                 dailyPriceList.add(dailyPrice);
