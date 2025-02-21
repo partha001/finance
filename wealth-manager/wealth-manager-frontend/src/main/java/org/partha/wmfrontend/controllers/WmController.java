@@ -72,6 +72,7 @@ public class WmController {
         map.put("selectedInstrumentName", "");
         map.put("fromHiddenField", "");
         map.put("downloadDataButton_Disabled", false);
+        map.put("htmlString", wmService.getInstrumentTechnicalChart());
         return new ModelAndView("marketsDatasetup", map);
     }
 
@@ -99,6 +100,10 @@ public class WmController {
                 map.put("downloadResponseMessage", "error occurred while downloading data");
             }
         }
+
+        map.put("htmlString", wmService.getInstrumentTechnicalChart());
+
+
 
         return new ModelAndView("marketsDatasetup", map);
     }

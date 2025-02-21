@@ -80,6 +80,18 @@
 
                         <tr>
                             <td colspan="3">
+                                <div th:utext="${htmlString}"></div>
+                            </td>
+                        </tr>
+
+<!--                        <tr>-->
+<!--                            <td colspan="3">-->
+<!--                                <span th:text="${downloadResponseMessage}">userName</span>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+
+                        <tr>
+                            <td colspan="3">
                                 <img th:if="${imageString!=null}" th:src="@{'data:image/jpeg;base64,'+${imageString}}"/>
                             </td>
                         </tr>

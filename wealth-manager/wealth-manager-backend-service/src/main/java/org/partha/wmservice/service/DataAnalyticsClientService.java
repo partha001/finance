@@ -48,4 +48,10 @@ public class DataAnalyticsClientService {
         HttpEntity<DownloadDailyDataRequest> request = new HttpEntity<>(req, headers);
         return restTemplate.postForObject(dataAnalyticsHostname + "/instruments/downloadDailyData", request, InstrumentDataDownloadResponseDto.class);
     }
+
+    public String getTechnicalChartData() {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.getForEntity(dataAnalyticsHostname + "/instruments/downloadDailyData", String.class);
+        return response.getBody();
+    }
 }

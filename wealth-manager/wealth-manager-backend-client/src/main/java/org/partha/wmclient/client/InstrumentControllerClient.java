@@ -20,4 +20,7 @@ public interface InstrumentControllerClient {
     @PostMapping("/downloadInstrumentDailyData")
     public InstrumentDataDownloadResponseDto downloadInstrumentDailyData(@RequestBody DownloadDailyDataRequest request);
 
+    @GetMapping("/getTechnicalChartDate")
+    public String getTechnicalChartData();
+
 }

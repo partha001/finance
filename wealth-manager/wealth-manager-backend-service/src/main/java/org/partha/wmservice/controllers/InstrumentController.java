@@ -65,8 +65,9 @@ public class InstrumentController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-
-
-
+    @GetMapping("/getTechnicalChartDate")
+    public String getTechnicalChartData(){
+        return instrumentService.getTechnicalChartData();
+    }
 
 }

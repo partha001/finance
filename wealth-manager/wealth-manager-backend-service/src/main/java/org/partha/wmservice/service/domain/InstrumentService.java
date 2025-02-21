@@ -235,4 +235,9 @@ public class InstrumentService {
         }
     }
 
+
+    public String getTechnicalChartData(){
+        return dataAnalyticsClientService.getTechnicalChartData();
+    }
+
 }

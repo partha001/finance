@@ -81,12 +81,10 @@ public class WmService {
                 .endDate(DateUtil.convertUtilDateToFormattedString(new Date(), DATE_FORMAT2))
                 .build();
         return instrumentControllerClient.downloadInstrumentDailyData(request);
-
     }
 
 
-    public Instrument getInstrument(String selectedInstrumentKey) {
-        return null;
+    public String getInstrumentTechnicalChart() {
+        return instrumentControllerClient.getTechnicalChartData();
     }
-
 }

@@ -3,7 +3,7 @@ from flask.views import MethodView
 from flask_smorest import Blueprint
 
 from schemas import InstrumentDataDownloadRequestSchema, InstrumentDataDownloadResponseSchema
-from services.InstrumentService import downloadInstrumentDailyData
+from services.InstrumentService import downloadInstrumentDailyData, generateTechnicalChart
 
 blp = Blueprint("instrument", __name__, description="operations on instruments")
 
@@ -11,12 +11,7 @@ blp = Blueprint("instrument", __name__, description="operations on instruments")
 @blp.route("/instruments/downloadDailyData")
 class Instruments(MethodView):
     def get(self):
-        ticker = request.args.get('ticker')
-        key = request.args.get('key')
-        start_date = request.args.get('startDate')
-        end_date = request.args.get('endDate')
-        downloadInstrumentDailyData(ticker, key, start_date, end_date)
-        return 200
+        return generateTechnicalChart()
 
     @blp.arguments(InstrumentDataDownloadRequestSchema)
     @blp.response(200, InstrumentDataDownloadResponseSchema)
