@@ -1,6 +1,8 @@
 package org.partha.wmclient.client;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.partha.wmcommon.enums.InstrumentType;
+import org.partha.wmcommon.request.ChartDataRequest;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
 import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -20,7 +22,7 @@ public interface InstrumentControllerClient {
     @PostMapping("/downloadInstrumentDailyData")
     public InstrumentDataDownloadResponseDto downloadInstrumentDailyData(@RequestBody DownloadDailyDataRequest request);
 
-    @GetMapping("/getTechnicalChartDate")
-    public String getTechnicalChartData();
+    @PostMapping("/getTechnicalChartDate")
+    public String getTechnicalChartData(@RequestBody ChartDataRequest chartDataRequest) throws JsonProcessingException;
 
 }

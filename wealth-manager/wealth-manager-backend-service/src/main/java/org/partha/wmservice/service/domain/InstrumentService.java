@@ -11,24 +11,25 @@ import org.apache.commons.csv.CSVRecord;
 import org.partha.wmcommon.constants.Constants;
 import org.partha.wmcommon.entities.DailyPrice;
 import org.partha.wmcommon.entities.Instrument;
-import org.partha.wmcommon.entities.InstrumentStaging;
 import org.partha.wmcommon.enums.InstrumentType;
+import org.partha.wmcommon.request.ChartDataRequest;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
 import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
-import org.partha.wmcommon.util.CommonUtil;
 import org.partha.wmcommon.util.DateUtil;
 import org.partha.wmservice.repositories.DailyPriceRepository;
 import org.partha.wmservice.repositories.InstrumentRepository;
 import org.partha.wmservice.service.DataAnalyticsClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
@@ -236,8 +237,13 @@ public class InstrumentService {
     }
 
 
-    public String getTechnicalChartData(){
-        return dataAnalyticsClientService.getTechnicalChartData();
+    public String getTechnicalChartData(ChartDataRequest chartDataRequest) throws JsonProcessingException {
+        log.info("request payload: {}", objectMapper.writeValueAsString(chartDataRequest));
+        Optional<Instrument> instrumentOptional = instrumentRepository.findByKey(chartDataRequest.getKey());
+        chartDataRequest.setTicker(instrumentOptional.get().getYahooFinanceTicker());
+        chartDataRequest.setStartDate("2010-01-01");
+        chartDataRequest.setEndDate(DateUtil.convertUtilDateToFormattedString(new Date(),"yyyy-MM-dd"));
+        return dataAnalyticsClientService.getTechnicalChartData(chartDataRequest);
     }
 
 }

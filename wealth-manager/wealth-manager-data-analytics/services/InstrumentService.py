@@ -59,16 +59,21 @@ def downloadInstrumentDailyData(ticker: str, key: str, startDate: str, endDate: 
     response.end_date = endDate
     response.recordsFetched = recordsFetched
     response.recordsInserted = recordsInserted
+    print(f'data insertion complete. recordsFetched:{recordsFetched} recordsInserted:{recordsInserted}')
     return response
 
 
 
-def generateTechnicalChart():
-    tickers = ['AAPL','TSLA']
-    data = yf.download(tickers, period='1y')
+def generateTechnicalChart(ticker: str, key: str, startDate: str, endDate: str):
+
+    print(f'request details : ticker:{ticker}  key:{key} start:{startDate}, end:{endDate}')
+    data = yf.download(ticker, start=startDate, end=endDate)
+
+    #dropping the second level of column level which contained the ticker
+    data = data.droplevel(1, axis=1)
+    data.columns
 
     #filtering data for a particular ticker
-    data = data.swaplevel(axis=1).AAPL
     fig = go.Figure(data=[go.Candlestick(
         x=data.index,
         open=data['Open'],
@@ -79,13 +84,10 @@ def generateTechnicalChart():
 
     # Update the layout
     fig.update_layout(
-        title=f'{tickers[0]} Candle Chart',
+        title=f'{ticker} Candle Chart',
         xaxis_title='Date',
-        yaxis_title='Price (USD)'
+        yaxis_title='Price'
     )
-
-    # Show the plot
-    #fig.show()
 
     # buf = io.BytesIO()
     # fig.write_html(buf, include_plotlyjs='cdn')

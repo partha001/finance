@@ -3,6 +3,7 @@ package org.partha.wmservice.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.v3.oas.annotations.Operation;
 import org.partha.wmcommon.enums.InstrumentType;
+import org.partha.wmcommon.request.ChartDataRequest;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
 import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
 import org.partha.wmservice.service.domain.InstrumentService;
@@ -65,9 +66,9 @@ public class InstrumentController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("/getTechnicalChartDate")
-    public String getTechnicalChartData(){
-        return instrumentService.getTechnicalChartData();
+    @PostMapping("/getTechnicalChartDate")
+    public String getTechnicalChartData(@RequestBody ChartDataRequest request) throws JsonProcessingException {
+        return instrumentService.getTechnicalChartData(request);
     }
 
 }

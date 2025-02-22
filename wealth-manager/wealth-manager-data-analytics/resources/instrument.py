@@ -11,7 +11,11 @@ blp = Blueprint("instrument", __name__, description="operations on instruments")
 @blp.route("/instruments/downloadDailyData")
 class Instruments(MethodView):
     def get(self):
-        return generateTechnicalChart()
+        ticker = request.args.get('ticker')
+        key = request.args.get('key')
+        start = request.args.get('startDate')
+        end = request.args.get('endDate')
+        return generateTechnicalChart(ticker, key, start, end)
 
     @blp.arguments(InstrumentDataDownloadRequestSchema)
     @blp.response(200, InstrumentDataDownloadResponseSchema)
@@ -22,3 +26,4 @@ class Instruments(MethodView):
         startDate = payload.get('startDate')
         endDate = payload.get('endDate')
         return downloadInstrumentDailyData(ticker, key, startDate, endDate)
+

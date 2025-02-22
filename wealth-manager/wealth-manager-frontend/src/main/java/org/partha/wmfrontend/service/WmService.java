@@ -1,16 +1,18 @@
 package org.partha.wmfrontend.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
 import lombok.extern.log4j.Log4j2;
 import org.partha.wmclient.client.AssetControllerClient;
 import org.partha.wmclient.client.DividendControllerClient;
 import org.partha.wmclient.client.HoldingControllerClient;
 import org.partha.wmclient.client.InstrumentControllerClient;
-import org.partha.wmcommon.entities.Instrument;
 import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
 import org.partha.wmcommon.enums.InstrumentType;
+import org.partha.wmcommon.request.ChartDataRequest;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
 import org.partha.wmcommon.response.AssetChartDto;
 import org.partha.wmcommon.response.DividendChartDto;
@@ -42,6 +44,8 @@ public class WmService {
 
     @Autowired
     InstrumentControllerClient instrumentControllerClient;
+
+    ObjectMapper mapper = new ObjectMapper();
 
 
     public ResponseDto getDividendDetails(String payload) {
@@ -84,7 +88,11 @@ public class WmService {
     }
 
 
-    public String getInstrumentTechnicalChart() {
-        return instrumentControllerClient.getTechnicalChartData();
+    public String getInstrumentTechnicalChart(String selectedKey) throws JsonProcessingException {
+        ChartDataRequest request = ChartDataRequest.builder()
+                .key(selectedKey)
+                .build();
+        log.info("request payload: {}", mapper.writeValueAsString(request));
+        return instrumentControllerClient.getTechnicalChartData(request);
     }
 }

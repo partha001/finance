@@ -3,6 +3,7 @@ package org.partha.wmservice.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
+import org.partha.wmcommon.request.ChartDataRequest;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
 import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Log4j2
 @Service
@@ -49,9 +54,14 @@ public class DataAnalyticsClientService {
         return restTemplate.postForObject(dataAnalyticsHostname + "/instruments/downloadDailyData", request, InstrumentDataDownloadResponseDto.class);
     }
 
-    public String getTechnicalChartData() {
+    public String getTechnicalChartData(ChartDataRequest chartDataRequest) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.getForEntity(dataAnalyticsHostname + "/instruments/downloadDailyData", String.class);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(dataAnalyticsHostname + "/instruments/downloadDailyData")
+                .queryParam("ticker", chartDataRequest.getTicker())
+                .queryParam("key", chartDataRequest.getKey())
+                .queryParam("startDate", chartDataRequest.getStartDate())
+                .queryParam("endDate", chartDataRequest.getEndDate());
+        ResponseEntity<String> response = restTemplate.getForEntity(builder.toUriString(), String.class);
         return response.getBody();
     }
 }

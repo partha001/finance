@@ -72,7 +72,10 @@ public class WmController {
         map.put("selectedInstrumentName", "");
         map.put("fromHiddenField", "");
         map.put("downloadDataButton_Disabled", false);
-        map.put("htmlString", wmService.getInstrumentTechnicalChart());
+
+        //chartData
+        map.put("htmlString", "");
+
         return new ModelAndView("marketsDatasetup", map);
     }
 
@@ -95,13 +98,18 @@ public class WmController {
                 InstrumentDataDownloadResponseDto dto = wmService.downloadDailyData(selectedInstrumentName);
                 map.put("downloadResponseMessage", String.format("download successful. records fetched: %s  records saved:%s", dto.getRecordsFetched(), dto.getRecordsInserted()));
 
+
+                log.info("data download successful");
+                //if data download successful then get chart data
+                map.put("htmlString", wmService.getInstrumentTechnicalChart(selectedInstrumentName));
+
             } catch (Exception ex) {
                 log.error("exception occurred:", ex);
                 map.put("downloadResponseMessage", "error occurred while downloading data");
             }
         }
 
-        map.put("htmlString", wmService.getInstrumentTechnicalChart());
+
 
 
 
