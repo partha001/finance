@@ -72,10 +72,7 @@ public class WmController {
         map.put("selectedInstrumentName", "");
         map.put("fromHiddenField", "");
         map.put("downloadDataButton_Disabled", false);
-
-        //chartData
         map.put("htmlString", "");
-
         return new ModelAndView("marketsDatasetup", map);
     }
 
@@ -108,11 +105,6 @@ public class WmController {
                 map.put("downloadResponseMessage", "error occurred while downloading data");
             }
         }
-
-
-
-
-
         return new ModelAndView("marketsDatasetup", map);
     }
 
@@ -121,6 +113,18 @@ public class WmController {
     public ModelAndView analyseData() {
         ModelMap map = new ModelMap();
         return new ModelAndView("marketsAnalyseData", map);
+    }
+
+    @GetMapping(value = "/markets/manageStockUniverse")
+    public ModelAndView manageStockUniverse() {
+        ModelMap map = new ModelMap();
+        return new ModelAndView("manageStockUniverse", map);
+    }
+
+    @PostMapping(value = "/markets/updateStockUniverse")
+    public ModelAndView updateStockUniverse(@RequestParam Map<String, Object> inputMap, ModelMap map) {
+        wmService.updateStockUniverse(inputMap, map);
+        return new ModelAndView("manageStockUniverse", map);
     }
 
     /***************************  holding related endpoints ******************************************************/
@@ -151,7 +155,6 @@ public class WmController {
     public String assets() {
         return "assets";
     }
-
 
     @GetMapping(value = "/assetCharts")
     public ModelAndView assetCharts(Model model) {
@@ -190,6 +193,4 @@ public class WmController {
     public String about() {
         return "about";
     }
-
-
 }

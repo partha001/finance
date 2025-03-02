@@ -10,65 +10,40 @@
             CREATE SCHEMA WealthManager;
 
             CREATE TABLE IF NOT EXISTS WealthManager.DividendMaster(
-            id serial primary key,
-            symbol VARCHAR(50),
-            name VARCHAR(100),
-            dividendyear INTEGER,
-            quarter INTEGER,
-            dividendamount decimal
+                id serial primary key,
+                symbol VARCHAR(50),
+                name VARCHAR(100),
+                dividendyear INTEGER,
+                quarter INTEGER,
+                dividendamount decimal
             );
 
 
             CREATE TABLE IF NOT EXISTS WealthManager.AssetMaster
             (
-            id serial PRIMARY KEY,
-            username varchar(50),
-            assetType varchar(30),
-            assetName VARCHAR(100),
-            amount decimal,
-            valuationDate DATE,
-            CONSTRAINT uc_am_ExchangeSymbol UNIQUE (username,assetName,valuationDate)
+                id serial PRIMARY KEY,
+                username varchar(50),
+                assetType varchar(30),
+                assetName VARCHAR(100),
+                amount decimal,
+                valuationDate DATE,
+                CONSTRAINT uc_am_ExchangeSymbol UNIQUE (username,assetName,valuationDate)
             );
 
 
-<!--            CREATE TABLE IF NOT EXISTS WealthManager.StockMaster-->
-<!--            (-->
-<!--            id serial PRIMARY KEY,-->
-<!--            exchange VARCHAR(20),-->
-<!--            symbol VARCHAR(50),-->
-<!--            name VARCHAR(100),-->
-<!--            isinNumber VARCHAR(50),-->
-<!--            faceValue decimal,-->
-<!--            listingDate DATE,-->
-<!--            key VARCHAR(50),-->
-<!--            CONSTRAINT uc_sm_ExchangeSymbol UNIQUE (exchange,symbol)-->
-<!--            );-->
-
-
-<!--            CREATE TABLE IF NOT EXISTS WealthManager.StockPriceMaster-->
-<!--            (-->
-<!--            id serial PRIMARY KEY,-->
-<!--            stockMasterId INTEGER,-->
-<!--            stockKey VARCHAR(50),-->
-<!--            price decimal,-->
-<!--            priceTime timestamp,-->
-<!--            timeZoneName VARCHAR(20)-->
-<!--            );-->
-
-
             CREATE TABLE IF NOT EXISTS WealthManager.DailyPriceMaster (
-            id serial4 NOT NULL,
-            PriceDate date NOT NULL,
-            key varchar(50) NOT NULL,
-            AdjClosePrice numeric NULL,
-            ClosePrice numeric NULL,
-            OpenPrice numeric null,
-            High numeric NULL,
-            Low numeric NULL,
-            Volume numeric null,
-            CreateTime  TIMESTAMP null,
-            CONSTRAINT uc_dpm_ExchangeSymbol UNIQUE (PriceDate,key),
-            primary key (id, PriceDate, key)
+                id serial4 NOT NULL,
+                PriceDate date NOT NULL,
+                key varchar(50) NOT NULL,
+                AdjClosePrice numeric NULL,
+                ClosePrice numeric NULL,
+                OpenPrice numeric null,
+                High numeric NULL,
+                Low numeric NULL,
+                Volume numeric null,
+                CreateTime  TIMESTAMP null,
+                CONSTRAINT uc_dpm_ExchangeSymbol UNIQUE (PriceDate,key),
+                primary key (id, PriceDate, key)
             ) partition by range (PriceDate);
 
             CREATE TABLE IF NOT EXISTS WealthManager.DailyPriceMaster_2010 PARTITION OF WealthManager.DailyPriceMaster for values from ('2010-01-01') to ('2011-01-01');
@@ -111,18 +86,38 @@
             );
 
             CREATE TABLE wealthmanager.InstrumentMasterStaging (
-            id int4 NULL,
-            instrumenttype varchar(255) NULL,
-            "name" varchar(255) NULL,
-            exchange varchar(255) NULL,
-            "key" varchar(255) NULL,
-            symbol varchar(255) NULL,
-            isin varchar(255) NULL,
-            facevalue float8 NULL,
-            listingdate timestamp(6) NULL,
-            yahoofinanceticker varchar(255) NULL,
-            sourcename varchar(255) NULL,
-            createddate varchar(255) NULL
+                id int4 NULL,
+                instrumenttype varchar(255) NULL,
+                "name" varchar(255) NULL,
+                exchange varchar(255) NULL,
+                "key" varchar(255) NULL,
+                symbol varchar(255) NULL,
+                isin varchar(255) NULL,
+                facevalue float8 NULL,
+                listingdate timestamp(6) NULL,
+                yahoofinanceticker varchar(255) NULL,
+                sourcename varchar(255) NULL,
+                createddate varchar(255) NULL
+            );
+
+            CREATE TABLE IF NOT EXISTS WealthManager.InstrumentUniverseMaster (
+                id serial4 NOT NULL,
+                name varchar(255) NOT NULL,
+                createdDate TIMESTAMP  NULL,
+                updatedDate TIMESTAMP  NULL,
+                CONSTRAINT uc_instrumentUniverse_key UNIQUE (name),
+                CONSTRAINT indexInstrumentUniverseMaster_pkey PRIMARY KEY (id)
+            );
+
+
+            CREATE TABLE IF NOT EXISTS WealthManager.InstrumentUniverseDetail (
+                id serial4 NOT NULL,
+                instrumentUniverseMasterId serial4 NOT NULL,
+                instrumentKey varchar(255) NOT NULL,
+                createdDate TIMESTAMP  NULL,
+                updatedDate TIMESTAMP  NULL,
+                CONSTRAINT fk_instrumentUniverseMasterId  FOREIGN KEY(instrumentUniverseMasterId) REFERENCES WealthManager.InstrumentUniverseMaster(id),
+                CONSTRAINT indexInstrumentUniverseDetail_pkey PRIMARY KEY (id)
             );
 
 
