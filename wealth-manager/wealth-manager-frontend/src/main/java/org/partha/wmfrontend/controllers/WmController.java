@@ -1,16 +1,11 @@
 package org.partha.wmfrontend.controllers;
 
 
-import com.google.common.base.Strings;
 import lombok.extern.log4j.Log4j2;
 import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
-import org.partha.wmcommon.enums.InstrumentType;
-import org.partha.wmcommon.response.DividendChartDto;
-import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
 import org.partha.wmfrontend.service.WmService;
-import org.partha.wmfrontend.util.WmUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -41,73 +36,32 @@ public class WmController {
     }
 
     @GetMapping(value = "/dividendSummary")
-    public ModelAndView dividendSummary() {
+    public ModelAndView getDividendSummary() {
         ModelMap map = new ModelMap();
-        map.put("dividendChartTypes", WmUtil.getDividendSummaryTypes());
-        DividendChartType defaultDividendCharType = DividendChartType.DividendSummaryByYear;
-        map.put("selectedDividendChartType", defaultDividendCharType);
-        DividendChartDto dividendChartDetails = wmService.getDividendChartDetails(defaultDividendCharType);
-        map.put("imageString", dividendChartDetails.getImageString());
+        wmService.getDidvidendSummary(map);
         return new ModelAndView("dividendSummary", map);
     }
 
     @PostMapping(value = "/dividendSummary")
-    public ModelAndView getdividendSummary(@RequestParam("dividendChartType") DividendChartType dividendChartType,
-                                           ModelMap map) {
-        log.info("input params. dividendChartType:{}", dividendChartType);
-        map.put("dividendChartTypes", WmUtil.getDividendSummaryTypes());
-        map.put("selectedDividendChartType", dividendChartType);
-        DividendChartDto dividendChartDetails = wmService.getDividendChartDetails(dividendChartType);
-        map.put("imageString", dividendChartDetails.getImageString());
-        map.put("key", "hello dividend");
+    public ModelAndView postDividendSummary(@RequestParam("dividendChartType") DividendChartType dividendChartType,
+                                            ModelMap map) {
+        wmService.postDividendSummary(dividendChartType, map);
         return new ModelAndView("dividendSummary", map);
     }
 
     /***************************  Markets related endpoints **********************************************************/
     @GetMapping(value = "/markets/dataSetup")
-    public ModelAndView datasetup() {
+    public ModelAndView getMarketsDatasetup() {
         ModelMap map = new ModelMap();
-        map.put("instrumentTypes", WmUtil.getInstrumentTypes());
-        map.put("selectedInstrumentType", "");
-        map.put("selectedInstrumentName", "");
-        map.put("fromHiddenField", "");
-        map.put("downloadDataButton_Disabled", false);
-        map.put("htmlString", "");
+        wmService.getMarketsDatasetup(map);
         return new ModelAndView("marketsDatasetup", map);
     }
 
     @PostMapping(value = "/markets/dataSetup")
-    //public ModelAndView datasetup(@RequestParam MultiValueMap<String, Object> inputMap) {
     public ModelAndView datasetup(@RequestParam Map<String, Object> inputMap, ModelMap map) {
-        String selectedInstrumentType = inputMap.get("instrumentType").toString();
-        String selectedInstrumentName = inputMap.get("instrumentName").toString();
-        map.put("instrumentTypes", WmUtil.getInstrumentTypes());
-        map.put("selectedInstrumentType", selectedInstrumentType);
-        map.put("selectedInstrumentName", selectedInstrumentName);
-
-        if (!Strings.isNullOrEmpty(selectedInstrumentType))
-            map.put("instrumentKeys", wmService.getInstrumentKeys(InstrumentType.valueOf(selectedInstrumentType)));
-
-
-        System.out.println("downloadDataFlag:" + inputMap.get("downloadDataFlag").toString());
-        if (!Strings.isNullOrEmpty(inputMap.get("downloadDataFlag").toString())) {
-            try {
-                InstrumentDataDownloadResponseDto dto = wmService.downloadDailyData(selectedInstrumentName);
-                map.put("downloadResponseMessage", String.format("download successful. records fetched: %s  records saved:%s", dto.getRecordsFetched(), dto.getRecordsInserted()));
-
-
-                log.info("data download successful");
-                //if data download successful then get chart data
-                map.put("htmlString", wmService.getInstrumentTechnicalChart(selectedInstrumentName));
-
-            } catch (Exception ex) {
-                log.error("exception occurred:", ex);
-                map.put("downloadResponseMessage", "error occurred while downloading data");
-            }
-        }
+        wmService.postMarketsDatasetup(inputMap, map);
         return new ModelAndView("marketsDatasetup", map);
     }
-
 
     @GetMapping(value = "/markets/analyseData")
     public ModelAndView analyseData() {
@@ -118,12 +72,13 @@ public class WmController {
     @GetMapping(value = "/markets/manageStockUniverse")
     public ModelAndView manageStockUniverse() {
         ModelMap map = new ModelMap();
+        wmService.getMarketsManageStockUniverse(map);
         return new ModelAndView("manageStockUniverse", map);
     }
 
     @PostMapping(value = "/markets/updateStockUniverse")
     public ModelAndView updateStockUniverse(@RequestParam Map<String, Object> inputMap, ModelMap map) {
-        wmService.updateStockUniverse(inputMap, map);
+        wmService.postMarketsUpdateStockUniverse(inputMap, map);
         return new ModelAndView("manageStockUniverse", map);
     }
 
@@ -132,20 +87,17 @@ public class WmController {
     @GetMapping(value = "/holdings/importHoldings")
     public ModelAndView importHoldings() {
         ModelMap map = new ModelMap();
-        map.put("importFormats", WmUtil.getHoldingImportFormats());
+        wmService.getHoldingsImportHoldings(map);
         return new ModelAndView("importHoldings", map);
     }
 
     @PostMapping(value = "/holdings/import"
-            , consumes = MediaType.MULTIPART_FORM_DATA_VALUE
-    )
+            ,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ModelAndView importFile(@RequestParam("importFormat") ExportImportFormat importFormat,
                                    @RequestParam("file") MultipartFile file,
                                    @RequestParam("holdingOwner") String holdingOwner) throws IOException {
-        log.info("importFormat:{}", importFormat);
-        wmService.importFile(file, importFormat, holdingOwner);
         ModelMap map = new ModelMap();
-        map.put("importFormats", WmUtil.getHoldingImportFormats());
+        wmService.postHoldingsImport(map, file, importFormat, holdingOwner);
         return new ModelAndView("importHoldings", map);
     }
 
@@ -159,20 +111,14 @@ public class WmController {
     @GetMapping(value = "/assetCharts")
     public ModelAndView assetCharts(Model model) {
         ModelMap map = new ModelMap();
-        map.put("assetChartTypes", WmUtil.getAssetChartTypes());
-        AssetChartType defaultAssetChartType = AssetChartType.Chart_AssetVsTime;
-        map.put("imageString", wmService.getAssetChart(defaultAssetChartType).getImageString());
-        map.put("selectedAssetChartType", defaultAssetChartType);
+        wmService.getAssetCharts(map);
         return new ModelAndView("assetCharts", map);
     }
 
     @PostMapping(value = "/assetCharts")
     public ModelAndView assetCharts(@RequestParam("assetChartType") AssetChartType assetChartType,
                                     ModelMap map) {
-        log.info("input params. assetChartType:{}", assetChartType);
-        map.put("assetChartTypes", WmUtil.getAssetChartTypes());
-        map.put("selectedAssetChartType", assetChartType);
-        map.put("imageString", wmService.getAssetChart(assetChartType).getImageString());
+        wmService.postAssetCharts(map, assetChartType);
         return new ModelAndView("assetCharts", map);
     }
 
