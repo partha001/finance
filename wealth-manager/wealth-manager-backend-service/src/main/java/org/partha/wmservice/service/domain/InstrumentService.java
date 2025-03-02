@@ -60,6 +60,14 @@ public class InstrumentService {
         return instrumentKeys;
     }
 
+
+    public List<Instrument> getInstrumentsByType(InstrumentType instrumentType) {
+        List<Instrument> instrumentList = instrumentRepository.findByInstrumentType(instrumentType.name())
+                .stream()
+                .collect(Collectors.toList());
+        return instrumentList;
+    }
+
     public InstrumentDataDownloadResponseDto downloadInstrumentDailyData(DownloadDailyDataRequest request) {
         Instrument instrument = instrumentRepository
                 .findByKey(request.getKey())

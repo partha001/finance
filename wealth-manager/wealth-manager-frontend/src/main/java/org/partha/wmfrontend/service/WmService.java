@@ -3,12 +3,16 @@ package org.partha.wmfrontend.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.collections4.ListUtils;
 import org.partha.wmclient.client.*;
+import org.partha.wmcommon.InstrumentNameComparator;
 import org.partha.wmcommon.constants.Constants;
+import org.partha.wmcommon.entities.Instrument;
 import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
 import org.partha.wmcommon.enums.InstrumentType;
+import org.partha.wmcommon.model.InstrumentUniverseModel;
 import org.partha.wmcommon.request.ChartDataRequest;
 import org.partha.wmcommon.request.CreateInstrumentUniverseRequest;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
@@ -20,14 +24,12 @@ import org.partha.wmcommon.util.DateUtil;
 import org.partha.wmfrontend.util.WmUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static org.partha.wmcommon.constants.Constants.DATE_FORMAT2;
 
@@ -65,29 +67,61 @@ public class WmService {
         return response;
     }
 
+    private void populateInstrumentListForInstrumentUniverse(Model model) {
+        //gettting equity list
+        List<Instrument> equityList = instrumentControllerClient.getInstrumentsByType(InstrumentType.EQUITY);
+        Collections.sort(equityList, new InstrumentNameComparator());
+        List<List<Instrument>> equityPartitions = ListUtils.partition(equityList, 100);
+        model.addAttribute("equityPartitions", equityPartitions);
 
-    public void postMarketsUpdateStockUniverse(@RequestParam Map<String, Object> inputMap, ModelMap map) {
-        String universeName = inputMap.get("universeName").toString();
-        String submitType = inputMap.get("submitType").toString();
-        log.info("submitType:{} universeName:{}", submitType, universeName);
+        //getting index list
+        List<Instrument> indexList = instrumentControllerClient.getInstrumentsByType(InstrumentType.INDEX);
+        Collections.sort(indexList, new InstrumentNameComparator());
+        List<List<Instrument>> indexPartitions = ListUtils.partition(indexList, 500);
+        model.addAttribute("indexPartitions", indexPartitions);
+    }
+
+
+    public void getMarketsManageInstrumentUniverse(Model model) {
+        model.addAttribute("formModel", new InstrumentUniverseModel());
+        model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
+        model.addAttribute("selectedSubmitType", "update");
+        populateInstrumentListForInstrumentUniverse(model);
+    }
+
+    public void postMarketsUpdateInstrumentUniverse(Model model, InstrumentUniverseModel formModel) {
+        String newUniverseName = formModel.getNewUniverseName();
+        String selectedUniverseName = formModel.getSelectedUniverseName();
+        String submitType = formModel.getSubmitType();
+        populateInstrumentListForInstrumentUniverse(model);
+        log.info("submitType:{} newUniverseName:{} selectedUniverseName:{}", submitType, newUniverseName, selectedUniverseName);
         if (submitType.equals("create")) {
+            if (Strings.isNullOrEmpty(newUniverseName)) {
+                model.addAttribute("message", "please provide a universe-name");
+                return;
+            }
             Set<String> allInstrumentUniverseNames = instrumentUniverserControllerClient.getAllInstrumentUniverseNames();
-            if (allInstrumentUniverseNames.contains(universeName)) {
-                map.put("message", "universeName already exists . please enter a different name.");
+            if (allInstrumentUniverseNames.contains(newUniverseName)) {
+                model.addAttribute("message", "universeName already exists . please enter a different name.");
             } else {
                 CreateInstrumentUniverseRequest createInstrumentUniverseRequest = CreateInstrumentUniverseRequest.builder()
-                        .name(universeName)
+                        .name(newUniverseName)
                         .build();
                 CreateInstrumentUniverseResponse instrumentUniverseResponse = instrumentUniverserControllerClient
                         .createInstrumentUniverse(createInstrumentUniverseRequest);
                 if (instrumentUniverseResponse.getMessage().equals(Constants.SUCCESS)) {
-                    map.put("message", "universe creation successful");
+                    model.addAttribute("message", "universe creation successful");
+                    model.addAttribute("selectedUniverseName", newUniverseName);
                 } else {
-                    map.put("message", "universe creation failed");
+                    model.addAttribute("message", "universe creation failed");
                 }
+                model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
+                model.addAttribute("selectedSubmitType", "update");
             }
         } else if (submitType.equals("update")) {
-
+            model.addAttribute("selectedSubmitType", "update");
+            model.addAttribute("selectedUniverseName", selectedUniverseName);
+            model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
         }
     }
 
@@ -116,6 +150,7 @@ public class WmService {
         map.put("downloadDataButton_Disabled", false);
         map.put("htmlString", "");
     }
+
 
     public void postMarketsDatasetup(Map<String, Object> inputMap, ModelMap map) {
         String selectedInstrumentType = inputMap.get("instrumentType").toString();
@@ -177,7 +212,5 @@ public class WmService {
         map.put("imageString", assetControllerClient.getChartData(assetChartType).getImageString());
     }
 
-    public void getMarketsManageStockUniverse(ModelMap map) {
-    }
 
 }

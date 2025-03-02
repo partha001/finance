@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
+import org.partha.wmcommon.model.InstrumentUniverseModel;
 import org.partha.wmfrontend.service.WmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -58,7 +60,7 @@ public class WmController {
     }
 
     @PostMapping(value = "/markets/dataSetup")
-    public ModelAndView datasetup(@RequestParam Map<String, Object> inputMap, ModelMap map) {
+    public ModelAndView postMarketsDatasetup(@RequestParam Map<String, Object> inputMap, ModelMap map) {
         wmService.postMarketsDatasetup(inputMap, map);
         return new ModelAndView("marketsDatasetup", map);
     }
@@ -70,16 +72,15 @@ public class WmController {
     }
 
     @GetMapping(value = "/markets/manageStockUniverse")
-    public ModelAndView manageStockUniverse() {
-        ModelMap map = new ModelMap();
-        wmService.getMarketsManageStockUniverse(map);
-        return new ModelAndView("manageStockUniverse", map);
+    public String manageInstrumentUniverse(Model model) {
+        wmService.getMarketsManageInstrumentUniverse(model);
+        return "manageStockUniverse";
     }
 
     @PostMapping(value = "/markets/updateStockUniverse")
-    public ModelAndView updateStockUniverse(@RequestParam Map<String, Object> inputMap, ModelMap map) {
-        wmService.postMarketsUpdateStockUniverse(inputMap, map);
-        return new ModelAndView("manageStockUniverse", map);
+    public String updateInstrumentUniverse(Model model, @ModelAttribute InstrumentUniverseModel formModel) {
+        wmService.postMarketsUpdateInstrumentUniverse(model,formModel);
+        return "manageStockUniverse";
     }
 
     /***************************  holding related endpoints ******************************************************/

@@ -29,29 +29,33 @@
     <div class="row">
         <div class="col-lg-12 body-style">
 
-            <form id="stockUniverseForm" method="post" th:action="@{/markets/updateStockUniverse}">
+            <form id="stockUniverseForm" method="post" th:object="${formModel}" th:action="@{/markets/updateStockUniverse}">
                 <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">
-                            <input type="radio" name="submitType" th:value="create" checked/>
+                            <input type="radio" name="submitType" th:value="create" th:checked="${'create' == selectedSubmitType}"/>
                             <label th:text="create">create</label>
                         </th>
                         <th scope="col">CreateStockUniverse</th>
                         <th scope="col">
-                            <input class="form-control mr-sm-2" type="text" placeholder="" aria-label="" name="universeName">
+                            <input class="form-control mr-sm-2" type="text" placeholder="" aria-label=""
+                                   name="newUniverseName">
                         </th>
                         <th scope="col">
-                            <input type="radio" name="submitType" th:value="update"/>
+                            <input type="radio" name="submitType" th:value="update" th:checked="${'update' == selectedSubmitType}"/>
                             <label th:text="update">update</label>
                         </th>
                         <th scope="col">UpdateStockUniverse</th>
                         <th scope="col">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select id="selectedUniverseName" name="selectedUniverseName" class="form-select"
+                                    aria-label="Default select example">
+                                <option value="">Select instrument name</option>
+                                <option th:each="universeName : ${universeNames}"
+                                        th:value="${universeName}"
+                                        th:text="${universeName}"
+                                        th:selected="${universeName.equals(selectedUniverseName)}">
+                                </option>
                             </select>
                         </th>
                         <th scope="col">
@@ -67,7 +71,36 @@
                         </td>
                     </tr>
                 </table>
+
+                <div>Stocks</div>
+                <div style="height:300px;overflow-y: scroll;">
+                    <table class="table">
+                        <tr th:each="equityPartition : ${equityPartitions}">
+                            <td th:each="equity : ${equityPartition}">
+<!--                                <input type="checkbox" name="selectedEquities" th:field="*{selectedEquities}" th:value="${equity.key}"/>-->
+                                <input type="checkbox" name="selectedEquities" th:value="${equity.key}"/>
+                                <label th:text="${equity.name}"></label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>Indices</div>
+                <div style="height:130px;overflow-y: scroll;">
+                    <table class="table">
+                        <tr th:each="indexPartition : ${indexPartitions}">
+                            <td th:each="index : ${indexPartition}">
+<!--                                <input type="checkbox" name="selectedIndices" th:field="*{selectedIndices}" th:value="${index.id}"/>-->
+                                <input type="checkbox" name="selectedIndices"  th:value="${index.id}"/>
+                                <label th:text="${index.name}"></label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
             </form>
+
 
         </div>
     </div>

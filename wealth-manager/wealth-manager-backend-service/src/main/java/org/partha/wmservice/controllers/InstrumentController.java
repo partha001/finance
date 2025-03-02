@@ -2,6 +2,7 @@ package org.partha.wmservice.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.v3.oas.annotations.Operation;
+import org.partha.wmcommon.entities.Instrument;
 import org.partha.wmcommon.enums.InstrumentType;
 import org.partha.wmcommon.request.ChartDataRequest;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
@@ -34,6 +35,12 @@ public class InstrumentController {
     public List<String> getInstrumenKeysByType(@RequestParam(name = "InstrumentType") InstrumentType instrumentType){
         return instrumentService.getInstrumentKeys(instrumentType);
     }
+
+    @GetMapping("/instrumentsByType")
+    public List<Instrument> getInstrumentsByType(@RequestParam(name = "InstrumentType") InstrumentType instrumentType){
+        return instrumentService.getInstrumentsByType(instrumentType);
+    }
+
 
     @Operation(summary = "download all NSE equity daily data",
             description = "downloads all NSE equity daily data since 2010 and stores in dailyPriceMaster table ")
@@ -70,5 +77,6 @@ public class InstrumentController {
     public String getTechnicalChartData(@RequestBody ChartDataRequest request) throws JsonProcessingException {
         return instrumentService.getTechnicalChartData(request);
     }
+
 
 }

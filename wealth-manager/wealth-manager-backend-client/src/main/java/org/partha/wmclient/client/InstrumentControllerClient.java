@@ -1,6 +1,7 @@
 package org.partha.wmclient.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.partha.wmcommon.entities.Instrument;
 import org.partha.wmcommon.enums.InstrumentType;
 import org.partha.wmcommon.request.ChartDataRequest;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
@@ -18,6 +19,9 @@ public interface InstrumentControllerClient {
 
     @GetMapping("/instrumentKeysByType")
     public List<String> getInstrumenKeysByType(@RequestParam(name = "InstrumentType") InstrumentType instrumentType);
+
+    @GetMapping("/instrumentsByType")
+    public List<Instrument> getInstrumentsByType(@RequestParam(name = "InstrumentType") InstrumentType instrumentType);
 
     @PostMapping("/downloadInstrumentDailyData")
     public InstrumentDataDownloadResponseDto downloadInstrumentDailyData(@RequestBody DownloadDailyDataRequest request);
