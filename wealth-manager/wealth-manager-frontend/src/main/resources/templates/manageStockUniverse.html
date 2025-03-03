@@ -8,6 +8,7 @@
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<!--    <script  th:src="@{/static/js/manage-stock-universe.js}"></script>-->
     <script  th:src="@{/js/manage-stock-universe.js}"></script>
 
     <title>Bootstrap Example</title>
@@ -31,31 +32,40 @@
 
             <form id="stockUniverseForm" method="post" th:object="${formModel}"
                   th:action="@{/markets/updateStockUniverse}">
-                <input type="hidden" id="isUniverseDropdownChange" name="isUniverseDropdownChange" value=""/>
+<!--                <input type="hidden" id="switchRequest" name="switchRequest" th:attr="value=''"/>-->
+<!--                <input type="hidden" id="deleteRequest" name="deleteRequest" th:attr="value=''"/>-->
+<!--                <input type="hidden" id="createRequest" name="createRequest" th:attr="value=''"/>-->
+<!--                <input type="hidden" id="updateRequest" name="updateRequest" th:attr="value=''"/>-->
+                <input type="hidden" id="switchRequest" name="switchRequest" value=""/>
                 <input type="hidden" id="deleteRequest" name="deleteRequest" value=""/>
+                <input type="hidden" id="createRequest" name="createRequest" value=""/>
+                <input type="hidden" id="updateRequest" name="updateRequest" value=""/>
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">
-                            <input type="radio" name="submitType" th:value="create"
-                                   th:checked="${'create' == selectedSubmitType}"/>
-                            <label th:text="create">create</label>
-                        </th>
-                        <th scope="col">CreateStockUniverse</th>
+<!--                        <th scope="col">-->
+<!--                            <input type="radio" name="submitType" th:value="create"-->
+<!--                                   th:checked="${'create' == selectedSubmitType}"/>-->
+<!--                            <label th:text="create">create</label>-->
+<!--                        </th>-->
                         <th scope="col">
                             <input class="form-control mr-sm-2" type="text" placeholder="" aria-label=""
                                    name="newUniverseName">
                         </th>
                         <th scope="col">
-                            <input type="radio" name="submitType" th:value="update"
-                                   th:checked="${'update' == selectedSubmitType}"/>
-                            <label th:text="update">update</label>
+                            <button class="btn btn-sm btn-outline-success float-right" onclick="createUniverse()">
+                                Create Universe
+                            </button>
                         </th>
-                        <th scope="col">UpdateStockUniverse</th>
+<!--                        <th scope="col">-->
+<!--                            <input type="radio" name="submitType" th:value="update"-->
+<!--                                   th:checked="${'update' == selectedSubmitType}"/>-->
+<!--                            <label th:text="update">update</label>-->
+<!--                        </th>-->
                         <th scope="col">
                             <select id="selectedUniverseName" name="selectedUniverseName" class="form-select"
-                                    aria-label="Default select example" onchange="updateAndSubmit()">
-                                <option value="">Select Universe</option>
+                                    aria-label="Default select example" onchange="switchUniverse()">
+                                <option value="">Select Existing Universe</option>
                                 <option th:each="universeName : ${universeNames}"
                                         th:value="${universeName}"
                                         th:text="${universeName}"
@@ -64,13 +74,13 @@
                             </select>
                         </th>
                         <th scope="col">
-                            <button class="btn btn-sm btn-outline-success float-right" type="submit">
-                                Submit
+                            <button class="btn btn-sm btn-outline-success float-right" onclick="updateUniverse()">
+                                Update Universe
                             </button>
                         </th>
                         <th scope="col">
-                            <button class="btn btn-sm btn-outline-success float-right" onclick="updateAndDelete()">
-                                Delete
+                            <button class="btn btn-sm btn-outline-success float-right" onclick="deleteUniverse()">
+                                Delete Universe
                             </button>
                         </th>
                     </tr>

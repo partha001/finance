@@ -2,3 +2,28 @@ for displaying list from model attribute
 <p th:each="emailAddress : ${emailModelAttribute.getEmailAddresses()}">
     <span th:text="${emailAddress}"></span>
 </p>
+
+
+
+to have a checkbox checked based on condition
+                        <tr th:each="equityPartition : ${equityPartitions}">
+                            <td th:each="equity : ${equityPartition}">
+                                <input type="checkbox" name="selectedEquities" th:value="${equity.key}"
+                                       th:checked="${equitySet.contains(equity.key)}"/>
+                                <label th:text="${equity.name}"></label>
+                            </td>
+                        </tr>
+
+
+ radio buttons based upon condition
+                         <th scope="col">
+                             <input type="radio" name="submitType" th:value="update"
+                                    th:checked="${'update' == selectedSubmitType}"/>
+                             <label th:text="update">update</label>
+                         </th>
+
+                         <th scope="col">
+                             <input type="radio" name="submitType" th:value="create"
+                                    th:checked="${'create' == selectedSubmitType}"/>
+                             <label th:text="create">create</label>
+                         </th>
