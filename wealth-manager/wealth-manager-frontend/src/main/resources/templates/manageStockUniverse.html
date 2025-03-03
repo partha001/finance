@@ -10,7 +10,12 @@
 
     <title>Bootstrap Example</title>
 
-
+    <script>
+        function updateAndSubmit() {
+            document.getElementById('isUniverseDropdownChange').value = 'true';
+            document.getElementById('stockUniverseForm').submit();
+    }
+    </script>
 </head>
 
 <body>
@@ -29,12 +34,15 @@
     <div class="row">
         <div class="col-lg-12 body-style">
 
-            <form id="stockUniverseForm" method="post" th:object="${formModel}" th:action="@{/markets/updateStockUniverse}">
+            <form id="stockUniverseForm" method="post" th:object="${formModel}"
+                  th:action="@{/markets/updateStockUniverse}">
+                <input type="hidden" id="isUniverseDropdownChange" name="isUniverseDropdownChange" value=""/>
                 <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">
-                            <input type="radio" name="submitType" th:value="create" th:checked="${'create' == selectedSubmitType}"/>
+                            <input type="radio" name="submitType" th:value="create"
+                                   th:checked="${'create' == selectedSubmitType}"/>
                             <label th:text="create">create</label>
                         </th>
                         <th scope="col">CreateStockUniverse</th>
@@ -43,14 +51,15 @@
                                    name="newUniverseName">
                         </th>
                         <th scope="col">
-                            <input type="radio" name="submitType" th:value="update" th:checked="${'update' == selectedSubmitType}"/>
+                            <input type="radio" name="submitType" th:value="update"
+                                   th:checked="${'update' == selectedSubmitType}"/>
                             <label th:text="update">update</label>
                         </th>
                         <th scope="col">UpdateStockUniverse</th>
                         <th scope="col">
                             <select id="selectedUniverseName" name="selectedUniverseName" class="form-select"
-                                    aria-label="Default select example">
-                                <option value="">Select instrument name</option>
+                                    aria-label="Default select example" onchange="updateAndSubmit()">
+                                <option value="">Select Universe</option>
                                 <option th:each="universeName : ${universeNames}"
                                         th:value="${universeName}"
                                         th:text="${universeName}"
@@ -77,8 +86,8 @@
                     <table class="table">
                         <tr th:each="equityPartition : ${equityPartitions}">
                             <td th:each="equity : ${equityPartition}">
-<!--                                <input type="checkbox" name="selectedEquities" th:field="*{selectedEquities}" th:value="${equity.key}"/>-->
-                                <input type="checkbox" name="selectedEquities" th:value="${equity.key}"/>
+                                <input type="checkbox" name="selectedEquities" th:value="${equity.key}"
+                                       th:checked="${equitySet.contains(equity.key)}"/>
                                 <label th:text="${equity.name}"></label>
                             </td>
                         </tr>
@@ -90,15 +99,12 @@
                     <table class="table">
                         <tr th:each="indexPartition : ${indexPartitions}">
                             <td th:each="index : ${indexPartition}">
-<!--                                <input type="checkbox" name="selectedIndices" th:field="*{selectedIndices}" th:value="${index.id}"/>-->
-                                <input type="checkbox" name="selectedIndices"  th:value="${index.id}"/>
+                                <input type="checkbox" name="selectedIndices" th:value="${index.id}"/>
                                 <label th:text="${index.name}"></label>
                             </td>
                         </tr>
                     </table>
                 </div>
-
-
             </form>
 
 

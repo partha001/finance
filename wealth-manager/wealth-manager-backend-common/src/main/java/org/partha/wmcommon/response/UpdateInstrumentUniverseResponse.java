@@ -10,7 +10,7 @@ import org.partha.wmcommon.entities.InstrumentUniverse;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CreateInstrumentUniverseResponse {
+public class UpdateInstrumentUniverseResponse {
     private String message;
     private InstrumentUniverse instrumentUniverse;
     private String operationStatus;

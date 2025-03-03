@@ -8,6 +8,7 @@ import org.partha.wmclient.client.*;
 import org.partha.wmcommon.InstrumentNameComparator;
 import org.partha.wmcommon.constants.Constants;
 import org.partha.wmcommon.entities.Instrument;
+import org.partha.wmcommon.entities.InstrumentUniverseDetail;
 import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
@@ -16,10 +17,8 @@ import org.partha.wmcommon.model.InstrumentUniverseModel;
 import org.partha.wmcommon.request.ChartDataRequest;
 import org.partha.wmcommon.request.CreateInstrumentUniverseRequest;
 import org.partha.wmcommon.request.DownloadDailyDataRequest;
-import org.partha.wmcommon.response.CreateInstrumentUniverseResponse;
-import org.partha.wmcommon.response.DividendChartDto;
-import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
-import org.partha.wmcommon.response.ResponseDto;
+import org.partha.wmcommon.request.UpdateInstrumentUniverseRequest;
+import org.partha.wmcommon.response.*;
 import org.partha.wmcommon.util.DateUtil;
 import org.partha.wmfrontend.util.WmUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.partha.wmcommon.constants.Constants.DATE_FORMAT2;
 
@@ -83,9 +83,10 @@ public class WmService {
 
 
     public void getMarketsManageInstrumentUniverse(Model model) {
+        model.addAttribute("equitySet", new HashSet<String>());
         model.addAttribute("formModel", new InstrumentUniverseModel());
         model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
-        model.addAttribute("selectedSubmitType", "update");
+        model.addAttribute("selectedSubmitType", "create");
         populateInstrumentListForInstrumentUniverse(model);
     }
 
@@ -94,33 +95,42 @@ public class WmService {
         String selectedUniverseName = formModel.getSelectedUniverseName();
         String submitType = formModel.getSubmitType();
         populateInstrumentListForInstrumentUniverse(model);
-        log.info("submitType:{} newUniverseName:{} selectedUniverseName:{}", submitType, newUniverseName, selectedUniverseName);
-        if (submitType.equals("create")) {
-            if (Strings.isNullOrEmpty(newUniverseName)) {
-                model.addAttribute("message", "please provide a universe-name");
-                return;
-            }
-            Set<String> allInstrumentUniverseNames = instrumentUniverserControllerClient.getAllInstrumentUniverseNames();
-            if (allInstrumentUniverseNames.contains(newUniverseName)) {
-                model.addAttribute("message", "universeName already exists . please enter a different name.");
-            } else {
-                CreateInstrumentUniverseRequest createInstrumentUniverseRequest = CreateInstrumentUniverseRequest.builder()
-                        .name(newUniverseName)
-                        .build();
-                CreateInstrumentUniverseResponse instrumentUniverseResponse = instrumentUniverserControllerClient
-                        .createInstrumentUniverse(createInstrumentUniverseRequest);
-                if (instrumentUniverseResponse.getMessage().equals(Constants.SUCCESS)) {
-                    model.addAttribute("message", "universe creation successful");
-                    model.addAttribute("selectedUniverseName", newUniverseName);
-                } else {
-                    model.addAttribute("message", "universe creation failed");
-                }
-                model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
-                model.addAttribute("selectedSubmitType", "update");
-            }
-        } else if (submitType.equals("update")) {
+        if (!Strings.isNullOrEmpty(formModel.getIsUniverseDropdownChange()) && formModel.getIsUniverseDropdownChange().equals("true")) {
             model.addAttribute("selectedSubmitType", "update");
             model.addAttribute("selectedUniverseName", selectedUniverseName);
+            model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
+            List<InstrumentUniverseDetail> instrumentDetails = instrumentUniverserControllerClient.getInstrumentUniverseDetailsByUniverseName(selectedUniverseName);
+            Set<String> equitySet = instrumentDetails.stream().map(item -> item.getInstrumentKey()).collect(Collectors.toSet());
+            model.addAttribute("equitySet", equitySet);
+            return;
+        }
+        log.info("submitType:{} newUniverseName:{} selectedUniverseName:{}", submitType, newUniverseName, selectedUniverseName);
+        if (submitType.equals("create")) {
+            CreateInstrumentUniverseRequest request = CreateInstrumentUniverseRequest.builder()
+                    .name(newUniverseName)
+                    .build();
+            CreateInstrumentUniverseResponse response = instrumentUniverserControllerClient
+                    .createInstrumentUniverse(request);
+            if (response.getOperationStatus().equals(Constants.SUCCESS)) {
+                model.addAttribute("selectedUniverseName", newUniverseName);
+                model.addAttribute("selectedSubmitType", "update");
+            } else {
+                model.addAttribute("selectedUniverseName", "");
+                model.addAttribute("selectedSubmitType", "create");
+            }
+            model.addAttribute("equitySet", new HashSet<String>());
+            model.addAttribute("message", response.getMessage());
+            model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
+        } else if (submitType.equals("update")) {
+            UpdateInstrumentUniverseRequest request = UpdateInstrumentUniverseRequest.builder()
+                    .name(selectedUniverseName)
+                    .instrumentKeyList(Set.of(formModel.getSelectedEquities()))
+                    .build();
+            UpdateInstrumentUniverseResponse response = instrumentUniverserControllerClient.updateInstrumentUniverse(request);
+            model.addAttribute("message", response.getMessage());
+            model.addAttribute("selectedSubmitType", "update");
+            model.addAttribute("selectedUniverseName", selectedUniverseName);
+            model.addAttribute("equitySet", Set.of(formModel.getSelectedEquities()));
             model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
         }
     }
