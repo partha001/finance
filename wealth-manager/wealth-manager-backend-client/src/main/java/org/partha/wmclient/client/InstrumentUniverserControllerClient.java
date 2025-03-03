@@ -4,6 +4,7 @@ import org.partha.wmcommon.entities.InstrumentUniverseDetail;
 import org.partha.wmcommon.request.CreateInstrumentUniverseRequest;
 import org.partha.wmcommon.request.UpdateInstrumentUniverseRequest;
 import org.partha.wmcommon.response.CreateInstrumentUniverseResponse;
+import org.partha.wmcommon.response.DeleteInstrumentUniverseResponse;
 import org.partha.wmcommon.response.UpdateInstrumentUniverseResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,9 @@ public interface InstrumentUniverserControllerClient {
 
     @PostMapping("/updateInstrumentUniverse")
     UpdateInstrumentUniverseResponse updateInstrumentUniverse(@RequestBody UpdateInstrumentUniverseRequest request);
+
+    @PostMapping("/deleteInstrumentUniverseByName")
+    public DeleteInstrumentUniverseResponse deleteInstrumentUniverseByName(@RequestParam String universeName);
 
     @GetMapping("/getAllInstrumentUniverseNames")
     Set<String> getAllInstrumentUniverseNames();

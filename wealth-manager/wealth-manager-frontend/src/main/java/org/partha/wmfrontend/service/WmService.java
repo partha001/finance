@@ -95,7 +95,7 @@ public class WmService {
         String selectedUniverseName = formModel.getSelectedUniverseName();
         String submitType = formModel.getSubmitType();
         populateInstrumentListForInstrumentUniverse(model);
-        if (!Strings.isNullOrEmpty(formModel.getIsUniverseDropdownChange()) && formModel.getIsUniverseDropdownChange().equals("true")) {
+        if (!Strings.isNullOrEmpty(formModel.getIsUniverseDropdownChange()) && formModel.getIsUniverseDropdownChange().equals("true")) { //for drop-down change
             model.addAttribute("selectedSubmitType", "update");
             model.addAttribute("selectedUniverseName", selectedUniverseName);
             model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
@@ -104,7 +104,23 @@ public class WmService {
             model.addAttribute("equitySet", equitySet);
             return;
         }
-        log.info("submitType:{} newUniverseName:{} selectedUniverseName:{}", submitType, newUniverseName, selectedUniverseName);
+        if (!Strings.isNullOrEmpty(formModel.getDeleteRequest()) && formModel.getDeleteRequest().equals("true")) {  //for-delete
+            DeleteInstrumentUniverseResponse response = instrumentUniverserControllerClient.deleteInstrumentUniverseByName(selectedUniverseName);
+            model.addAttribute("message", response.getMessage());
+            model.addAttribute("equitySet", new HashSet<String>());
+            if(response.getOperationStatus().equals(Constants.SUCCESS)){
+                model.addAttribute("selectedSubmitType", "create");
+                model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
+                model.addAttribute("formModel", new InstrumentUniverseModel());
+            }else{
+                model.addAttribute("selectedSubmitType", submitType);
+                //model.addAttribute("equitySet", Set.of(formModel.getSelectedEquities()));
+                model.addAttribute("formModel", formModel);
+                model.addAttribute("selectedUniverseName", selectedUniverseName);
+                model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
+            }
+            return;
+        }
         if (submitType.equals("create")) {
             CreateInstrumentUniverseRequest request = CreateInstrumentUniverseRequest.builder()
                     .name(newUniverseName)
@@ -121,17 +137,28 @@ public class WmService {
             model.addAttribute("equitySet", new HashSet<String>());
             model.addAttribute("message", response.getMessage());
             model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
+            return;
         } else if (submitType.equals("update")) {
-            UpdateInstrumentUniverseRequest request = UpdateInstrumentUniverseRequest.builder()
-                    .name(selectedUniverseName)
-                    .instrumentKeyList(Set.of(formModel.getSelectedEquities()))
-                    .build();
-            UpdateInstrumentUniverseResponse response = instrumentUniverserControllerClient.updateInstrumentUniverse(request);
-            model.addAttribute("message", response.getMessage());
+            if(formModel.getSelectedEquities()!=null && formModel.getSelectedEquities().length>0){
+                UpdateInstrumentUniverseRequest request = UpdateInstrumentUniverseRequest.builder()
+                        .name(selectedUniverseName)
+                        .instrumentKeyList(Set.of(formModel.getSelectedEquities()))
+                        .build();
+                UpdateInstrumentUniverseResponse response = instrumentUniverserControllerClient.updateInstrumentUniverse(request);
+            }
+
+            model.addAttribute("message", "saved");
             model.addAttribute("selectedSubmitType", "update");
             model.addAttribute("selectedUniverseName", selectedUniverseName);
-            model.addAttribute("equitySet", Set.of(formModel.getSelectedEquities()));
+            Set<String> equitySet = null;
+            if(formModel.getSelectedEquities()!=null && formModel.getSelectedEquities().length>0){
+                equitySet = Set.of(formModel.getSelectedEquities());
+            }else{
+                equitySet = new HashSet<String>();
+            }
+            model.addAttribute("equitySet", equitySet);
             model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
+            return;
         }
     }
 

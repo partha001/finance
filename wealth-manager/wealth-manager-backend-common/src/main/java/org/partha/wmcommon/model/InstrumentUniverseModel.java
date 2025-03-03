@@ -18,5 +18,6 @@ public class InstrumentUniverseModel {
     private String selectedUniverseName;
     private String submitType;
     private String isUniverseDropdownChange;
+    private String deleteRequest;
 
 }

@@ -8,6 +8,7 @@ import org.partha.wmcommon.entities.InstrumentUniverseDetail;
 import org.partha.wmcommon.request.CreateInstrumentUniverseRequest;
 import org.partha.wmcommon.request.UpdateInstrumentUniverseRequest;
 import org.partha.wmcommon.response.CreateInstrumentUniverseResponse;
+import org.partha.wmcommon.response.DeleteInstrumentUniverseResponse;
 import org.partha.wmcommon.response.UpdateInstrumentUniverseResponse;
 import org.partha.wmservice.repositories.InstrumentUniverseDetailRepository;
 import org.partha.wmservice.repositories.InstrumentUniverseMasterRepository;
@@ -92,5 +93,28 @@ public class InstrumentUniverseService {
     public List<InstrumentUniverseDetail> getInstrumentUniverseDetailsByUniverseName(String universeName) {
         InstrumentUniverse universe = instrumentUniverseMasterRepository.findByName(universeName).get();
         return instrumentUniverseDetailRepository.findByInstrumentUniverseMasterId(universe.getId());
+    }
+
+    public DeleteInstrumentUniverseResponse deleteInstrumentUniverseByName(String universeName) {
+        if(Strings.isNullOrEmpty(universeName)){
+            return DeleteInstrumentUniverseResponse.builder()
+                    .operationStatus(Constants.FAILED)
+                    .message("select universe name to delete")
+                    .build();
+        }
+        Optional<InstrumentUniverse> universeOptional = instrumentUniverseMasterRepository.findByName(universeName);
+        if(universeOptional.isEmpty()){
+            return DeleteInstrumentUniverseResponse.builder()
+                    .operationStatus(Constants.FAILED)
+                    .message(String.format("universe-name: %s not found", universeName))
+                    .build();
+        }
+        instrumentUniverseDetailRepository.deleteByInstrumentUniverseMasterId(universeOptional.get().getId());
+        instrumentUniverseMasterRepository.delete(universeOptional.get());
+
+        return DeleteInstrumentUniverseResponse.builder()
+                .operationStatus(Constants.SUCCESS)
+                .message(String.format("universe-name: %s deleted successfully", universeName))
+                .build();
     }
 }

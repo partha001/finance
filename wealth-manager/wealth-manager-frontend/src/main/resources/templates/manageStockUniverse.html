@@ -7,15 +7,10 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script  th:src="@{/js/manage-stock-universe.js}"></script>
 
     <title>Bootstrap Example</title>
-
-    <script>
-        function updateAndSubmit() {
-            document.getElementById('isUniverseDropdownChange').value = 'true';
-            document.getElementById('stockUniverseForm').submit();
-    }
-    </script>
 </head>
 
 <body>
@@ -37,6 +32,7 @@
             <form id="stockUniverseForm" method="post" th:object="${formModel}"
                   th:action="@{/markets/updateStockUniverse}">
                 <input type="hidden" id="isUniverseDropdownChange" name="isUniverseDropdownChange" value=""/>
+                <input type="hidden" id="deleteRequest" name="deleteRequest" value=""/>
                 <table class="table">
                     <thead>
                     <tr>
@@ -70,6 +66,11 @@
                         <th scope="col">
                             <button class="btn btn-sm btn-outline-success float-right" type="submit">
                                 Submit
+                            </button>
+                        </th>
+                        <th scope="col">
+                            <button class="btn btn-sm btn-outline-success float-right" onclick="updateAndDelete()">
+                                Delete
                             </button>
                         </th>
                     </tr>
