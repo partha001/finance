@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
+import org.partha.wmcommon.model.DataSetupForUniverseModel;
 import org.partha.wmcommon.model.InstrumentUniverseModel;
 import org.partha.wmfrontend.service.WmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,12 @@ public class WmController {
     public ModelAndView postMarketsDatasetup(@RequestParam Map<String, Object> inputMap, ModelMap map) {
         wmService.postMarketsDatasetup(inputMap, map);
         return new ModelAndView("marketsDatasetup", map);
+    }
+
+    @PostMapping(value = "/markets/dataSetupForUniverse")
+    public String postMarketsDatasetupForUniverse(Model modelOutput, @ModelAttribute DataSetupForUniverseModel modelInput) {
+        wmService.postMarketsDatasetupForUniverse(modelOutput, modelInput);
+        return "marketsDatasetup";
     }
 
     @GetMapping(value = "/markets/analyseData")

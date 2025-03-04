@@ -29,6 +29,8 @@ public class InstrumentController {
         return instrumentService.downloadInstrumentDailyData(request);
     }
 
+
+
     @Operation(summary = "gets instrument keys by type",
             description = "gets instrument keys by type i.e. EQUITY/INDEX/COMMODITY")
     @GetMapping("/instrumentKeysByType")
@@ -77,6 +79,4 @@ public class InstrumentController {
     public String getTechnicalChartData(@RequestBody ChartDataRequest request) throws JsonProcessingException {
         return instrumentService.getTechnicalChartData(request);
     }
-
-
 }

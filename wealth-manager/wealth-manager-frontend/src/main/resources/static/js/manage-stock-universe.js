@@ -1,6 +1,9 @@
 function switchUniverse() {
-    document.getElementById('switchRequest').value = 'true';
-    document.getElementById('stockUniverseForm').submit();
+//    alert(document.getElementById('selectedUniverseName').value)
+    if(document.getElementById('selectedUniverseName').value!=""){
+        document.getElementById('switchRequest').value = 'true';
+        document.getElementById('stockUniverseForm').submit();
+    }
 }
 function deleteUniverse() {
     document.getElementById('deleteRequest').value = 'true';

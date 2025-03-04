@@ -2,7 +2,6 @@ package org.partha.wmfrontend.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
-import io.swagger.v3.oas.models.links.Link;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections4.ListUtils;
 import org.partha.wmclient.client.*;
@@ -14,6 +13,7 @@ import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
 import org.partha.wmcommon.enums.InstrumentType;
+import org.partha.wmcommon.model.DataSetupForUniverseModel;
 import org.partha.wmcommon.model.InstrumentUniverseModel;
 import org.partha.wmcommon.request.ChartDataRequest;
 import org.partha.wmcommon.request.CreateInstrumentUniverseRequest;
@@ -69,12 +69,10 @@ public class WmService {
     }
 
 
-
     public void getMarketsManageInstrumentUniverse(Model model) {
         model.addAttribute("equitySet", new HashSet<String>());
         model.addAttribute("formModel", new InstrumentUniverseModel());
         model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
-        //model.addAttribute("selectedSubmitType", "create");
         populateInstrumentListForInstrumentUniverse(model);
     }
 
@@ -90,23 +88,21 @@ public class WmService {
             model.addAttribute("equitySet", equitySet);
             populateInstrumentListForInstrumentUniverse(model, equitySet, new HashSet<String>());
             return;
-        }
-        if (formModel.getDeleteRequest().equals("true")) {
+        } else if (formModel.getDeleteRequest().equals("true")) {
             DeleteInstrumentUniverseResponse response = instrumentUniverserControllerClient.deleteInstrumentUniverseByName(selectedUniverseName);
             model.addAttribute("message", response.getMessage());
             model.addAttribute("equitySet", new HashSet<String>());
             populateInstrumentListForInstrumentUniverse(model);
-            if(response.getOperationStatus().equals(Constants.SUCCESS)){
+            if (response.getOperationStatus().equals(Constants.SUCCESS)) {
                 model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
                 model.addAttribute("formModel", new InstrumentUniverseModel());
-            }else{
+            } else {
                 model.addAttribute("formModel", formModel);
                 model.addAttribute("selectedUniverseName", selectedUniverseName);
                 model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
             }
             return;
-        }
-        if (formModel.getCreateRequest().equals("true")) {
+        } else if (formModel.getCreateRequest().equals("true")) {
             CreateInstrumentUniverseRequest request = CreateInstrumentUniverseRequest.builder()
                     .name(newUniverseName)
                     .build();
@@ -123,24 +119,27 @@ public class WmService {
             model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
             return;
         } else if (formModel.getUpdateRequest().equals("true")) {
-            if(formModel.getSelectedEquities()!=null && formModel.getSelectedEquities().length>0){
+            if (Strings.isNullOrEmpty(formModel.getSelectedUniverseName())) {
+                model.addAttribute("message", "select a universe-name to save");
+            } else if (formModel.getSelectedEquities() != null && formModel.getSelectedEquities().length > 0) {
                 UpdateInstrumentUniverseRequest request = UpdateInstrumentUniverseRequest.builder()
                         .name(selectedUniverseName)
                         .instrumentKeyList(Set.of(formModel.getSelectedEquities()))
                         .build();
                 UpdateInstrumentUniverseResponse response = instrumentUniverserControllerClient.updateInstrumentUniverse(request);
+                model.addAttribute("message", "saved");
             }
 
-            model.addAttribute("message", "saved");
+
             model.addAttribute("selectedUniverseName", selectedUniverseName);
             Set<String> equitySet = null;
-            if(formModel.getSelectedEquities()!=null && formModel.getSelectedEquities().length>0){
+            if (formModel.getSelectedEquities() != null && formModel.getSelectedEquities().length > 0) {
                 equitySet = Set.of(formModel.getSelectedEquities());
-            }else{
+            } else {
                 equitySet = new HashSet<String>();
             }
             model.addAttribute("equitySet", equitySet);
-            populateInstrumentListForInstrumentUniverse(model,equitySet, new HashSet<String>());
+            populateInstrumentListForInstrumentUniverse(model, equitySet, new HashSet<String>());
             model.addAttribute("universeNames", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
             return;
         }
@@ -161,16 +160,16 @@ public class WmService {
     }
 
 
-    private void populateInstrumentListForInstrumentUniverse(Model model, Set<String> equitySet,Set<String> indexSet) {
+    private void populateInstrumentListForInstrumentUniverse(Model model, Set<String> equitySet, Set<String> indexSet) {
         //gettting equity list
         List<Instrument> equityList = instrumentControllerClient.getInstrumentsByType(InstrumentType.EQUITY);
         Collections.sort(equityList, new InstrumentNameComparator());
         List<Instrument> equityInUniverseList = new LinkedList<>();
         List<Instrument> equityNotInUniverseList = new LinkedList<>();
         equityList.stream().forEach(item -> {
-            if(equitySet.contains(item.getKey())){
+            if (equitySet.contains(item.getKey())) {
                 equityInUniverseList.add(item);
-            }else{
+            } else {
                 equityNotInUniverseList.add(item);
             }
         });
@@ -212,6 +211,29 @@ public class WmService {
         map.put("fromHiddenField", "");
         map.put("downloadDataButton_Disabled", false);
         map.put("htmlString", "");
+        map.put("universeList", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
+        map.put("dataSetupForUniverseModel", new DataSetupForUniverseModel());
+        map.put("selectedUniverse", "");
+    }
+
+    public void postMarketsDatasetupForUniverse(Model modelOutput, DataSetupForUniverseModel modelInput) {
+        modelOutput.addAttribute("instrumentTypes", WmUtil.getInstrumentTypes());
+        modelOutput.addAttribute("selectedInstrumentType", "");
+        modelOutput.addAttribute("selectedInstrumentName", "");
+        modelOutput.addAttribute("fromHiddenField", "");
+        modelOutput.addAttribute("downloadDataButton_Disabled", false);
+        modelOutput.addAttribute("htmlString", "");
+
+        //download data for stock-universe
+        if(Strings.isNullOrEmpty(modelInput.getSelectedUniverse())){
+            modelOutput.addAttribute("downloadResponseMessage", "select universe to get data");
+        }else{
+
+        }
+
+        modelOutput.addAttribute("universeList", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
+        modelOutput.addAttribute("dataSetupForUniverseModel", new DataSetupForUniverseModel());
+        modelOutput.addAttribute("selectedUniverse", modelInput.getSelectedUniverse());
     }
 
 
@@ -221,6 +243,8 @@ public class WmService {
         map.put("instrumentTypes", WmUtil.getInstrumentTypes());
         map.put("selectedInstrumentType", selectedInstrumentType);
         map.put("selectedInstrumentName", selectedInstrumentName);
+        map.put("selectedUniverse", "");
+        map.put("universeList", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
 
         if (!Strings.isNullOrEmpty(selectedInstrumentType))
             map.put("instrumentKeys", instrumentControllerClient.getInstrumenKeysByType(InstrumentType.valueOf(selectedInstrumentType)));

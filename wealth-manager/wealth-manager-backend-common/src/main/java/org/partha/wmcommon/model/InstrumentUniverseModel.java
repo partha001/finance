@@ -16,8 +16,9 @@ public class InstrumentUniverseModel {
     private String[] selectedIndices;
     private String newUniverseName;
     private String selectedUniverseName;
-    private String submitType;
-    private String isUniverseDropdownChange;
     private String deleteRequest;
+    private String switchRequest;
+    private String createRequest;
+    private String updateRequest;
 
 }
