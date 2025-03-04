@@ -1,5 +1,4 @@
 function switchUniverse() {
-//    alert(document.getElementById('selectedUniverseName').value)
     if(document.getElementById('selectedUniverseName').value!=""){
         document.getElementById('switchRequest').value = 'true';
         document.getElementById('stockUniverseForm').submit();

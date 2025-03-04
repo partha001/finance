@@ -1,5 +1,6 @@
 package org.partha.wmfrontend.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
 import lombok.extern.log4j.Log4j2;
@@ -69,7 +70,6 @@ public class WmService {
         return response;
     }
 
-
     public void getMarketsManageInstrumentUniverse(Model model) {
         model.addAttribute("equitySet", new HashSet<String>());
         model.addAttribute("formModel", new InstrumentUniverseModel());
@@ -130,7 +130,6 @@ public class WmService {
                 UpdateInstrumentUniverseResponse response = instrumentUniverserControllerClient.updateInstrumentUniverse(request);
                 model.addAttribute("message", "saved");
             }
-
 
             model.addAttribute("selectedUniverseName", selectedUniverseName);
             Set<String> equitySet = null;
@@ -209,109 +208,42 @@ public class WmService {
         map.put("selectedInstrumentType", "");
         map.put("selectedInstrumentName", "");
         map.put("fromHiddenField", "");
-        map.put("downloadDataButton_Disabled", false);
         map.put("htmlString", "");
         map.put("universeList", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
-        map.put("dataSetupForUniverseModel", new DataSetupForUniverseModel());
         map.put("selectedUniverse", "");
+        map.put("dataSetupModel", new DataSetupModel());
     }
 
-//    public void postMarketsDatasetupForUniverse(Model modelOutput, DataSetupForUniverseModel modelInput) {
-//        modelOutput.addAttribute("instrumentTypes", WmUtil.getInstrumentTypes());
-//        modelOutput.addAttribute("selectedInstrumentType", "");
-//        modelOutput.addAttribute("selectedInstrumentName", "");
-//        modelOutput.addAttribute("fromHiddenField", "");
-//        modelOutput.addAttribute("downloadDataButton_Disabled", false);
-//        modelOutput.addAttribute("htmlString", "");
-//
-//        //download data for stock-universe
-//        if(Strings.isNullOrEmpty(modelInput.getSelectedUniverse())){
-//            modelOutput.addAttribute("downloadResponseMessage", "select universe to get data");
-//        }else{
-//
-//        }
-//
-//        modelOutput.addAttribute("universeList", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
-//        modelOutput.addAttribute("dataSetupForUniverseModel", new DataSetupForUniverseModel());
-//        modelOutput.addAttribute("selectedUniverse", modelInput.getSelectedUniverse());
-//    }
-
-    public void postMarketsDatasetup(DataSetupModel modelInput, Model modelOutput) {
-        String selectedInstrumentType = modelInput.getInstrumentType();
-        String selectedInstrumentName = modelInput.getInstrumentName();
+    public void postMarketsDatasetup(DataSetupModel modelInput, Model modelOutput) throws JsonProcessingException {
         modelOutput.addAttribute("instrumentTypes", WmUtil.getInstrumentTypes());
-        modelOutput.addAttribute("selectedInstrumentType", selectedInstrumentType);
-        modelOutput.addAttribute("selectedInstrumentName", selectedInstrumentName);
-        modelOutput.addAttribute("selectedUniverse", "");
+        modelOutput.addAttribute("selectedInstrumentType", modelInput.getInstrumentType());
+        modelOutput.addAttribute("selectedInstrumentName", modelInput.getInstrumentName());
         modelOutput.addAttribute("universeList", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
+        modelOutput.addAttribute("dataSetupModel", modelInput);
+        if (modelInput.getRequestType().equals("instrumentTypeChange")) {
+            modelOutput.addAttribute("instrumentKeys", instrumentControllerClient.getInstrumenKeysByType(InstrumentType.valueOf(modelInput.getInstrumentType())));
+        } else if (modelInput.getRequestType().equals("downloadInstrumentDailyData")) {
+            modelOutput.addAttribute("instrumentKeys", instrumentControllerClient.getInstrumenKeysByType(InstrumentType.valueOf(modelInput.getInstrumentType())));
+            DownloadDailyDataRequest downloadDailyDatarequest = DownloadDailyDataRequest.builder()
+                    .key(modelInput.getInstrumentName())
+                    .startDate("2010-01-01")
+                    .endDate(DateUtil.convertUtilDateToFormattedString(new Date(), DATE_FORMAT2))
+                    .build();
+            InstrumentDataDownloadResponseDto dto = instrumentControllerClient.downloadInstrumentDailyData(downloadDailyDatarequest);
 
-        if (!Strings.isNullOrEmpty(selectedInstrumentType))
-            modelOutput.addAttribute("instrumentKeys", instrumentControllerClient.getInstrumenKeysByType(InstrumentType.valueOf(selectedInstrumentType)));
-
-        if (!Strings.isNullOrEmpty(modelInput.getDownloadDataFlag())) {
-            try {
-                DownloadDailyDataRequest downloadDailyDatarequest = DownloadDailyDataRequest.builder()
-                        .key(selectedInstrumentName)
-                        .startDate("2010-01-01")
-                        .endDate(DateUtil.convertUtilDateToFormattedString(new Date(), DATE_FORMAT2))
-                        .build();
-                InstrumentDataDownloadResponseDto dto = instrumentControllerClient.downloadInstrumentDailyData(downloadDailyDatarequest);
-
-                modelOutput.addAttribute("downloadResponseMessage", String.format("download successful. records fetched: %s  records saved:%s", dto.getRecordsFetched(), dto.getRecordsInserted()));
-                log.info("data download successful");
-
-                ChartDataRequest chartDataRequest = ChartDataRequest.builder()
-                        .key(selectedInstrumentName)
-                        .build();
-                log.info("request payload: {}", mapper.writeValueAsString(chartDataRequest));
-                modelOutput.addAttribute("htmlString", instrumentControllerClient.getTechnicalChartData(chartDataRequest));
-
-            } catch (Exception ex) {
-                log.error("exception occurred:", ex);
-                modelOutput.addAttribute("downloadResponseMessage", "error occurred while downloading data");
-            }
+            modelOutput.addAttribute("downloadResponseMessage", String.format("download successful. records fetched: %s  records saved:%s", dto.getRecordsFetched(), dto.getRecordsInserted()));
+            log.info("data download successful");
+            ChartDataRequest chartDataRequest = ChartDataRequest.builder()
+                    .key(modelInput.getInstrumentName())
+                    .build();
+            log.info("request payload: {}", mapper.writeValueAsString(chartDataRequest));
+            modelOutput.addAttribute("htmlString", instrumentControllerClient.getTechnicalChartData(chartDataRequest));
+        } else if (modelInput.getRequestType().equals("downloadUniverseDailyData")) {
+            log.info("universeDailyData download requested for : {}", modelInput.getUniverseName());
+            modelOutput.addAttribute("selectedUniverse",modelInput.getUniverseName());
+            modelOutput.addAttribute("downloadResponseMessage", "select universe to get data");
         }
     }
-
-
-//    public void postMarketsDatasetup(Map<String, Object> inputMap, ModelMap map) {
-//        String selectedInstrumentType = inputMap.get("instrumentType").toString();
-//        String selectedInstrumentName = inputMap.get("instrumentName").toString();
-//        map.put("instrumentTypes", WmUtil.getInstrumentTypes());
-//        map.put("selectedInstrumentType", selectedInstrumentType);
-//        map.put("selectedInstrumentName", selectedInstrumentName);
-//        map.put("selectedUniverse", "");
-//        map.put("universeList", instrumentUniverserControllerClient.getAllInstrumentUniverseNames());
-//
-//        if (!Strings.isNullOrEmpty(selectedInstrumentType))
-//            map.put("instrumentKeys", instrumentControllerClient.getInstrumenKeysByType(InstrumentType.valueOf(selectedInstrumentType)));
-//
-//
-//        System.out.println("downloadDataFlag:" + inputMap.get("downloadDataFlag").toString());
-//        if (!Strings.isNullOrEmpty(inputMap.get("downloadDataFlag").toString())) {
-//            try {
-//                DownloadDailyDataRequest downloadDailyDatarequest = DownloadDailyDataRequest.builder()
-//                        .key(selectedInstrumentName)
-//                        .startDate("2010-01-01")
-//                        .endDate(DateUtil.convertUtilDateToFormattedString(new Date(), DATE_FORMAT2))
-//                        .build();
-//                InstrumentDataDownloadResponseDto dto = instrumentControllerClient.downloadInstrumentDailyData(downloadDailyDatarequest);
-//
-//                map.put("downloadResponseMessage", String.format("download successful. records fetched: %s  records saved:%s", dto.getRecordsFetched(), dto.getRecordsInserted()));
-//                log.info("data download successful");
-//
-//                ChartDataRequest chartDataRequest = ChartDataRequest.builder()
-//                        .key(selectedInstrumentName)
-//                        .build();
-//                log.info("request payload: {}", mapper.writeValueAsString(chartDataRequest));
-//                map.put("htmlString", instrumentControllerClient.getTechnicalChartData(chartDataRequest));
-//
-//            } catch (Exception ex) {
-//                log.error("exception occurred:", ex);
-//                map.put("downloadResponseMessage", "error occurred while downloading data");
-//            }
-//        }
-//    }
 
     public void getHoldingsImportHoldings(ModelMap map) {
         map.put("importFormats", WmUtil.getHoldingImportFormats());

@@ -12,5 +12,6 @@ import lombok.*;
 public class DataSetupModel {
     private String instrumentType;
     private String instrumentName;
-    private String downloadDataFlag;
+    private String universeName;
+    private String requestType;
 }
