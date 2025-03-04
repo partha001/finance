@@ -1,10 +1,13 @@
 package org.partha.wmfrontend.controllers;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.log4j.Log4j2;
 import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
+import org.partha.wmcommon.model.DataSetupForUniverseModel;
+import org.partha.wmcommon.model.DataSetupModel;
 import org.partha.wmcommon.model.InstrumentUniverseModel;
 import org.partha.wmfrontend.service.WmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,10 +63,11 @@ public class WmController {
     }
 
     @PostMapping(value = "/markets/dataSetup")
-    public ModelAndView postMarketsDatasetup(@RequestParam Map<String, Object> inputMap, ModelMap map) {
-        wmService.postMarketsDatasetup(inputMap, map);
-        return new ModelAndView("marketsDatasetup", map);
+    public String postMarketsDatasetup(@ModelAttribute DataSetupModel modelInput, Model modelOutput) throws JsonProcessingException {
+        wmService.postMarketsDatasetup(modelInput, modelOutput);
+        return "marketsDatasetup";
     }
+
 
     @GetMapping(value = "/markets/analyseData")
     public ModelAndView analyseData() {

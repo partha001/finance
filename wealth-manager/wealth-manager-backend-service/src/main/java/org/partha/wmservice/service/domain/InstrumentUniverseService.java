@@ -9,6 +9,7 @@ import org.partha.wmcommon.request.CreateInstrumentUniverseRequest;
 import org.partha.wmcommon.request.UpdateInstrumentUniverseRequest;
 import org.partha.wmcommon.response.CreateInstrumentUniverseResponse;
 import org.partha.wmcommon.response.DeleteInstrumentUniverseResponse;
+import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
 import org.partha.wmcommon.response.UpdateInstrumentUniverseResponse;
 import org.partha.wmservice.repositories.InstrumentUniverseDetailRepository;
 import org.partha.wmservice.repositories.InstrumentUniverseMasterRepository;
@@ -116,5 +117,13 @@ public class InstrumentUniverseService {
                 .operationStatus(Constants.SUCCESS)
                 .message(String.format("universe-name: %s deleted successfully", universeName))
                 .build();
+    }
+
+    public InstrumentDataDownloadResponseDto downloadUniverseDailyData(String universeName) {
+        InstrumentUniverse instrumentUniverse = instrumentUniverseMasterRepository.findByName(universeName).get();
+        for (InstrumentUniverseDetail instrumentUniverseDetail : instrumentUniverseDetailRepository.findByInstrumentUniverseMasterId(instrumentUniverse.getId())) {
+
+        }
+        return null;
     }
 }

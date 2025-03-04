@@ -1,10 +1,12 @@
 package org.partha.wmservice.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.partha.wmcommon.entities.InstrumentUniverseDetail;
 import org.partha.wmcommon.request.CreateInstrumentUniverseRequest;
 import org.partha.wmcommon.request.UpdateInstrumentUniverseRequest;
 import org.partha.wmcommon.response.CreateInstrumentUniverseResponse;
 import org.partha.wmcommon.response.DeleteInstrumentUniverseResponse;
+import org.partha.wmcommon.response.InstrumentDataDownloadResponseDto;
 import org.partha.wmcommon.response.UpdateInstrumentUniverseResponse;
 import org.partha.wmservice.service.domain.InstrumentUniverseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,13 @@ public class InstrumentUniverseController {
     @GetMapping("/getInstrumentUniverseDetailsByUniverseName")
     public List<InstrumentUniverseDetail> getInstrumentUniverseDetailsByUniverseName(@RequestParam String universeName) {
         return instrumentUniverseService.getInstrumentUniverseDetailsByUniverseName(universeName);
+    }
+
+    @Operation(summary = "download daily data for stock-universe",
+            description = "download daily data for stock-universe and stores in the table wealthmanager.dailypricemaster d")
+    @PostMapping("/downloadUniverseDailyData")
+    public InstrumentDataDownloadResponseDto downloadUniverseDailyData(@RequestBody String universeName) {
+        return instrumentUniverseService.downloadUniverseDailyData(universeName);
     }
 
 }

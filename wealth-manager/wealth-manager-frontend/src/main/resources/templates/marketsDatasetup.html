@@ -7,10 +7,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
+    <script th:src="@{/js/datasetup.js}"></script>
     <title>Bootstrap Example</title>
-
-
 </head>
 
 <body>
@@ -30,12 +28,39 @@
         <div class="col-lg-12 body-style">
 
             <div>
-                <form id="instrumentSelectionForm" method="post" th:action="@{/markets/dataSetup}">
-                    <table style="width:100%">
+                <form id="dataSetupForm" name="dataSetupForm" th:object="${dataSetupModel}" method="post"
+                      th:action="@{/markets/dataSetup}">
+                    <input type="hidden" id="requestType" name="requestType" value=""/>
+
+                    <table style="width:100%; text-align: center;" class="table text-center">
                         <tr>
                             <th>
-                                <select id="instrumentType" name="instrumentType" onchange="this.form.submit()">
-                                <option value="">Select instrument type</option>
+                                Fetch data by universe
+                            </th>
+                            <th>
+                                <select id="universeName" name="universeName" onclick="universeChange()">
+                                    <option value="">Select Universe name</option>
+                                    <option th:each="universe : ${universeList}"
+                                            th:value="${universe}"
+                                            th:text="${universe}"
+                                            th:selected="${selectedUniverse.equals(universe)}">
+                                    </option>
+                                </select>
+                            </th>
+                            <th></th>
+                            <th>
+                                <button class="btn btn-sm btn-outline-success float-right" onclick="downloadUniverseDailyData()">
+                                    Get universe data since 2010
+                                </button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Fetch data by insturment
+                            </th>
+                            <th>
+                                <select id="instrumentType" name="instrumentType" onchange="instrumentTypeChange()">
+                                    <option value="">Select instrument type</option>
                                     <option th:each="instrumentType : ${instrumentTypes}"
                                             th:value="${instrumentType}"
                                             th:text="${instrumentType}"
@@ -45,7 +70,7 @@
                             </th>
 
                             <th>
-                                <select id="instrumentName" name="instrumentName"  onchange="this.form.submit()">
+                                <select id="instrumentName" name="instrumentName">
                                     <option value="">Select instrument</option>
                                     <option th:each="instrumentkey : ${instrumentKeys}"
                                             th:value="${instrumentkey}"
@@ -58,40 +83,33 @@
                             <input type="hidden" id="downloadDataFlag" name="downloadDataFlag" value=""/>
 
                             <th>
-                                <button class="btn btn-sm btn-outline-success float-right" onclick="document.getElementById('downloadDataFlag').value = 'true';" type="submit" th:disabled="${downloadDataButton_Disabled}">
-                                    Get data data since 2010
+                                <!--                                <button class="btn btn-sm btn-outline-success float-right"-->
+                                <!--                                        onclick="document.getElementById('downloadDataFlag').value = 'true';"-->
+                                <!--                                        type="submit" th:disabled="${downloadDataButton_Disabled}">-->
+                                <!--                                    Get instrument data since 2010-->
+                                <!--                                </button>-->
+                                <button class="btn btn-sm btn-outline-success float-right"
+                                        onclick="downloadInstrumentDailyData()">
+                                    Get instrument data since 2010
                                 </button>
 
                             </th>
-
-<!--submit not required since submitting form on dropdown selection change-->
-<!--                            <th>-->
-<!--                                <button class="btn btn-sm btn-outline-success float-right" type="submit">-->
-<!--                                    Get Summary-->
-<!--                                </button>-->
-
-<!--                            </th>-->
                         </tr>
+
                         <tr>
-                            <td colspan="3">
+                            <td colspan="4">
                                 <span th:text="${downloadResponseMessage}">userName</span>
                             </td>
                         </tr>
 
                         <tr>
-                            <td colspan="3">
+                            <td colspan="4">
                                 <div th:utext="${htmlString}"></div>
                             </td>
                         </tr>
 
-<!--                        <tr>-->
-<!--                            <td colspan="3">-->
-<!--                                <span th:text="${downloadResponseMessage}">userName</span>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-
                         <tr>
-                            <td colspan="3">
+                            <td colspan="4">
                                 <img th:if="${imageString!=null}" th:src="@{'data:image/jpeg;base64,'+${imageString}}"/>
                             </td>
                         </tr>
