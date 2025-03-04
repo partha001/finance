@@ -30,31 +30,32 @@
         <div class="col-lg-12 body-style">
 
             <div>
-                <table style="width:100%">
-                    <tr>
-                        <form id="formDataSetupForUniverse" th:object="${dataSetupForUniverseModel}" method="post" th:action="@{/markets/dataSetupForUniverse}">
-                            <th>
-                                Fetch data by universe
-                            </th>
-                            <th>
-                                <select id="selectedUniverse" name="selectedUniverse">
-                                    <option value="">Select Universe name</option>
-                                    <option th:each="universe : ${universeList}"
-                                            th:value="${universe}"
-                                            th:text="${universe}"
-                                            th:selected="${selectedUniverse.equals(universe)}">
-                                    </option>
-                                </select>
-                            </th>
-                            <th>
-                                <button class="btn btn-sm btn-outline-success float-right" type="submit">
-                                    Get universe data since 2010
-                                </button>
-                            </th>
-                        </form>
-                    </tr>
-                    <tr>
-                        <form id="instrumentSelectionForm" method="post" th:action="@{/markets/dataSetup}">
+                <form id="dataSetupForm" th:object="${dataSetupForUniverseModel}" method="post"
+                      th:action="@{/markets/dataSetup}">
+                    <table style="width:100%">
+                        <tr>
+                            <!--                        <form id="formDataSetupForUniverse" th:object="${dataSetupForUniverseModel}" method="post" th:action="@{/markets/dataSetupForUniverse}">-->
+                            <!--                            <th>-->
+                            <!--                                Fetch data by universe-->
+                            <!--                            </th>-->
+                            <!--                            <th>-->
+                            <!--                                <select id="selectedUniverse" name="selectedUniverse">-->
+                            <!--                                    <option value="">Select Universe name</option>-->
+                            <!--                                    <option th:each="universe : ${universeList}"-->
+                            <!--                                            th:value="${universe}"-->
+                            <!--                                            th:text="${universe}"-->
+                            <!--                                            th:selected="${selectedUniverse.equals(universe)}">-->
+                            <!--                                    </option>-->
+                            <!--                                </select>-->
+                            <!--                            </th>-->
+                            <!--                            <th>-->
+                            <!--                                <button class="btn btn-sm btn-outline-success float-right" type="submit">-->
+                            <!--                                    Get universe data since 2010-->
+                            <!--                                </button>-->
+                            <!--                            </th>-->
+                            <!--                        </form>-->
+                        </tr>
+                        <tr>
                             <th>
                                 Fetch data by insturment
                             </th>
@@ -90,43 +91,29 @@
                                 </button>
 
                             </th>
+                        </tr>
 
-                            <!--submit not required since submitting form on dropdown selection change-->
-                            <!--                            <th>-->
-                            <!--                                <button class="btn btn-sm btn-outline-success float-right" type="submit">-->
-                            <!--                                    Get Summary-->
-                            <!--                                </button>-->
+                        <tr>
+                            <td colspan="3">
+                                <span th:text="${downloadResponseMessage}">userName</span>
+                            </td>
+                        </tr>
 
-                            <!--                            </th>-->
-                        </form>
-                    </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div th:utext="${htmlString}"></div>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td colspan="3">
-                            <span th:text="${downloadResponseMessage}">userName</span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td colspan="3">
+                                <img th:if="${imageString!=null}" th:src="@{'data:image/jpeg;base64,'+${imageString}}"/>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td colspan="3">
-                            <div th:utext="${htmlString}"></div>
-                        </td>
-                    </tr>
-
-                    <!--                        <tr>-->
-                    <!--                            <td colspan="3">-->
-                    <!--                                <span th:text="${downloadResponseMessage}">userName</span>-->
-                    <!--                            </td>-->
-                    <!--                        </tr>-->
-
-                    <tr>
-                        <td colspan="3">
-                            <img th:if="${imageString!=null}" th:src="@{'data:image/jpeg;base64,'+${imageString}}"/>
-                        </td>
-                    </tr>
-
-                </table>
-                <span th:text="${key}"></span>
+                    </table>
+                    <span th:text="${key}"></span>
+                </form>
             </div>
 
         </div>
