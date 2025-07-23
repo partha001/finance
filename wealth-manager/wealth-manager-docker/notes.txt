@@ -1,7 +1,7 @@
 #run the below command
 docker run  --name mypostgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=mydatabase -p 5432:5432  -d --rm postgres:16.3
 
-#swagger links
+#debug/swagger links
 
     #java backend module
     http://localhost:8081/wm-backend/swagger-ui/index.html
@@ -14,8 +14,8 @@ docker run  --name mypostgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=pas
     #ui-module
     http://localhost:8080/swagger-ui/index.html#/
 
-    #ui-home
-    http://localhost:8080/home
+#ui-home
+http://localhost:8080/home
 
 
 
