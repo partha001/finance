@@ -62,8 +62,13 @@ public class AngelHoldingImporter implements Importer {
                         .build();
                 holdings.add(holding);
             }
+
             holdingService.deleteHoldingsByUserByBroker(username, Constants.BROKER_ANGELONE);
             holdingService.insertHolding(holdings);
+
+            //enriching now
+            holdingService.updateKeyForGiverUserAndBrokerForSameIsin(username, Constants.BROKER_ANGELONE);
+            //fetch daily data
         } catch (Exception ex) {
             log.error("error occurred while importing holding", ex);
         }

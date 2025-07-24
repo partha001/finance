@@ -30,6 +30,10 @@ public class HoldingDto {
 
 	private Double investmentAmount;
 
+	private String key;
+
+	private String symbol;
+
 }
 
 

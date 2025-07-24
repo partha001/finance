@@ -11,5 +11,6 @@ CREATE TABLE IF NOT EXISTS WealthManager.HoldingMaster(
             isin varchar(50),
             quantity INTEGER,
             averagePrice numeric NULL,
+            key varchar(255) NULL,
             CONSTRAINT wm_holdingMaster_unique_username_brokersymbol UNIQUE (username,brokername,brokersymbol)
             );

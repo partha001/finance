@@ -3,6 +3,7 @@ package org.partha.wmservice.service.domain;
 import lombok.extern.log4j.Log4j2;
 import org.partha.wmcommon.dto.HoldingDto;
 import org.partha.wmcommon.entities.Holding;
+import org.partha.wmcommon.projections.HoldingProjection;
 import org.partha.wmcommon.response.ResponseDto;
 import org.partha.wmservice.repositories.HoldingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class HoldingService {
 
     public ResponseDto getHoldings(String users) {
         List<String> usernames = Arrays.asList(users.split(","));
-        List<Holding> holdingList = holdingRepository.getHoldingsByUsernames(usernames);
+        List<HoldingProjection> holdingList = holdingRepository.getHoldingsProjectionByUsernames(usernames);
         List<HoldingDto> holdings = holdingList.stream().map(item -> {
             return HoldingDto.builder()
                     .id(item.getId())
@@ -31,17 +32,9 @@ public class HoldingService {
                     .brokersymbol(item.getBrokersymbol())
                     .quantity(item.getQuantity())
                     .averagePrice(item.getAveragePrice())
+                    .screenerLink("https://www.screener.in/company/" + item.getSymbol())
                     .build();
         }).collect(Collectors.toList());
-
-        //populating screener hyperlink
-        holdings.forEach(holding -> {
-            holding.setScreenerLink("https://www.screener.in/company/" + holding.getBrokersymbol());
-//            if(holding.getBrokername().equals("zerodha")) {
-//                holding.setInvestmentAmount(holding.getQuantity() * holding.getAveragePrice());
-//            }
-        });
-
         return ResponseDto.builder()
                 .data(holdings)
                 .build();
@@ -61,5 +54,16 @@ public class HoldingService {
         return insertedRecordCount;
     }
 
+    public int updateKeyForGiverUserAndBrokerForSameIsin(String username, String brokername) {
+        int recordsUpdated = holdingRepository.updateKeyForGiverUserAndBrokerForSameIsin(username, brokername);
+        log.info("username:{}  brokername:{}   isin-record-update-count:{}", username, brokername, recordsUpdated);
+        return recordsUpdated;
+    }
 
+
+    public int updateKeyAndIsinForGiverUserAndBrokerForSameSymbol(String username, String brokername) {
+        int recordsUpdated = holdingRepository.updateKeyAndIsinForGiverUserAndBrokerForSameSymbol(username, brokername);
+        log.info("username:{}  brokername:{}   isin-record-update-count:{}", username, brokername, recordsUpdated);
+        return recordsUpdated;
+    }
 }

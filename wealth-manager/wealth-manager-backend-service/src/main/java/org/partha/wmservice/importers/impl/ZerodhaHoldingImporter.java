@@ -54,5 +54,11 @@ public class ZerodhaHoldingImporter implements Importer {
         }
         holdingService.deleteHoldingsByUserByBroker(username,Constants.BROKER_ZERODHA);
         holdingService.insertHolding(holdings);
+
+        //enriching now. updating key and isin
+        holdingService.updateKeyAndIsinForGiverUserAndBrokerForSameSymbol(username,Constants.BROKER_ZERODHA);
+        //fetch daily data for instruments
+
+
     }
 }

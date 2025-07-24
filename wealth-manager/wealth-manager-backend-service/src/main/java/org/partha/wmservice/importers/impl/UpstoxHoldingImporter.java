@@ -60,6 +60,10 @@ public class UpstoxHoldingImporter implements Importer {
         }
         holdingService.deleteHoldingsByUserByBroker(username,Constants.BROKER_UPSTOX);
         holdingService.insertHolding(holdings);
+
+        //enriching now
+        holdingService.updateKeyForGiverUserAndBrokerForSameIsin(username, Constants.BROKER_UPSTOX);
+        //fetch daily data
     }
 
 }
