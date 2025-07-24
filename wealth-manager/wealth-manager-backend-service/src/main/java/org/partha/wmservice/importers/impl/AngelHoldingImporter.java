@@ -34,11 +34,8 @@ public class AngelHoldingImporter implements Importer {
     public void importData(MultipartFile multipartFile, String username, String filePassword) throws IOException {
         try {
             InputStream inputStream = multipartFile.getInputStream();
-
             Workbook workbook = WorkbookFactory.create(inputStream, filePassword);
             Sheet sheet = workbook.getSheet("Equity");
-
-
             Row row = null;
 
             int rowIndex = 15; //start reading rows from this
@@ -48,8 +45,6 @@ public class AngelHoldingImporter implements Importer {
                 row = sheet.getRow(rowIndex++);
 
                 /** exit condition **/
-//                if (row == null)
-//                    break;
                 if (excelUtil.getString(row.getCell(0)).trim().equals("Total"))
                     break;
 
@@ -57,7 +52,6 @@ public class AngelHoldingImporter implements Importer {
                 String isin = excelUtil.getString(row.getCell(2));
 
                 Integer quantity = Integer.parseInt(excelUtil.getString(row.getCell(5)));
-                //String quantity = excelUtil.getString(row.getCell(5));
                 log.info("symbol:{} isin:{} quantity:{}", symbol, isin, quantity);
                 holding = Holding.builder()
                         .username(username)
@@ -75,3 +69,39 @@ public class AngelHoldingImporter implements Importer {
         }
     }
 }
+
+/**
+ *
+ * older version of the method when the import format was different and didnt required any filepassword to open
+    @Override
+    public void importData(MultipartFile multipartFile, String username) throws IOException {
+        InputStream inputStream = multipartFile.getInputStream();
+        Workbook workbook = new XSSFWorkbook(inputStream);
+        Sheet sheet = workbook.getSheet("Portfolio");
+        int rowIndex = 11; //start reading rows from this
+        Holding holding = null;
+        List<Holding> holdings = new ArrayList<>();
+        while (true) {
+            Row row = sheet.getRow(rowIndex++);
+            if(row==null)
+                break;
+
+            String symbol = excelUtil.getString(row.getCell(0));
+            String isin = excelUtil.getString(row.getCell(2));
+
+            Integer quantity = Integer.parseInt(excelUtil.getString(row.getCell(5)));
+            //String quantity = excelUtil.getString(row.getCell(5));
+            log.info("symbol:{} isin:{} quantity:{}",symbol, isin, quantity);
+            holding = Holding.builder()
+                    .username(username)
+                    .brokersymbol(symbol)
+                    .isin(isin)
+                    .quantity(quantity)
+                    .brokername(Constants.BROKER_ANGELONE)
+                    .build();
+            holdings.add(holding);
+        }
+        deleteInsertHoldings(holdings,username);
+    }
+
+ **/
