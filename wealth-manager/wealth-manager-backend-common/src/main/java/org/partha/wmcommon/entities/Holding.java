@@ -27,6 +27,8 @@ public class Holding {
 	private String exchangesymbol;
 	@Column
 	private Integer quantity;
+	@Column
+	private Double averagePrice;
 
 }
 

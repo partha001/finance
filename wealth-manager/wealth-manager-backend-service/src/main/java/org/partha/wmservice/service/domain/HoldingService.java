@@ -1,23 +1,15 @@
 package org.partha.wmservice.service.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.extern.log4j.Log4j2;
 import org.partha.wmcommon.dto.HoldingDto;
 import org.partha.wmcommon.entities.Holding;
-import org.partha.wmcommon.enums.ExportImportFormat;
 import org.partha.wmcommon.response.ResponseDto;
 import org.partha.wmservice.repositories.HoldingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Log4j2
@@ -38,10 +30,36 @@ public class HoldingService {
                     .brokername(item.getBrokername())
                     .brokersymbol(item.getBrokersymbol())
                     .quantity(item.getQuantity())
+                    .averagePrice(item.getAveragePrice())
                     .build();
         }).collect(Collectors.toList());
+
+        //populating screener hyperlink
+        holdings.forEach(holding -> {
+            holding.setScreenerLink("https://www.screener.in/company/" + holding.getBrokersymbol());
+//            if(holding.getBrokername().equals("zerodha")) {
+//                holding.setInvestmentAmount(holding.getQuantity() * holding.getAveragePrice());
+//            }
+        });
+
         return ResponseDto.builder()
                 .data(holdings)
                 .build();
     }
+
+
+    public int deleteHoldingsByUserByBroker(String username, String brokername) {
+        int count = holdingRepository.removeByUsernameAndBrokername(username, brokername);
+        log.info("deleted record count.{}", count);
+        return count;
+    }
+
+    public int insertHolding(List<Holding> holdings) {
+        int insertedRecordCount = holdingRepository.saveAll(holdings)
+                .size();
+        log.info("inserted record count:{}", insertedRecordCount);
+        return insertedRecordCount;
+    }
+
+
 }

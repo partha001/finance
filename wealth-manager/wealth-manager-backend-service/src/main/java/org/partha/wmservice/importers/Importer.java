@@ -6,5 +6,5 @@ import java.io.IOException;
 
 public interface Importer {
 
-    void importData(MultipartFile multipartFiles,String username) throws IOException;
+    void importData(MultipartFile multipartFiles,String username,String filePassword) throws IOException;
 }

@@ -26,8 +26,9 @@ public class HoldingController {
     )
     public void importHoldings(@RequestParam("file") MultipartFile multipartFile,
                                @RequestParam ExportImportFormat inputFormat,
-                               @RequestParam(defaultValue = "partha") String username) throws IOException {
-        importService.importHoldings(multipartFile, inputFormat, username);
+                               @RequestParam(defaultValue = "partha") String username,
+                               @RequestParam String filePassword) throws IOException {
+        importService.importHoldings(multipartFile, inputFormat, username,filePassword);
     }
 
     @GetMapping(value="/getHoldings")

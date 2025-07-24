@@ -4,12 +4,12 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.partha.wmcommon.constants.Constants;
 import org.partha.wmcommon.entities.Holding;
 import org.partha.wmcommon.util.ExcelUtil;
 import org.partha.wmservice.importers.Importer;
-import org.partha.wmservice.repositories.HoldingRepository;
+import org.partha.wmservice.service.domain.HoldingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,45 +28,50 @@ public class AngelHoldingImporter implements Importer {
     ExcelUtil excelUtil = new ExcelUtil();
 
     @Autowired
-    private HoldingRepository holdingRepository;
-
+    private HoldingService holdingService;
 
     @Override
-    public void importData(MultipartFile multipartFile, String username) throws IOException {
-        InputStream inputStream = multipartFile.getInputStream();
-        Workbook workbook = new XSSFWorkbook(inputStream);
-        Sheet sheet = workbook.getSheet("Portfolio");
-        int rowIndex = 11; //start reading rows from this
-        Holding holding = null;
-        List<Holding> holdings = new ArrayList<>();
-        while (true) {
-            Row row = sheet.getRow(rowIndex++);
-            if(row==null)
-                break;
+    public void importData(MultipartFile multipartFile, String username, String filePassword) throws IOException {
+        try {
+            InputStream inputStream = multipartFile.getInputStream();
 
-            String symbol = excelUtil.getString(row.getCell(0));
-            String isin = excelUtil.getString(row.getCell(2));
+            Workbook workbook = WorkbookFactory.create(inputStream, filePassword);
+            Sheet sheet = workbook.getSheet("Equity");
 
-            Integer quantity = Integer.parseInt(excelUtil.getString(row.getCell(5)));
-            //String quantity = excelUtil.getString(row.getCell(5));
-            log.info("symbol:{} isin:{} quantity:{}",symbol, isin, quantity);
-            holding = Holding.builder()
-                    .username(username)
-                    .brokersymbol(symbol)
-                    .isin(isin)
-                    .quantity(quantity)
-                    .brokername(Constants.BROKER_ANGELONE)
-                    .build();
-            holdings.add(holding);
+
+            Row row = null;
+
+            int rowIndex = 15; //start reading rows from this
+            Holding holding = null;
+            List<Holding> holdings = new ArrayList<>();
+            while (true) {
+                row = sheet.getRow(rowIndex++);
+
+                /** exit condition **/
+//                if (row == null)
+//                    break;
+                if (excelUtil.getString(row.getCell(0)).trim().equals("Total"))
+                    break;
+
+                String symbol = excelUtil.getString(row.getCell(1));
+                String isin = excelUtil.getString(row.getCell(2));
+
+                Integer quantity = Integer.parseInt(excelUtil.getString(row.getCell(5)));
+                //String quantity = excelUtil.getString(row.getCell(5));
+                log.info("symbol:{} isin:{} quantity:{}", symbol, isin, quantity);
+                holding = Holding.builder()
+                        .username(username)
+                        .brokersymbol(symbol)
+                        .isin(isin)
+                        .quantity(quantity)
+                        .brokername(Constants.BROKER_ANGELONE)
+                        .build();
+                holdings.add(holding);
+            }
+            holdingService.deleteHoldingsByUserByBroker(username, Constants.BROKER_ANGELONE);
+            holdingService.insertHolding(holdings);
+        } catch (Exception ex) {
+            log.error("error occurred while importing holding", ex);
         }
-        deleteInsertHoldings(holdings,username);
-    }
-
-    public void deleteInsertHoldings(List<Holding> holdings,String username){
-        int a = holdingRepository.removeByUsernameAndBrokername(username, Constants.BROKER_ANGELONE);
-        log.info("deleted record count.{}",a);
-        long insertedRecordCount = holdingRepository.saveAll(holdings)
-                .stream().count();
-        log.info("inserted record count:{}", insertedRecordCount);
     }
 }

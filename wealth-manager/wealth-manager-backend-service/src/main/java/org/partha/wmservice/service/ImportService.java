@@ -32,8 +32,8 @@ public class ImportService {
         throw new RuntimeException("no importer found for the given type");
     }
 
-    public void importHoldings(MultipartFile multipartFile, ExportImportFormat inputFormat, String username) throws IOException {
+    public void importHoldings(MultipartFile multipartFile, ExportImportFormat inputFormat, String username,String filePassword) throws IOException {
         Importer importer = getImporter(inputFormat);
-        importer.importData(multipartFile,username);
+        importer.importData(multipartFile,username, filePassword );
     }
 }

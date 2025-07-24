@@ -100,9 +100,10 @@ public class WmController {
             ,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ModelAndView importFile(@RequestParam("importFormat") ExportImportFormat importFormat,
                                    @RequestParam("file") MultipartFile file,
+                                   @RequestParam("filePassword") String filePassword,
                                    @RequestParam("holdingOwner") String holdingOwner) throws IOException {
         ModelMap map = new ModelMap();
-        wmService.postHoldingsImport(map, file, importFormat, holdingOwner);
+        wmService.postHoldingsImport(map, file, importFormat, holdingOwner,filePassword);
         return new ModelAndView("importHoldings", map);
     }
 

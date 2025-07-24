@@ -14,7 +14,6 @@ import org.partha.wmcommon.enums.AssetChartType;
 import org.partha.wmcommon.enums.DividendChartType;
 import org.partha.wmcommon.enums.ExportImportFormat;
 import org.partha.wmcommon.enums.InstrumentType;
-import org.partha.wmcommon.model.DataSetupForUniverseModel;
 import org.partha.wmcommon.model.DataSetupModel;
 import org.partha.wmcommon.model.InstrumentUniverseModel;
 import org.partha.wmcommon.request.ChartDataRequest;
@@ -250,8 +249,8 @@ public class WmService {
         map.put("importFormats", WmUtil.getHoldingImportFormats());
     }
 
-    public void postHoldingsImport(ModelMap map, MultipartFile file, ExportImportFormat importFormat, String holdingOwner) throws IOException {
-        holdingControllerClient.importHoldings(file, importFormat, holdingOwner);
+    public void postHoldingsImport(ModelMap map, MultipartFile file, ExportImportFormat importFormat, String holdingOwner, String filePassword) throws IOException {
+        holdingControllerClient.importHoldings(file, importFormat, holdingOwner,filePassword);
         map.put("importFormats", WmUtil.getHoldingImportFormats());
     }
 

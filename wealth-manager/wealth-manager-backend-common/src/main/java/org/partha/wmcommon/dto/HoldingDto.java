@@ -24,6 +24,12 @@ public class HoldingDto {
 	
 	private Integer quantity;
 
+	private Double averagePrice;
+
+	private String screenerLink;
+
+	private Double investmentAmount;
+
 }
 
 

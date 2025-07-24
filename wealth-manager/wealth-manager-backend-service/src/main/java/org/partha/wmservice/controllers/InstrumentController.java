@@ -23,7 +23,7 @@ public class InstrumentController {
     InstrumentService instrumentService;
 
     @Operation(summary = "download daily data for a given yfinancy ticker",
-            description = "download daily data for a given yfinance ticker and stores in the table wealthmanager.dailypricemaster d")
+            description = "download daily data for a given yfinance ticker and stores in the table wealthmanager.dailypricemaster d. SamplePayload: {\"key\":\"EQUITY:NSE:ITC\",\"ticker\":\"ITC.NS\",\"recordsFetched\":1379,\"recordsInserted\":1379}")
     @PostMapping("/downloadInstrumentDailyData")
     public InstrumentDataDownloadResponseDto downloadInstrumentDailyData(@RequestBody DownloadDailyDataRequest request) {
         return instrumentService.downloadInstrumentDailyData(request);
@@ -44,12 +44,7 @@ public class InstrumentController {
     }
 
 
-    @Operation(summary = "download all NSE equity daily data",
-            description = "downloads all NSE equity daily data since 2010 and stores in dailyPriceMaster table ")
-    @GetMapping("/downloadNseEquityDailyData")
-    public List<String> downloadNseEquityDailyData() throws JsonProcessingException {
-        return instrumentService.downloadNseEquityDailyData();
-    }
+
 
     @Operation(summary = "download index daily data",
             description = "downloads all index daily data since 2010 and stores in dailyPriceMaster table ")

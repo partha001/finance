@@ -20,7 +20,8 @@ public interface HoldingControllerClient {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void importHoldings(@RequestPart("file") MultipartFile multipartFile,
                                @RequestParam ExportImportFormat inputFormat,
-                               @RequestParam(defaultValue = "partha") String username) throws IOException;
+                               @RequestParam(defaultValue = "partha") String username,
+                               @RequestParam String filePassword) throws IOException;
 
     @GetMapping(value="/getHoldings")
     public ResponseDto getHoldings(@RequestParam("users") String users);

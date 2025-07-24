@@ -49,7 +49,7 @@
                                     <input id="holdingOwner" type="text" name="holdingOwner" value="Holder name"/>
                                 </div>
                                 <div class="col">
-                                    <input id="input-file" type="file" name="file"/>
+                                    <input id="input-file" type="password" name="filePassword"/>
                                 </div>
                                 <div class="col">
                                     <select id="importFormat" name="importFormat">
@@ -59,6 +59,9 @@
                                                 th:text="${importFormat}">
                                         </option>
                                     </select>
+                                </div>
+                                <div class="col">
+                                    <input id="filePassword" type="file" name="file"/>
                                 </div>
                                 <div class="col">
                                     <button class="btn btn-sm btn-outline-success float-right" type="submit">
@@ -120,8 +123,10 @@
                                 <th>Owner</th>
                                 <th>Broker</th>
                                 <th>BrokerSymbol</th>
-                                <th>Link</th>
+                                <th>Screener</th>
                                 <th>Quantity</th>
+                                <th>Avg.Price</th>
+
                             </tr>
                             </thead>
                             <tfoot>
@@ -129,8 +134,10 @@
                                 <th>Owner</th>
                                 <th>Broker</th>
                                 <th>BrokerSymbol</th>
-                                <th>Link</th>
+                                <th>Screener</th>
                                 <th>Quantity</th>
+                                <th>Avg. Price</th>
+
                             </tr>
                             </tfoot>
                         </table>
@@ -168,11 +175,12 @@
                 {"data": "brokername","width": "10%"},
                 {"data": "brokersymbol", "width": "20%"},
                 {
-              data: 'name',
-              name: 'name',
-              render : function(data, type, row, meta) {return'<a class="d-inline-block fw-normal w-100 h-100 pe-auto" href="profiles/edit/' + row.id + '">' + row.name + '</a>';},
+              data: 'screener',
+              name: 'screener',
+              render : function(data, type, row, meta) {return'<a class="d-inline-block fw-normal w-100 h-100 pe-auto" target="_blank" href="' + row.screenerLink + '">' + row.brokersymbol + '</a>';}
           },
-                {"data": "quantity", "width": "50%"}
+                {"data": "quantity", "width": "25%"},
+                {"data": "averagePrice", "width": "25%"}
             ]
         });
 

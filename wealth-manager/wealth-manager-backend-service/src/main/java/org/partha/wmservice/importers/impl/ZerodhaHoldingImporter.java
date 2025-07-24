@@ -8,7 +8,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.partha.wmcommon.constants.Constants;
 import org.partha.wmcommon.entities.Holding;
 import org.partha.wmservice.importers.Importer;
-import org.partha.wmservice.repositories.HoldingRepository;
+import org.partha.wmservice.service.domain.HoldingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +26,10 @@ import java.util.List;
 public class ZerodhaHoldingImporter implements Importer {
 
     @Autowired
-    HoldingRepository holdingRepository;
-
+    HoldingService holdingService;
 
     @Override
-    public void importData(MultipartFile multipartFile, String username) throws IOException {
+    public void importData(MultipartFile multipartFile, String username,String filePassword) throws IOException {
         BufferedReader fileReader = new BufferedReader(new
                 InputStreamReader(multipartFile.getInputStream(), "UTF-8"));
         CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withSkipHeaderRecord(true).withFirstRecordAsHeader());
@@ -48,22 +47,12 @@ public class ZerodhaHoldingImporter implements Importer {
                     .brokername(Constants.BROKER_ZERODHA)
                     .brokersymbol(csvRecord.get("Instrument"))
                     .quantity(Strings.isNullOrEmpty(csvRecord.get("Qty.")) ? null : Integer.parseInt(csvRecord.get("Qty.")))
+                    .averagePrice(Strings.isNullOrEmpty(csvRecord.get("Avg. cost"))? null: Double.parseDouble(csvRecord.get("Avg. cost")))
                     .build();
             holdings.add(holding);
             //System.out.println(csvRecord);
         }
-        deleteInsertHoldings(holdings,username);
-
-
-
-    }
-
-
-    public void deleteInsertHoldings(List<Holding> holdings,String username){
-        int a = holdingRepository.removeByUsernameAndBrokername(username, Constants.BROKER_ZERODHA);
-        log.info("deleted record count.{}",a);
-        long insertedRecordCount = holdingRepository.saveAll(holdings)
-                .stream().count();
-        log.info("inserted record count:{}", insertedRecordCount);
+        holdingService.deleteHoldingsByUserByBroker(username,Constants.BROKER_ZERODHA);
+        holdingService.insertHolding(holdings);
     }
 }

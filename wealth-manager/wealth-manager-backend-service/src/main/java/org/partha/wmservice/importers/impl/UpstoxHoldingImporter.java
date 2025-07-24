@@ -9,7 +9,7 @@ import org.partha.wmcommon.constants.Constants;
 import org.partha.wmcommon.entities.Holding;
 import org.partha.wmcommon.util.ExcelUtil;
 import org.partha.wmservice.importers.Importer;
-import org.partha.wmservice.repositories.HoldingRepository;
+import org.partha.wmservice.service.domain.HoldingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,11 +28,11 @@ public class UpstoxHoldingImporter implements Importer {
     ExcelUtil excelUtil = new ExcelUtil();
 
     @Autowired
-    private HoldingRepository holdingRepository;
+    private HoldingService holdingService;
 
 
     @Override
-    public void importData(MultipartFile multipartFile, String username) throws IOException {
+    public void importData(MultipartFile multipartFile, String username,String filePassword) throws IOException {
         InputStream inputStream = multipartFile.getInputStream();
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheet("HOLDING");
@@ -58,14 +58,8 @@ public class UpstoxHoldingImporter implements Importer {
                     .build();
             holdings.add(holding);
         }
-        deleteInsertHoldings(holdings,username);
+        holdingService.deleteHoldingsByUserByBroker(username,Constants.BROKER_UPSTOX);
+        holdingService.insertHolding(holdings);
     }
 
-    public void deleteInsertHoldings(List<Holding> holdings,String username){
-        int a = holdingRepository.removeByUsernameAndBrokername(username, Constants.BROKER_UPSTOX);
-        log.info("deleted record count.{}",a);
-        long insertedRecordCount = holdingRepository.saveAll(holdings)
-                .stream().count();
-        log.info("inserted record count:{}", insertedRecordCount);
-    }
 }
