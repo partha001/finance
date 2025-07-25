@@ -8,8 +8,10 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.partha.wmcommon.constants.Constants;
 import org.partha.wmcommon.entities.Holding;
 import org.partha.wmcommon.util.ExcelUtil;
+import org.partha.wmservice.importers.AbstractImporter;
 import org.partha.wmservice.importers.Importer;
 import org.partha.wmservice.service.domain.HoldingService;
+import org.partha.wmservice.service.domain.InstrumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,12 +25,15 @@ import java.util.List;
 @Log4j2
 @Transactional
 @Component("angelHoldingImporter")
-public class AngelHoldingImporter implements Importer {
+public class AngelHoldingImporter extends AbstractImporter {
 
-    ExcelUtil excelUtil = new ExcelUtil();
 
     @Autowired
-    private HoldingService holdingService;
+    public AngelHoldingImporter(HoldingService holdingService,
+                                InstrumentService instrumentService) {
+        this.holdingService = holdingService;
+        this.instrumentService = instrumentService;
+    }
 
     @Override
     public void importData(MultipartFile multipartFile, String username, String filePassword) throws IOException {
@@ -49,13 +54,16 @@ public class AngelHoldingImporter implements Importer {
                     break;
 
                 String symbol = excelUtil.getString(row.getCell(1));
+                Integer quantity = excelUtil.getInt(row.getCell(5));
+                Double averagePrice = excelUtil.getDouble(row.getCell(12));
                 String isin = excelUtil.getString(row.getCell(2));
 
-                Integer quantity = Integer.parseInt(excelUtil.getString(row.getCell(5)));
-                log.info("symbol:{} isin:{} quantity:{}", symbol, isin, quantity);
+                //Integer quantity = Integer.parseInt(excelUtil.getString(row.getCell(5)));
+                log.info("symbol:{} quantity:{} averagePrice:{}", symbol, quantity,averagePrice);
                 holding = Holding.builder()
                         .username(username)
                         .brokersymbol(symbol)
+                        .averagePrice(averagePrice)
                         .isin(isin)
                         .quantity(quantity)
                         .brokername(Constants.BROKER_ANGELONE)
@@ -69,6 +77,8 @@ public class AngelHoldingImporter implements Importer {
             //enriching now
             holdingService.updateKeyForGiverUserAndBrokerForSameIsin(username, Constants.BROKER_ANGELONE);
             //fetch daily data
+            //downloadDailyHoldingData(username, Constants.BROKER_ANGELONE);
+
         } catch (Exception ex) {
             log.error("error occurred while importing holding", ex);
         }

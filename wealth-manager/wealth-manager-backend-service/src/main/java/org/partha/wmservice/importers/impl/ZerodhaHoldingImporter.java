@@ -7,8 +7,10 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.partha.wmcommon.constants.Constants;
 import org.partha.wmcommon.entities.Holding;
+import org.partha.wmservice.importers.AbstractImporter;
 import org.partha.wmservice.importers.Importer;
 import org.partha.wmservice.service.domain.HoldingService;
+import org.partha.wmservice.service.domain.InstrumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,10 +25,14 @@ import java.util.List;
 @Log4j2
 @Transactional
 @Component("zerodhaHoldingImporter")
-public class ZerodhaHoldingImporter implements Importer {
+public class ZerodhaHoldingImporter extends AbstractImporter {
 
     @Autowired
-    HoldingService holdingService;
+    public ZerodhaHoldingImporter(HoldingService holdingService,
+                                  InstrumentService instrumentService) {
+        this.holdingService = holdingService;
+        this.instrumentService = instrumentService;
+    }
 
     @Override
     public void importData(MultipartFile multipartFile, String username,String filePassword) throws IOException {
@@ -56,9 +62,9 @@ public class ZerodhaHoldingImporter implements Importer {
         holdingService.insertHolding(holdings);
 
         //enriching now. updating key and isin
-        holdingService.updateKeyAndIsinForGiverUserAndBrokerForSameSymbol(username,Constants.BROKER_ZERODHA);
+        holdingService.updateKeyForGiverUserAndBrokerForSameSymbol(username,Constants.BROKER_ZERODHA);
         //fetch daily data for instruments
-
+        //downloadDailyHoldingData(username, Constants.BROKER_ZERODHA);
 
     }
 }

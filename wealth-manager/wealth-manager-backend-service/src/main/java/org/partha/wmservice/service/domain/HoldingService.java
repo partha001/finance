@@ -41,6 +41,24 @@ public class HoldingService {
     }
 
 
+    public List<HoldingDto> getHoldingsByUsernameAndBrokername(String username, String brokername){
+        List<HoldingProjection> holdingList = holdingRepository.getHoldingsProjectionByUsernameAndBrokername(username,brokername);
+        return holdingList.stream().map(item -> {
+            return HoldingDto.builder()
+                    .id(item.getId())
+                    .username(item.getUsername())
+                    .brokername(item.getBrokername())
+                    .brokersymbol(item.getBrokersymbol())
+                    .quantity(item.getQuantity())
+                    .averagePrice(item.getAveragePrice())
+                    .key(item.getKey())
+                    .yahooFinanceTicker(item.getYahooFinanceTicker())
+                    .screenerLink("https://www.screener.in/company/" + item.getSymbol())
+                    .build();
+        }).collect(Collectors.toList());
+    }
+
+
     public int deleteHoldingsByUserByBroker(String username, String brokername) {
         int count = holdingRepository.removeByUsernameAndBrokername(username, brokername);
         log.info("deleted record count.{}", count);
@@ -56,14 +74,14 @@ public class HoldingService {
 
     public int updateKeyForGiverUserAndBrokerForSameIsin(String username, String brokername) {
         int recordsUpdated = holdingRepository.updateKeyForGiverUserAndBrokerForSameIsin(username, brokername);
-        log.info("username:{}  brokername:{}   isin-record-update-count:{}", username, brokername, recordsUpdated);
+        log.info("username:{}  brokername:{}   key-update-count:{}", username, brokername, recordsUpdated);
         return recordsUpdated;
     }
 
 
-    public int updateKeyAndIsinForGiverUserAndBrokerForSameSymbol(String username, String brokername) {
-        int recordsUpdated = holdingRepository.updateKeyAndIsinForGiverUserAndBrokerForSameSymbol(username, brokername);
-        log.info("username:{}  brokername:{}   isin-record-update-count:{}", username, brokername, recordsUpdated);
+    public int updateKeyForGiverUserAndBrokerForSameSymbol(String username, String brokername) {
+        int recordsUpdated = holdingRepository.updateKeyForGiverUserAndBrokerForSameSymbol(username, brokername);
+        log.info("username:{}  brokername:{}   key-update-count:{}", username, brokername, recordsUpdated);
         return recordsUpdated;
     }
 }

@@ -1,9 +1,12 @@
 package org.partha.wmcommon.util;
 
+import com.google.common.base.Strings;
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Date;
 
 public class ExcelUtil {
@@ -31,8 +34,12 @@ public class ExcelUtil {
 	}
 	
 	
-	public Double getDouble(Cell cell) {
-		return cell.getNumericCellValue();
+	public Double getDouble(Cell cell) throws ParseException {
+		String strVal = cell.getStringCellValue();
+		if(Strings.isNullOrEmpty(strVal))
+			return null;
+		Number number = NumberFormat.getInstance().parse(strVal);
+		return number.doubleValue();
 	}
 	
 	public String getString(Cell cell) {
@@ -44,10 +51,12 @@ public class ExcelUtil {
 		return cell.getBooleanCellValue();
 	}
 	
-	public Integer getInt(Cell cell) {
-		//Double value = new Double(cell.getNumericCellValue());
-		Double value = cell.getNumericCellValue();
-		return value.intValue();
+	public Integer getInt(Cell cell) throws ParseException {
+		String strVal = cell.getStringCellValue();
+		if(Strings.isNullOrEmpty(strVal))
+			return null;
+		Number number = NumberFormat.getInstance().parse(strVal);
+		return number.intValue();
 	}
 	
 	

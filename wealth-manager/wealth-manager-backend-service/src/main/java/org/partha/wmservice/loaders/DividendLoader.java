@@ -20,6 +20,7 @@ import org.partha.wmservice.dao.DividendDao;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -73,9 +74,11 @@ public class DividendLoader {
 			}
 		} catch (IOException e) {
 			logger.error("exception occured",e);
-		}
+		} catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
 
-		logger.info("total number of dividentRecordsRead:{}",dividendList.size());
+        logger.info("total number of dividentRecordsRead:{}",dividendList.size());
 		int recordsInserted = dividendDao.insertDividends(dividendList);
 		logger.info("total number of inserted:{}",recordsInserted);
 

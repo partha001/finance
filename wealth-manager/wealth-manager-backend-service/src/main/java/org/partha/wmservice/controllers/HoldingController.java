@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 @RestController
 @RequestMapping(value = "/holdings")
@@ -27,7 +28,7 @@ public class HoldingController {
     public void importHoldings(@RequestParam("file") MultipartFile multipartFile,
                                @RequestParam ExportImportFormat inputFormat,
                                @RequestParam(defaultValue = "partha") String username,
-                               @RequestParam String filePassword) throws IOException {
+                               @RequestParam String filePassword) throws IOException, ParseException {
         importService.importHoldings(multipartFile, inputFormat, username,filePassword);
     }
 

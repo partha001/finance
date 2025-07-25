@@ -34,6 +34,8 @@ public class HoldingDto {
 
 	private String symbol;
 
+	private String yahooFinanceTicker;
+
 }
 
 

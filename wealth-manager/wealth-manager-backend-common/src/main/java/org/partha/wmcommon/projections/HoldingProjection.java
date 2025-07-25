@@ -11,5 +11,6 @@ public interface HoldingProjection {
     String getKey();
     String getSymbol();
     Double getAveragePrice();
+    String getYahooFinanceTicker();
 
 }

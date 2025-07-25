@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 @Log4j2
 @Service
@@ -32,7 +33,7 @@ public class ImportService {
         throw new RuntimeException("no importer found for the given type");
     }
 
-    public void importHoldings(MultipartFile multipartFile, ExportImportFormat inputFormat, String username,String filePassword) throws IOException {
+    public void importHoldings(MultipartFile multipartFile, ExportImportFormat inputFormat, String username,String filePassword) throws IOException, ParseException {
         Importer importer = getImporter(inputFormat);
         importer.importData(multipartFile,username, filePassword );
     }
